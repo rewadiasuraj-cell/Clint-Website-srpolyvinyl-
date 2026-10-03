@@ -1,0 +1,234 @@
+/*Contact-Contant-Section-Start*/
+
+.contact-sec-content-title {
+    font-weight: 400;
+    font-size: 50px	;
+}
+.contact-sec-content-title {
+    font-weight: 300;
+    text-align: left;
+	
+}
+.contact-sec-form-title-border-top {
+    border-top: 2px solid #d4a568;
+    margin-left: 6rem;
+    width: 42%;
+}
+.contact-txt-bold {
+    font-weight: 600;
+    font-family: 'gotham-light',Arial;
+}
+.contact-content-sec {
+    padding: 3rem 0 0;
+}
+.contact-title_2 {
+    font-family: 'gotham-med',Arial;
+    font-weight: 400;
+}
+.contact-txt-sec {
+    font-size: 15px;
+}
+.contact-primary-item {
+    list-style: none;
+    padding: 0;
+}
+.contact-item {
+    display: inline-block;
+    padding-right: 3rem;
+    font-size: 17px;
+	color: #bcbcbc;
+}
+.contact-item_3 {
+    font-size: 18px;
+}
+.contact-icon {
+    color: #5b5b5b;
+    border: 1px solid #5b5b5b;
+    padding: 5px;
+    border-radius: 20px;
+}
+.contact-item_3 {
+    font-size: 18px;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+.contact-content-sec {
+    padding: 3rem 0 1rem;
+    border-bottom: 4px solid #bcbcbc;
+}
+.contact-uk-sec {
+    padding-top: 30px;
+}
+.contact-icon-link:hover {
+    text-decoration: none;
+    color: #5b5b5b;
+}
+/*Contact-Contant-Section-End*/
+
+/*Contact-Form-Section-Start*/
+.contact-sec-form-title {
+        font-size: 30px;
+        font-weight: 200;
+        margin: 0 0 0 6rem;
+        border: 2px solid #d4a568;
+        padding: 15px;
+        border-right: 0;
+		border-top: none;
+}
+.contact-form {
+    padding: 0px 0 0 6rem;
+}
+.contact-sec {
+    margin: 3rem 0 ;
+}
+.input-box {
+    border: 2px solid #d4a568;
+    padding: 8px;
+    width: 100%;
+    max-width: 420px;
+}
+.textarea {
+    border: 2px solid #d4a568;
+    padding: 8px;
+    width: 100%;
+    height: 100px;
+    max-width: 420px;
+}
+.contact-separator {
+    padding: 20px 0;
+    border-right: 8px solid #e53a24;
+}
+.input-btn {
+    border: none;
+    background: transparent;
+    font-size: 25px;
+    color: #84878a;
+    font-weight: 200;
+    float: right;
+    position: absolute;
+    right: 5rem;
+    margin-top: -8px;
+}
+.fa-angle-right {
+    color: #fff;
+    float: right;
+    margin-right: 30px;
+    background: #e53a24;
+    padding: 5px;
+}
+/*Contact-Form-Section-End*/
+
+/*Location-Section-Start*/
+.location-iframe {
+    margin: 30px 0 0;
+}
+/*Location-Section-End*/
+
+/*Media-Query-Section-Start*/
+@media only screen and (max-width:1029.33px){
+.contact-form {
+    padding: 20px 0 0 6rem;
+}
+.fa-angle-right {
+    margin-right: 35px;
+}
+.contact-sec-content-title {
+    font-size: 47px;
+}
+.input-btn {
+    right: 5rem;
+}
+.contact-sec-form-title {
+    margin: 0;
+}
+.contact-form {
+    padding: 0;
+}
+.contact-sec-form-title-border-top {
+    margin-left: 0; 
+}
+.contact-item {
+    padding-top: 10px;
+}
+}
+@media only screen and (max-width:991px){
+.contact-sec-content-title {
+    font-size: 40px;
+} 
+.contact-sec-form-title-border-top {
+    margin-left: 0; 
+}
+.contact-item {
+    padding-top: 10px;
+}	
+}
+@media only screen and (max-width:766px){
+.contact-sec-content {
+    margin: 0;
+}
+.contact-sec-content-title {
+    font-size: 50;
+}
+.contact-sec-form-title {
+    margin:0;
+}
+
+.contact-form {
+    margin: 10px 10px 0 0;
+}
+.contact-sec-form-title-border-top {
+    margin-left: 0; 
+}
+.contact-sec-form {
+    margin-top: 2rem !important;
+}
+}
+@media only screen and (max-width:500px){
+.contact-sec-content-title {
+    float: left;
+}	
+.contact-sec-form-title {
+    margin: 0;
+}
+.contact-form {
+    padding: 0;
+	margin: 10px 10px 0 0;
+}
+.contact-sec-content-title {
+    text-align: left; 
+}
+.fa-angle-right {
+    margin-right: 5px;
+}
+.input-btn {
+    right: 4rem;
+}
+.contact-sec-content-title {
+    font-size: 28px;
+    font-family: 'gotham-thin',Arial;
+}
+.contact-title_2 {
+    font-size: 18px;
+}
+.contact-sec-form-title-border-top {
+    margin-left: 0; 
+}
+.contact-content-sec {
+    padding: 8rem 0 1rem;
+    border-bottom: 4px solid #bcbcbc;
+}
+.contact-item {
+    padding: 10px;
+}
+.contact-sec-form {
+    margin-top: 2rem;
+}
+}
+/*Media-Query-Section-End*/
+
+@media only screen and (max-width:400px){
+.contact-item {
+    padding: 0; 
+	padding-top:10px;
+}
+}

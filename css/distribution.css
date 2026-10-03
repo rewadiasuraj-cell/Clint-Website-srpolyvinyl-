@@ -1,0 +1,170 @@
+.sec-seprator-top-light.distribution {
+    border: 4px solid #fff;
+    width: 6px;
+    height: 50px;
+    position: absolute;
+    right: 50px;
+    margin-top: 30px;
+}
+.title-wrp.light.distribution-global h2 {
+    font-size: 34px;
+}
+.title-seprator.light.distribution-global {
+    background: #fff;
+    border-color: #fff;
+}
+.title-border-wrp.light.distribution-global h2 {
+    font-size: 48px;
+}
+.parmar_global_sec {
+    background: #e53a24;
+    color: #fff;
+}
+.title-wrp-changes{
+	color:#fff !important;
+}
+.parmar_global_sec {
+    padding: 5em 0;
+}
+.map-sec {
+    position: absolute;
+    right: 15px;
+    padding: 40px 0;
+}
+.global_map {
+    width: 100%;
+    max-width: 500px;
+}
+.map-sec img {
+    max-width: 600px;
+}
+.location_sec {
+    margin: 4em 0;
+} 
+.distribution.global_sec {
+    margin: 17% 0 0;
+    background-color: #f5e4c9;
+    background-image: none;
+    padding: 10em 0 4em;
+}  
+.world_map {
+    width: 100%;
+    max-width: 500px;
+}
+.map-wrp {
+    position: absolute;
+    bottom: 3em;
+    left: 0px;
+}
+.distribution.global_sec h2 {
+    text-align: left;
+    font-weight: 200;
+}
+.distribution.global_sec h4 {
+    font-weight: 200;
+    font-family: 'gotham-light',Arial;
+}
+.distribution.global_sec p {
+    color: #615d68;
+    font-size: 16px;
+}
+.distribution.global_sec a {
+    color: #615d68;
+    font-weight: 600;
+	text-decoration:none;
+}
+.location_sec .title-wrp h2 {
+    font-size: 28px;
+}
+.title-border-wrp.location h2 {
+    font-size: 38px;
+	color: #595959;
+}
+label #btn,
+label #cancel {
+   color:#fff;
+   font-size:30px;
+   float:right;
+   line-height:80px; 
+   margin-right:40px;
+   cursor:pointer;
+   display:none;
+}
+#check {
+ display:none;
+}
+/*Distribution-Page-Start*/
+
+@media (max-width:1120px)  {
+img.ind-map {
+ max-width:400px;    margin-top: 2em
+}
+.world_map {
+    width: 100%;
+    max-width: 440px;
+}
+.title-border-wrp h2 {
+    font-size: 40px;
+}
+.title-wrp h2 {
+    font-size: 23px;
+}
+}
+@media (max-width:1029.33px){
+.title-border-wrp.location h2 {
+    font-size: 30px !important;
+}
+.location_sec .title-wrp h2 {
+    font-size: 20px;
+}
+}
+@media only screen and (max-width:991px){
+.location_sec .title-wrp h2 {
+    font-size: 17px;
+}
+.title-border-wrp.location h2 {
+    font-size: 27px !important;
+}	
+	
+}
+@media only screen and (max-width:766px){
+.title-border-wrp.location h2, .location_sec .title-wrp h2  {
+    font-size: 20px !important;
+}
+}
+@media (max-width:880px)  {
+.map-sec {
+    position: unset;
+    padding: 0;
+}
+.map-wrp {
+    position: relative;
+    bottom: 0em;
+    left: 0px;
+}
+.map-sec {
+    position: unset;
+    padding: 40px 0;
+    margin: auto;
+}
+.distribution.global_sec {
+    margin: 0;
+    padding: 20px 0;
+    text-align: center;
+    height: auto;
+}
+.distribution.global_sec h2 {
+    text-align: center;
+}
+}
+@media only screen and (max-width:430px){
+img.ind-map {
+    max-width: 300px;
+}
+.title-border-wrp.location h2, .location_sec .title-wrp h2 {
+    font-size: 16px !important;
+    font-weight: bold;
+    font-family: 'gotham-light',Arial;
+}
+}
+/*Distribution-Page-End*/

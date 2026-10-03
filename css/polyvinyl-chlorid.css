@@ -1,0 +1,149 @@
+/*Polyinyl-Section-Start*/
+.polyvinyl-sec {
+    margin: 3rem 0 0;
+    padding-bottom: 3rem;
+    border-bottom: 15px solid #d4a568;
+}
+.polyvinyl-sec-title {
+    font-weight: 400;
+    font-size: 35px;
+    padding: 15px 40px 15px;
+    color: #5b5b5b;
+    border: 1px solid #e2c498;
+    border-right: none;
+	margin: 0;
+}
+.poly-img {
+    width: 100%;
+    max-width: 32rem;
+    margin-top: -25px;
+}
+.poly-img-2.poly-img-wrp-2 {
+    margin-left: -20px;
+}
+.poly-img-2 {
+    width: 100%;
+    margin: 20px 0;
+    max-width: 15.4rem;
+}
+.seperator {
+    padding: 25px;
+    border-right: 8px solid #e53a24;
+}
+.polyvinyl-content {
+    padding: 4rem 2rem 0;
+}
+.polyvinyl-txt {
+    font-size: 19px;
+    color: #5b5b5b;
+}
+.polyvinyl-title {
+    font-size: 26px;
+    margin: 3rem 0 0;
+    color: #2b2a29;
+}
+.polyvinyl-menu {
+    margin: 1rem 0;
+    padding: 0 20px 0;
+}
+.polyvinyl-item {
+    padding: 10px;
+    color: #5b5b5b;
+    font-size: 20px;
+}
+.banner-content {
+	padding-top:16rem !important;
+}
+
+/*Polyinyl-Section-End*/
+
+/*Media-Query-Section-Start*/
+@media only screen and (max-width:1029.33px){
+.poly-img {
+    max-width: 26rem;
+}	
+.poly-img-2 {
+    max-width: 12.2rem;
+}
+.polyvinyl-title {
+    margin: 1rem 0 0;
+}
+.poly-img-2.poly-img-wrp-2 {
+    margin-left: -20px;
+}
+.polyvinyl-sec-title {
+    padding: 15px 31px 15px;
+	font-size: 30px;
+}
+.polyvinyl-txt {
+    font-size: 17px;
+}
+}
+@media only screen and (max-width:991px){
+.polyvinyl-content, .polyvinyl-item {
+    padding: 0; 
+}
+.polyvinyl-title {
+    margin: 0 ;
+}
+.poly-img-2 {
+    max-width: 9rem;
+}
+.poly-img {
+    max-width: 19rem;
+}
+}
+@media only screen and (max-width:766px){
+.polyvinyl-item {
+    padding: 5px;
+}
+.poly-img {
+    max-width: 30rem;
+    margin: 10px 0 0;
+}
+.poly-img-2 {
+    max-width: 14.3rem;
+}
+}
+@media only screen and (max-width:576px){
+.poly-img-2.poly-img-wrp-2 {
+     margin-left: 0; 
+}
+.poly-img-2 {
+    max-width: 30rem;
+}	
+}
+@media only screen and (max-width:432px){
+.banner-content h2 {
+    font-size: 40px;
+}
+.polyvinyl-sec-title {
+    font-size: 20px;
+}
+.polyvinyl-sec-title {
+    font-size: 27px;
+}
+.poly-img {
+    max-width: 22rem;
+}
+.poly-img-2 {
+    max-width: 22rem;
+}
+
+}
+@media only screen and (max-width:350px){
+.banner-content h2 {
+    font-size: 40px;
+}
+.polyvinyl-sec-title {
+    font-size: 20px;
+}
+.poly-img {
+    max-width: 17rem;
+	margin: 15px 0px 0;
+}
+.poly-img-2 {
+    max-width: 17rem;
+}	
+}
+/*Media-Query-Section-End*/
