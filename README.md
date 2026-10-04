@@ -9,10 +9,13 @@ Static website for S. R. Polyvinyl Ltd. (PVC resin, paste resin, plasticizers an
 - `contact.html` — Contact details, enquiry form (sends via email / WhatsApp), map
 - `404.html` — Not-found page
 
-Assets: `css/style.css`, `js/main.js`, `images/`.
+All site files live in `public/` (`css/style.css`, `js/main.js`, `images/`).
 
 ## Deploy (Cloudflare Pages)
 - Framework preset: **None**
 - Build command: *(leave empty)*
-- Build output directory: `/`
+- Build output directory: `public`
 - Production branch: `main`
+
+## Deploy (Cloudflare Workers)
+`wrangler.jsonc` serves `public/` as static assets — deploy command: `npx wrangler deploy`.
