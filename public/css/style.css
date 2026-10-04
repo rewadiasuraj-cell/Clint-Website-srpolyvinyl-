@@ -914,6 +914,99 @@ html:not(.no-js) .pr-sec:not(.in-view) .pr-accent { transform: scaleX(0); }
 .facts th { width: 40%; font-weight: 500; color: var(--maroon); }
 
 /* ---------- Products page ---------- */
+/* ---------- Products page (editorial layout, white) ---------- */
+.pd-nav { position: sticky; top: 68px; z-index: 50; background: #fff; border-bottom: 1px solid #efefef; }
+.pd-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; padding: 22px 0; }
+.pd-pills a {
+  flex: none;
+  padding: 9px 20px;
+  border: 1px solid var(--logo-red);
+  border-radius: 999px;
+  background: #fff;
+  color: #1f1f1f;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background .3s ease, color .3s ease;
+}
+.pd-pills a:hover { color: var(--logo-red); }
+.pd-pills a.active { background: var(--logo-red); color: #fff; }
+.pd-list { background: #fff; padding: 30px 0 40px; overflow-x: clip; }
+.pd-item { display: grid; grid-template-columns: 1.05fr 1fr; gap: 80px; align-items: center; padding: 70px 0; scroll-margin-top: 190px; }
+.pd-item.rev .pd-media { order: 2; }
+.pd-frame { position: relative; margin: 0 22px 22px 0; }
+.pd-item.rev .pd-frame { margin: 0 22px 22px 0; }
+.pd-frame::after { /* red offset bracket */
+  content: "";
+  position: absolute;
+  top: 26px;
+  left: 26px;
+  right: -20px;
+  bottom: -20px;
+  border-right: 2px solid var(--logo-red);
+  border-bottom: 2px solid var(--logo-red);
+  pointer-events: none;
+  transition: right .4s ease, bottom .4s ease;
+}
+.pd-frame img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 11 / 10;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #f2f2f2;
+  box-shadow: 0 10px 30px rgba(20, 20, 20, .07);
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+@media (hover: hover) {
+  .pd-frame:hover img { transform: scale(1.03); box-shadow: 0 18px 40px rgba(20, 20, 20, .12); }
+  .pd-frame:hover::after { right: -28px; bottom: -28px; }
+}
+.pd-eyebrow { color: var(--logo-red); font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.pd-body h2 { margin: 12px 0 0; font-size: clamp(36px, 4.2vw, 58px); font-weight: 300; line-height: 1.08; color: #1a1a1a; letter-spacing: -.01em; }
+.pd-body h2 strong { font-weight: 700; }
+.pd-body p { margin: 22px 0 0; max-width: 560px; font-size: 16px; line-height: 1.75; color: #5f5f5f; }
+.pd-chips { display: flex; flex-wrap: wrap; gap: 14px 26px; margin: 28px 0 0; padding: 0; list-style: none; }
+.pd-chips li { padding: 4px 0 4px 14px; border-left: 2px solid var(--logo-red); font-size: 14px; color: #2a2a2a; }
+.pd-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 34px;
+  padding-bottom: 10px;
+  color: var(--logo-red);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.pd-cta::after { content: ""; position: absolute; left: 0; bottom: 0; width: 82px; height: 2px; background: var(--logo-red); transition: width .35s ease; }
+.pd-cta i { transition: transform .35s ease; }
+.pd-cta:hover::after { width: 100%; }
+.pd-cta:hover i { transform: translateX(5px); }
+.pd-div { height: 1px; background: #e4e4e4; transform-origin: left; }
+.pd-others { background: #fff; border-top: 1px solid #efefef; }
+/* reveal: frame, then text 100ms later, chips one by one, CTA last; divider draws across */
+html:not(.no-js) .pd-item:not(.in-view) .pd-frame,
+html:not(.no-js) .pd-item:not(.in-view) .pd-body > *,
+html:not(.no-js) .pd-item:not(.in-view) .pd-chips li { opacity: 0; }
+html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
+.pd-div.in-view { transition: transform 1s cubic-bezier(.22, .61, .36, 1); }
+.pd-item.in-view .pd-frame { animation: pd-img .9s cubic-bezier(.22, .61, .36, 1) backwards; }
+.pd-item.in-view .pd-body > * { animation: pr-rise .8s cubic-bezier(.22, .61, .36, 1) .1s backwards; }
+.pd-item.in-view .pd-body > h2 { animation-delay: .16s; }
+.pd-item.in-view .pd-body > p { animation-delay: .22s; }
+.pd-item.in-view .pd-chips { animation: none; }
+.pd-item.in-view .pd-chips li { animation: pr-rise .6s cubic-bezier(.22, .61, .36, 1) backwards; animation-delay: calc(.3s + var(--i) * .06s); }
+.pd-item.in-view .pd-cta { animation-delay: .6s; }
+@keyframes pd-img { from { opacity: 0; transform: translate3d(0, 20px, 0) scale(.96); } to { opacity: 1; transform: none; } }
+.reduced .pd-list * { animation: none !important; transition: none !important; }
+
 .cat-nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .cat-nav a {
   padding: 8px 16px;
@@ -1066,6 +1159,10 @@ html:not(.no-js) .pr-sec:not(.in-view) .pr-accent { transform: scaleX(0); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1150px) {
+  .pd-nav { top: 60px; }
+  .pd-pills { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 16px; scroll-padding: 0 16px; }
+  .pd-pills::-webkit-scrollbar { display: none; }
+  .pd-item { gap: 48px; scroll-margin-top: 140px; }
   :root { --header-h: 68px; }
   .site-header.is-sticky .header-inner { min-height: 60px; }
   .brand img { height: 42px; }
@@ -1096,6 +1193,8 @@ html:not(.no-js) .pr-sec:not(.in-view) .pr-accent { transform: scaleX(0); }
   .pr-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 900px) {
+  .pd-item, .pd-item.rev { grid-template-columns: 1fr; gap: 34px; }
+  .pd-item.rev .pd-media { order: 0; }
   .slider-arrow { top: auto; bottom: 16px; margin-top: 0; width: 40px; height: 40px; opacity: 1; }
   .slider-arrow.prev { left: 16px; }
   .slider-arrow.next { right: 16px; }
@@ -1151,6 +1250,10 @@ html:not(.no-js) .pr-sec:not(.in-view) .pr-accent { transform: scaleX(0); }
   .why-grid, .values, .mini-grid, .cert-grid, .gallery, .industry-grid { grid-template-columns: 1fr; }
   .gallery { gap: 30px; }
   .client-marquee { --cm-card: 168px; --cm-gap: 14px; }
+  .pd-item { padding: 46px 0; }
+  .pd-body h2 { font-size: 34px; }
+  .pd-body p { font-size: 15px; }
+  .pd-chips { gap: 10px 18px; }
   .pr-grid { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -16px; padding: 4px 16px 24px; scrollbar-width: none; }
   .pr-grid::-webkit-scrollbar { display: none; }
   .pr-card { flex: 0 0 80%; scroll-snap-align: start; scroll-margin-left: 16px; }

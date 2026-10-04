@@ -147,7 +147,7 @@
     }
     requestAnimationFrame(tick);
   }
-  var watched = document.querySelectorAll("[data-anim], [data-count], .band, .pr-sec");
+  var watched = document.querySelectorAll("[data-anim], [data-count], .band, .pr-sec, .pd-item, .pd-div");
   if ("IntersectionObserver" in window && !reduced) {
     // Counters start from zero so they don't flash the final value first.
     document.querySelectorAll("[data-count]").forEach(function (el) {
@@ -182,6 +182,39 @@
       if (!prTick) { prTick = true; requestAnimationFrame(prDrift); }
     }, { passive: true });
     prDrift();
+  }
+
+  /* Products page: highlight the pill of the section in view */
+  var pills = document.querySelector(".pd-pills");
+  if (pills) {
+    var links = Array.prototype.slice.call(pills.querySelectorAll("a"));
+    var targets = links.map(function (l) { return document.querySelector(l.getAttribute("href")); });
+    var activeLink = null;
+    function setActive(l) {
+      if (l === activeLink) return;
+      if (activeLink) activeLink.classList.remove("active");
+      activeLink = l;
+      if (!l) return;
+      l.classList.add("active");
+      if (pills.scrollWidth > pills.clientWidth) { // keep it in view on the swipe bar
+        var left = l.offsetLeft - (pills.clientWidth - l.offsetWidth) / 2;
+        pills.scrollTo({ left: left, behavior: reduced ? "auto" : "smooth" });
+      }
+    }
+    var spyTick = false;
+    function spy() {
+      spyTick = false;
+      var line = pills.getBoundingClientRect().bottom + 160, pick = null;
+      targets.forEach(function (t, i) {
+        if (t && t.getBoundingClientRect().top <= line) pick = links[i];
+      });
+      setActive(pick || links[0]);
+    }
+    window.addEventListener("scroll", function () {
+      if (!spyTick) { spyTick = true; requestAnimationFrame(spy); }
+    }, { passive: true });
+    links.forEach(function (l) { l.addEventListener("click", function () { setActive(l); }); });
+    spy();
   }
 
   /* 3D tilt on cards (mouse devices only) */
