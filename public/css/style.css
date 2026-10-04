@@ -309,6 +309,10 @@ p { margin: 0 0 1em; }
 .page-banner--products .ab-in,
 .page-banner--about .ab-in { animation: ab-in .9s cubic-bezier(.22, .61, .36, 1) both; animation-delay: var(--d, 0s); }
 @keyframes ab-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+/* About hero: approved static banner image */
+.about-hero-img { line-height: 0; background: #7a1418; }
+.about-hero-img img { display: block; width: 100%; height: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .crumbs { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px; color: #f6cdc8; font-weight: 500; }
 
 /* ---------- Titles (boxed style) ---------- */
