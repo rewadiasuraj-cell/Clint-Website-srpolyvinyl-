@@ -328,7 +328,7 @@ p { margin: 0 0 1em; }
 .ph-p { top: calc(var(--pt) * .05cqw); font-size: calc(var(--ps) * .05cqw); line-height: calc(var(--pl) * .05cqw); animation-delay: .5s; }
 @keyframes ph-in { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: none; } }
 @media (max-width: 760px) {
-  .ph-bg { height: 200px; object-fit: cover; object-position: 88% center; }
+  .ph-bg { height: 200px; object-fit: cover; object-position: 50% center; }
   .ph-text { padding: 22px 16px 30px; background: linear-gradient(135deg, #6e1216, #a61c1f); }
   .ph-crumb, .ph-h, .ph-p { position: static; white-space: normal; }
   .ph-crumb { font-size: 13px; margin-bottom: 12px; }
