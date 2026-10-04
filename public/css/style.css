@@ -382,6 +382,9 @@ p { margin: 0 0 1em; }
   0%, 100% { transform: scale(1); }
   50%      { transform: scale(1.06); }
 }
+.network-art .obj { animation: iso-bob 4.6s ease-in-out infinite; }
+.network-art .hub-glow { animation: hub-glow 2.6s ease-in-out infinite; }
+@keyframes hub-glow { 50% { opacity: .3; } }
 .network-art .flow { stroke-dasharray: 10 140; animation: flow 3.2s linear infinite; opacity: .85; }
 @keyframes flow { from { stroke-dashoffset: 150; } to { stroke-dashoffset: 0; } }
 .network-art .ground { animation: ground 3.2s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
@@ -798,6 +801,13 @@ p { margin: 0 0 1em; }
 }
 
 /* ---------- Scroll reveal ---------- */
+/* Short, fixed travel distances: animate.css moves elements by 100% of their
+   own size, which made cards/text slide across neighbouring content. */
+@keyframes fadeInUp    { from { opacity: 0; transform: translate3d(0, 24px, 0); }  to { opacity: 1; transform: none; } }
+@keyframes fadeInDown  { from { opacity: 0; transform: translate3d(0, -24px, 0); } to { opacity: 1; transform: none; } }
+@keyframes fadeInLeft  { from { opacity: 0; transform: translate3d(-32px, 0, 0); } to { opacity: 1; transform: none; } }
+@keyframes fadeInRight { from { opacity: 0; transform: translate3d(32px, 0, 0); }  to { opacity: 1; transform: none; } }
+@keyframes zoomIn      { from { opacity: 0; transform: scale3d(.9, .9, .9); }      to { opacity: 1; transform: none; } }
 [data-anim] { opacity: 0; }
 [data-anim].animate__animated { opacity: 1; }
 .no-js [data-anim], .reduced [data-anim] { opacity: 1; }
@@ -881,6 +891,7 @@ p { margin: 0 0 1em; }
   .container { padding: 0 16px; }
   .title-box { padding: 4px 16px 8px; }
   .product-grid, .why-grid, .values, .mini-grid, .cert-grid, .gallery, .industry-grid { grid-template-columns: 1fr; }
+  .gallery { gap: 30px; }
   .client-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
   .client { padding: 20px 12px; }
   .client .logo { height: 80px; }
