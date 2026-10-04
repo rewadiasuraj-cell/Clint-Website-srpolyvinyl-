@@ -483,13 +483,18 @@ p { margin: 0 0 1em; }
   .band-bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 42% 60% at 50% 50%, rgba(60, 6, 10, .78), rgba(60, 6, 10, 0) 100%); }
 }
 @media (max-width: 900px) {
-  /* tablets and phones: copy first, product photo underneath */
+  /* tablets: copy first, product photo underneath */
   .band { flex-direction: column; align-items: stretch; min-height: 0; }
   .band-bg { order: 2; }
   .band .band-copy { padding: 48px 24px 24px; } /* beats the generic phone .container padding */
   .band h2 { font-size: min(6vw, 46px); }
   .band p { font-size: calc(13px + .5vw); margin-top: 18px; }
   .band-bg img { position: static; height: max(170px, 32vw); -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 30%); mask-image: linear-gradient(180deg, transparent 0, #000 30%); }
+}
+@media (max-width: 760px) {
+  /* phones: plain dark red behind the copy, no photo */
+  .band-bg { display: none; }
+  .band .band-copy { padding: 52px 24px 56px; }
 }
 
 /* ---------- Staircase stats ---------- */
