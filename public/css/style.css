@@ -459,7 +459,16 @@ p { margin: 0 0 1em; }
   background: #4d0c10;
   color: #fff;
 }
-.band-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.band-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+/* burgundy veil over the video: deepest behind the copy, lighter towards the edges */
+.band-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 40% 85% at 50% 50%, rgba(58, 6, 10, .88) 0%, rgba(58, 6, 10, .7) 50%, rgba(58, 6, 10, 0) 100%),
+    linear-gradient(rgba(15, 12, 12, .28), rgba(15, 12, 12, .28)); /* neutral dim so the pipes keep their grey */
+}
 .band-copy { position: relative; z-index: 1; padding-top: 44px; padding-bottom: 44px; }
 .band h2 br.m-only { display: none; } /* desktop: two lines */
 .band h2 {
@@ -484,16 +493,16 @@ p { margin: 0 0 1em; }
   /* small laptop / landscape tablet: the photo crops tighter, so keep a soft dark field behind the copy */
   .band { min-height: 330px; }
   .band p { max-width: 520px; }
-  .band-bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 42% 60% at 50% 50%, rgba(60, 6, 10, .78), rgba(60, 6, 10, 0) 100%); }
 }
 @media (max-width: 900px) {
   /* tablets: copy first, product photo underneath */
   .band { flex-direction: column; align-items: stretch; min-height: 0; }
-  .band-bg { order: 2; }
+  .band-bg { order: 2; position: relative; }
+  .band-bg::after { background: linear-gradient(180deg, rgba(77, 12, 16, 1) 0%, rgba(77, 12, 16, .25) 45%, rgba(58, 6, 10, .15) 100%); }
   .band .band-copy { padding: 48px 24px 24px; } /* beats the generic phone .container padding */
   .band h2 { font-size: min(6vw, 46px); }
   .band p { font-size: calc(13px + .5vw); margin-top: 18px; }
-  .band-bg img { position: static; height: max(170px, 32vw); -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 30%); mask-image: linear-gradient(180deg, transparent 0, #000 30%); }
+  .band-bg video { position: static; display: block; height: max(170px, 32vw); -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 30%); mask-image: linear-gradient(180deg, transparent 0, #000 30%); }
 }
 @media (max-width: 760px) {
   /* phones: plain dark red behind the copy, no photo */
