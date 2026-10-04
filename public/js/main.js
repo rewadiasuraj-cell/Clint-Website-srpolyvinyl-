@@ -240,7 +240,7 @@
     var track = box.querySelector(".cm-track");
     var originals = Array.prototype.slice.call(track.children);
     if (!originals.length) return;
-    var CYCLE = 32; // seconds for one full set of cards
+    var CYCLE = 16; // seconds for one full set of cards
     var setW = 0, pos = 0, speed = 0, target = reduced ? 0 : 1;
     var hovering = false, dragging = false, visible = true;
     var nudge = null, last = null;
