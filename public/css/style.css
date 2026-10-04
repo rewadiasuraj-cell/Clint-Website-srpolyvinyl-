@@ -451,12 +451,12 @@ p { margin: 0 0 1em; }
   overflow: hidden;
   display: flex;
   align-items: center;
-  min-height: calc(560px * var(--k));
+  min-height: calc(440px * var(--k));
   background: #4d0c10;
   color: #fff;
 }
 .band-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
-.band-copy { position: relative; z-index: 1; padding-top: 60px; padding-bottom: 60px; }
+.band-copy { position: relative; z-index: 1; padding-top: 44px; padding-bottom: 44px; }
 .band h2 br.m-only { display: none; } /* desktop: two lines */
 .band h2 {
   text-align: center;
@@ -478,7 +478,7 @@ p { margin: 0 0 1em; }
 .band p { text-align: center; margin: 26px auto 0; max-width: 660px; color: rgba(255, 255, 255, .8); font-size: calc((18px) * var(--k)); line-height: 1.6; }
 @media (max-width: 1100px) and (min-width: 901px) {
   /* small laptop / landscape tablet: the photo crops tighter, so keep a soft dark field behind the copy */
-  .band { min-height: 380px; }
+  .band { min-height: 330px; }
   .band p { max-width: 520px; }
   .band-bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 42% 60% at 50% 50%, rgba(60, 6, 10, .78), rgba(60, 6, 10, 0) 100%); }
 }
@@ -486,10 +486,10 @@ p { margin: 0 0 1em; }
   /* tablets and phones: copy first, product photo underneath */
   .band { flex-direction: column; align-items: stretch; min-height: 0; }
   .band-bg { order: 2; }
-  .band-copy { padding: 52px 24px 26px; }
+  .band-copy { padding: 40px 24px 20px; }
   .band h2 { font-size: min(6vw, 46px); }
   .band p { font-size: calc(13px + .5vw); margin-top: 18px; }
-  .band-bg img { position: static; height: max(210px, 39vw); -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 30%); mask-image: linear-gradient(180deg, transparent 0, #000 30%); }
+  .band-bg img { position: static; height: max(170px, 32vw); -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 30%); mask-image: linear-gradient(180deg, transparent 0, #000 30%); }
 }
 
 /* ---------- Staircase stats ---------- */
@@ -594,14 +594,14 @@ p { margin: 0 0 1em; }
   box-shadow: 0 8px 24px rgba(20, 20, 20, .06);
   transition: transform .35s ease, box-shadow .35s ease;
 }
-.pr-img { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: #f3f3f3; }
+.pr-img { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: #fff; }
 .pr-img img {
   position: absolute;
   left: 0;
   top: -8px;
   width: 100%;
   height: calc(100% + 16px); /* room for the scroll parallax */
-  object-fit: cover;
+  object-fit: contain; /* studio shots on white: show the whole product */
   transform: translate3d(0, var(--py, 0px), 0) scale(var(--zs, 1));
   transition: transform .4s ease;
 }
@@ -985,9 +985,9 @@ html:not(.no-js) .pr-sec:not(.in-view) .pr-accent { transform: scaleX(0); }
   display: block;
   width: 100%;
   aspect-ratio: 11 / 10;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 12px;
-  background: #f2f2f2;
+  background: #fff;
   box-shadow: 0 10px 30px rgba(20, 20, 20, .07);
   transition: transform .4s ease, box-shadow .4s ease;
 }
