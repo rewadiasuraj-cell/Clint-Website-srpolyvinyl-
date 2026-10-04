@@ -299,6 +299,12 @@ p { margin: 0 0 1em; }
 .page-banner--industries .ind-art { top: 6%; bottom: 4%; }
 .page-banner--industries .ind-art svg { filter: drop-shadow(0 22px 24px rgba(0, 0, 0, .25)); }
 .page-banner--industries .ind-float { animation: chain-float 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.page-banner--clientele .hs-art { top: 8%; bottom: 4%; }
+.page-banner--clientele .hs-art svg { filter: drop-shadow(0 22px 24px rgba(0, 0, 0, .22)); }
+.page-banner--clientele .hs-float { animation: hs-float 6.5s ease-in-out infinite; }
+@keyframes hs-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+.page-banner--clientele .hs-contact { animation: ch-contact 6.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.page-banner--clientele .ab-in,
 .page-banner--industries .ab-in,
 .page-banner--products .ab-in,
 .page-banner--about .ab-in { animation: ab-in .9s cubic-bezier(.22, .61, .36, 1) both; animation-delay: var(--d, 0s); }
