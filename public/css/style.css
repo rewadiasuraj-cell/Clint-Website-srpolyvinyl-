@@ -293,6 +293,10 @@ p { margin: 0 0 1em; }
 @keyframes chain-float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(-1.2deg); } }
 .page-banner--about .ch-contact { animation: ch-contact 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes ch-contact { 50% { opacity: .08; transform: scaleX(.9); } }
+.page-banner--products .prod-art { top: 6%; bottom: 4%; }
+.page-banner--products .prod-art svg { filter: drop-shadow(0 22px 24px rgba(0, 0, 0, .25)); }
+.page-banner--products .prod-float { animation: chain-float 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.page-banner--products .ab-in,
 .page-banner--about .ab-in { animation: ab-in .9s cubic-bezier(.22, .61, .36, 1) both; animation-delay: var(--d, 0s); }
 @keyframes ab-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 .crumbs { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px; color: #f6cdc8; font-weight: 500; }
