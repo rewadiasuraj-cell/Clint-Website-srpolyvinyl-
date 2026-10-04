@@ -408,10 +408,6 @@ p { margin: 0 0 1em; }
   border-top: 70px solid var(--sand);
   border-bottom: 70px solid var(--sand);
 }
-.band svg.lines { position: absolute; inset: 0; width: 100%; height: 100%; }
-.band svg.lines path { stroke: var(--gold); stroke-width: 1.4; fill: none; stroke-dasharray: 2200; stroke-dashoffset: 2200; }
-.band.in-view svg.lines path { animation: draw 3.2s ease forwards; }
-@keyframes draw { to { stroke-dashoffset: 0; } }
 .band h2 {
   position: relative;
   text-align: center;
