@@ -202,6 +202,27 @@ p { margin: 0 0 1em; }
 }
 .slider-dots button.active { background: var(--maroon); }
 
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+  border: 1px solid rgba(155, 42, 38, .5);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .55);
+  color: var(--maroon);
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .3s ease, background .3s ease, color .3s ease;
+}
+.slider-arrow.prev { left: 18px; }
+.slider-arrow.next { right: 18px; }
+.hero:hover .slider-arrow, .slider-arrow:focus-visible { opacity: 1; }
+.slider-arrow:hover { background: var(--maroon); color: #fff; }
+
 /* 3D art on the right side of each slide */
 .hero-art {
   position: absolute;
@@ -808,6 +829,22 @@ p { margin: 0 0 1em; }
   .client-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 900px) {
+  .slider-arrow { top: auto; bottom: 16px; margin-top: 0; width: 40px; height: 40px; opacity: 1; }
+  .slider-arrow.prev { left: 16px; }
+  .slider-arrow.next { right: 16px; }
+  .cat-nav {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -24px;
+    padding: 0 24px 4px;
+  }
+  .cat-nav::-webkit-scrollbar { display: none; }
+  .cat-nav a { flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start; }
   .section { padding: 64px 0; }
   .hero { height: auto; min-height: 640px; }
   .hero-art { width: 100%; top: auto; height: 46%; opacity: .9; }
@@ -836,6 +873,9 @@ p { margin: 0 0 1em; }
   .band { padding: 80px 0; border-width: 40px 0; }
 }
 @media (max-width: 560px) {
+  .copyright { padding-bottom: 72px; }
+  .wa-float { width: 48px; height: 48px; right: 14px; bottom: 14px; font-size: 24px; }
+  .cat-nav { margin: 0 -16px; padding: 0 16px 4px; scroll-padding-inline: 16px; }
   .container { padding: 0 16px; }
   .title-box { padding: 4px 16px 8px; }
   .product-grid, .why-grid, .values, .mini-grid, .cert-grid, .gallery, .industry-grid { grid-template-columns: 1fr; }

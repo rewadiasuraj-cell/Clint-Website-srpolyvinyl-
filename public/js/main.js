@@ -58,10 +58,50 @@
       slides[current].classList.add("active");
       if (dots[current]) dots[current].classList.add("active");
     }
+    var paused = false;
     function restart() {
       clearInterval(timer);
-      if (!reduced && slides.length > 1) timer = setInterval(function () { go(current + 1); }, 6500);
+      if (!reduced && !paused && slides.length > 1) timer = setInterval(function () { go(current + 1); }, 6500);
     }
+    var hero = document.querySelector(".hero");
+    var prev = hero.querySelector(".slider-arrow.prev");
+    var next = hero.querySelector(".slider-arrow.next");
+    if (prev) prev.addEventListener("click", function () { go(current - 1); restart(); });
+    if (next) next.addEventListener("click", function () { go(current + 1); restart(); });
+
+    // Pause while the visitor is pointing at or focused inside the slider.
+    function pause() { paused = true; clearInterval(timer); }
+    function resume() { paused = false; restart(); }
+    if (window.matchMedia && window.matchMedia("(hover: hover)").matches) {
+      hero.addEventListener("mouseenter", pause);
+      hero.addEventListener("mouseleave", resume);
+    }
+    hero.addEventListener("focusin", function (e) {
+      if (e.target.matches && e.target.matches(":focus-visible")) pause();
+    });
+    hero.addEventListener("focusout", function () { if (paused) resume(); });
+
+    // Swipe on touch screens.
+    var startX = null, startY = null;
+    hero.addEventListener("touchstart", function (e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    hero.addEventListener("touchend", function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      var dy = e.changedTouches[0].clientY - startY;
+      startX = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+        go(dx < 0 ? current + 1 : current - 1);
+        restart();
+      }
+    }, { passive: true });
+
+    hero.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { go(current - 1); restart(); }
+      if (e.key === "ArrowRight") { go(current + 1); restart(); }
+    });
     // Start with no slide active so the first one animates in.
     slides[0].classList.remove("active");
     requestAnimationFrame(function () {
@@ -97,6 +137,10 @@
   }
   var watched = document.querySelectorAll("[data-anim], [data-count], .band");
   if ("IntersectionObserver" in window && !reduced) {
+    // Counters start from zero so they don't flash the final value first.
+    document.querySelectorAll("[data-count]").forEach(function (el) {
+      el.textContent = "0" + (el.getAttribute("data-suffix") || "");
+    });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); }
