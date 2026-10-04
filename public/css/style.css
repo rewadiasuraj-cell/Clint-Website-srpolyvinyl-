@@ -1522,7 +1522,7 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
 
 /* ---------- Home: customer-centric banner ---------- */
 .why-home {
-  --wh-art: min(44vw, 900px);             /* video width: stays clear of the copy on the left */
+  --wh-art: min(50vw, 1000px);            /* video width; its faded left edge meets the copy */
   position: relative;
   overflow: hidden;
   display: flex;
@@ -1548,7 +1548,7 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
   pointer-events: none;
 }
 .why-home .container { position: relative; z-index: 1; }
-.wh-copy { width: 54%; }
+.wh-copy { width: 51%; }
 .wh-line { display: block; width: 64px; height: 3px; background: var(--logo-red); }
 .why-home h2 { margin-top: 24px; color: #1a1a1a; line-height: 1.08; }
 .why-home h2 span { display: block; font-size: calc(clamp(30px, 2.9vw, 52px) * var(--k)); font-weight: 200; letter-spacing: -.01em; }
