@@ -1555,6 +1555,10 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
 .wh-val .n { font-size: calc(clamp(32px, 2.6vw, 46px) * var(--k)); font-weight: 200; line-height: 1; color: var(--logo-red); }
 .wh-val .n::after { content: ""; display: block; width: 34px; height: 1px; margin: 16px 0 18px; background: #cfc7c0; }
 .wh-val h3 { font-size: calc(clamp(19px, 1.5vw, 25px) * var(--k)); font-weight: 600; color: #1f1f1f; }
+@media (min-width: 1101px) {
+  /* titles may run to two lines; reserve both so the three descriptions start level */
+  .wh-val h3 { line-height: 1.25; min-height: 2.5em; }
+}
 .wh-val p { margin: 10px 0 0; font-size: calc(16px * var(--k)); line-height: 1.65; color: #5b5550; }
 .wh-btn {
   display: inline-flex;
