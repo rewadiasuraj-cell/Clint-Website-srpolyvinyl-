@@ -243,6 +243,30 @@
     }, { rootMargin: "200px 0px" }).observe(v);
   });
 
+  /* Distributor section: pellet textures drift at different speeds while scrolling */
+  var distSec = document.querySelector(".dist-sec");
+  if (distSec && !reduced) {
+    var layers = [
+      [distSec.querySelector(".dist-deco--bl"), -70],  // moves up as you scroll down
+      [distSec.querySelector(".dist-deco--tr"), 55],   // moves down
+      [distSec.querySelector(".dist-grid"), -18]       // cards float a little
+    ].filter(function (l) { return l[0]; });
+    var distTick = false;
+    function distPar() {
+      distTick = false;
+      var r = distSec.getBoundingClientRect(), vh = window.innerHeight;
+      if (r.bottom < 0 || r.top > vh) return;
+      var t = ((r.top + r.height / 2) - vh / 2) / (vh / 2 + r.height / 2); // -1 .. 1 across the pass
+      var k = window.matchMedia("(max-width: 760px)").matches ? .5 : 1;
+      layers.forEach(function (l) { l[0].style.transform = "translate3d(0," + (t * l[1] * k).toFixed(1) + "px,0)"; });
+    }
+    window.addEventListener("scroll", function () {
+      if (!distTick) { distTick = true; requestAnimationFrame(distPar); }
+    }, { passive: true });
+    window.addEventListener("resize", distPar);
+    distPar();
+  }
+
   /* 3D tilt on cards (mouse devices only) */
   if (!reduced && window.matchMedia && window.matchMedia("(hover: hover)").matches) {
     document.querySelectorAll("[data-tilt]").forEach(function (card) {

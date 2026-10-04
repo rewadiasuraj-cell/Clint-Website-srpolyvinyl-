@@ -695,7 +695,8 @@ html:not(.no-js) .pr-sec:not(.in-view) .pr-accent { transform: scaleX(0); }
 /* ---------- Principals ---------- */
 /* Home: authorized distributor cards with the principals' real logos */
 .dist-sec { position: relative; overflow: hidden; background: #fbfaf8; }
-.dist-deco { position: absolute; z-index: 0; height: auto; opacity: .55; pointer-events: none; }
+.dist-deco { position: absolute; z-index: 0; height: auto; opacity: .55; pointer-events: none; will-change: transform; }
+.dist-deco--bl { bottom: -70px !important; } .dist-deco--tr { top: -55px !important; } /* room for the parallax travel */
 .dist-deco--bl { left: 0; bottom: 0; width: min(36vw, 640px); -webkit-mask-image: radial-gradient(ellipse at 0 100%, #000 30%, transparent 72%); mask-image: radial-gradient(ellipse at 0 100%, #000 30%, transparent 72%); }
 .dist-deco--tr { right: 0; top: 0; width: min(28vw, 500px); -webkit-mask-image: radial-gradient(ellipse at 100% 0, #000 30%, transparent 72%); mask-image: radial-gradient(ellipse at 100% 0, #000 30%, transparent 72%); }
 .dist-sec .container { position: relative; z-index: 1; }
@@ -703,7 +704,7 @@ html:not(.no-js) .pr-sec:not(.in-view) .pr-accent { transform: scaleX(0); }
 .dist-head h2 { font-size: calc(clamp(32px, 3.4vw, 54px) * var(--k)); font-weight: 200; color: #1a1a1a; }
 .dist-head h2 strong { font-weight: 700; }
 .dist-line { display: block; width: 3px; height: 40px; margin: 18px auto 0; background: var(--logo-red); }
-.dist-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(32px * var(--k)); max-width: calc(1000px * var(--k)); margin: calc(44px * var(--k)) auto 0; }
+.dist-grid { will-change: transform; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(32px * var(--k)); max-width: calc(1000px * var(--k)); margin: calc(44px * var(--k)) auto 0; }
 .dist-card {
   padding: calc(34px * var(--k)) 24px calc(32px * var(--k));
   text-align: center;
