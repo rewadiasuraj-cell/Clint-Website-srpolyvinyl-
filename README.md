@@ -7,7 +7,7 @@ Live: https://clint-website-srpolyvinyl.rewadiasuraj.workers.dev/
 ## Pages
 | File | Page |
 |---|---|
-| `public/index.html` | Home: hero slider, intro, statement, journey in numbers, and previews with links: products (4), authorized distributors, industries (4), why us (3), clientele (3) |
+| `public/index.html` | Home: hero slider, intro, statement, journey in numbers, and previews with links: products (4), authorized distributors, industries (4), why us (3), clientele (all 6, scrolling row) |
 | `public/about.html` | Profile, vision & mission, values, quality assurance, certifications, infrastructure, why us (all 6), group companies, company factsheet |
 | `public/products.html` | All product categories with grades, plus other specialty products |
 | `public/industries.html` | Industries served, with the products supplied to each (linked to the products page) |
@@ -17,7 +17,7 @@ Live: https://clint-website-srpolyvinyl.rewadiasuraj.workers.dev/
 
 All site files are inside `public/`:
 - `css/style.css`: all styles (colours are set at the top under `:root`)
-- `js/main.js`: header, mobile menu, hero slider, scroll animations, counters, card tilt, enquiry form
+- `js/main.js`: header, mobile menu, hero slider, client marquee, scroll animations, counters, card tilt, enquiry form
 - `images/`: logos, product photos, office photos, certificates, client logos (WebP)
 
 No build step or framework: edit the HTML/CSS directly.
@@ -26,7 +26,7 @@ No build step or framework: edit the HTML/CSS directly.
 - **Phone / email / address**: search and replace in the 7 HTML files (header, footer, contact page).
 - **WhatsApp number**: `https://wa.me/918586980901` and `data-whatsapp="918586980901"` on the contact form.
 - **Product grades**: edit the `<ul class="grades">` lists in `public/products.html`.
-- **Add a client logo**: add a WebP to `public/images/clients/` and copy one `<div class="client ...">` block in `public/clientele.html` (the Home page shows the first three).
+- **Add a client logo**: add a WebP to `public/images/clients/` and copy one `<div class="client">` block inside `.cm-track` in both `public/clientele.html` and `public/index.html` (the scrolling row repeats the cards by itself).
 
 ## Enquiry form
 The site is static (no server), so the form does not send email by itself:

@@ -180,6 +180,122 @@
     });
   }
 
+  /* Client marquee: one row drifting right to left, looping without a jump */
+  document.querySelectorAll("[data-marquee]").forEach(function (box) {
+    var viewport = box.querySelector(".cm-viewport");
+    var track = box.querySelector(".cm-track");
+    var originals = Array.prototype.slice.call(track.children);
+    if (!originals.length) return;
+    var CYCLE = 32; // seconds for one full set of cards
+    var setW = 0, pos = 0, speed = 0, target = reduced ? 0 : 1;
+    var hovering = false, dragging = false, visible = true;
+    var nudge = null, last = null;
+
+    function cloneSet() {
+      originals.forEach(function (el) {
+        var c = el.cloneNode(true);
+        c.setAttribute("aria-hidden", "true");
+        track.appendChild(c);
+      });
+    }
+    function measure() {
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      var first = originals[0].offsetLeft;
+      var lastEl = originals[originals.length - 1];
+      var w = lastEl.offsetLeft + lastEl.offsetWidth + gap - first;
+      // keep enough copies so the row never runs out while looping
+      while (track.scrollWidth < w * 2 + viewport.clientWidth) cloneSet();
+      if (setW) pos = pos / setW * w;
+      setW = w;
+    }
+    function wrap() {
+      if (!setW) return;
+      pos = ((pos % setW) + setW) % setW;
+    }
+    function paint() {
+      track.style.transform = "translate3d(" + (-pos).toFixed(2) + "px,0,0)";
+    }
+    function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+
+    function frame(ts) {
+      var dt = last === null ? 0 : Math.min((ts - last) / 1000, 0.05);
+      last = ts;
+      var want = hovering || dragging ? 0 : target;
+      speed += (want - speed) * Math.min(1, dt * 3); // glide to a stop and back
+      if (!dragging) pos += speed * (setW / CYCLE) * dt;
+      if (nudge) {
+        var p = Math.min((ts - nudge.start) / nudge.dur, 1);
+        var e = ease(p);
+        pos += (e - nudge.done) * nudge.dist;
+        nudge.done = e;
+        if (p >= 1) nudge = null;
+      }
+      wrap();
+      paint();
+      if (visible) requestAnimationFrame(frame);
+      else last = null;
+    }
+
+    measure();
+    paint();
+    requestAnimationFrame(frame);
+    window.addEventListener("resize", function () { measure(); wrap(); paint(); });
+    window.addEventListener("load", function () { measure(); wrap(); paint(); });
+
+    // stop the loop while the row is off screen
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        var was = visible;
+        visible = entries[0].isIntersecting;
+        if (visible && !was) requestAnimationFrame(frame);
+      }).observe(box);
+    }
+
+    if (window.matchMedia && window.matchMedia("(hover: hover)").matches) {
+      box.addEventListener("mouseenter", function () { hovering = true; });
+      box.addEventListener("mouseleave", function () { hovering = false; });
+    }
+
+    // drag with mouse, swipe with touch; vertical page scroll still works
+    var startX = 0, startY = 0, startPos = 0, pid = null, decided = false;
+    viewport.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      pid = e.pointerId; startX = e.clientX; startY = e.clientY; startPos = pos; decided = e.pointerType === "mouse";
+      if (decided) { dragging = true; nudge = null; viewport.classList.add("is-dragging"); viewport.setPointerCapture(pid); }
+    });
+    viewport.addEventListener("pointermove", function (e) {
+      if (e.pointerId !== pid) return;
+      var dx = e.clientX - startX, dy = e.clientY - startY;
+      if (!decided) {
+        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+        decided = true;
+        if (Math.abs(dx) <= Math.abs(dy)) { pid = null; return; }
+        dragging = true; nudge = null; speed = 0;
+        viewport.classList.add("is-dragging");
+        viewport.setPointerCapture(pid);
+      }
+      if (dragging) { pos = startPos - dx; wrap(); }
+    });
+    function release(e) {
+      if (e.pointerId !== pid) return;
+      pid = null;
+      if (dragging) { dragging = false; speed = 0; viewport.classList.remove("is-dragging"); }
+    }
+    viewport.addEventListener("pointerup", release);
+    viewport.addEventListener("pointercancel", release);
+
+    // arrows glide one card, on top of the running drift
+    function step(dir) {
+      var card = originals[0].offsetWidth + (parseFloat(getComputedStyle(track).columnGap) || 0);
+      var rest = nudge ? (1 - nudge.done) * nudge.dist : 0;
+      nudge = { start: performance.now(), dur: 650, dist: dir * card + rest, done: 0 };
+    }
+    var prev = box.querySelector(".cm-arrow.prev");
+    var next = box.querySelector(".cm-arrow.next");
+    if (prev) prev.addEventListener("click", function () { step(-1); });
+    if (next) next.addEventListener("click", function () { step(1); });
+  });
+
   /* Read more toggle */
   document.querySelectorAll("[data-toggle]").forEach(function (btn) {
     var target = document.getElementById(btn.getAttribute("data-toggle"));
