@@ -2,13 +2,15 @@
    S. R. Polyvinyl Ltd. — site styles
    ========================================================== */
 :root {
-  --maroon: #9b2a26;
+  --maroon: #9b2a26;          /* logo red */
   --maroon-dark: #7a1f1c;
-  --gold: #c9a06a;
-  --gold-dark: #a87d45;
-  --beige: #f4e3c8;
-  --beige-light: #fbf4e8;
-  --sand: #d4a76a;
+  --burgundy: #4a0b0f;
+  --logo-red: #a61c1f;
+  --gold: #cf6a62;             /* accent borders / icons (red 400) */
+  --gold-dark: #861b1c;
+  --beige: #f9e8e6;            /* light blush surfaces */
+  --beige-light: #fdf5f4;
+  --sand: #5e0f14;             /* band edges */
   --ink: #2b2b2b;
   --muted: #6b6259;
   --white: #ffffff;
@@ -127,7 +129,7 @@ p { margin: 0 0 1em; }
   min-height: 560px;
   max-height: 820px;
   overflow: hidden;
-  background: linear-gradient(135deg, #f8ead3 0%, #ecd1a6 55%, #dfb97f 100%);
+  background: linear-gradient(135deg, #4a0b0f 0%, #6e1216 42%, #8f1b1f 72%, #a61c1f 100%);
 }
 .slide {
   position: absolute;
@@ -141,14 +143,14 @@ p { margin: 0 0 1em; }
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 15% 15%, rgba(255, 255, 255, .55), transparent 55%);
+  background: radial-gradient(circle at 18% 20%, rgba(255, 255, 255, .10), transparent 55%);
 }
 .slide .container { position: relative; height: 100%; display: flex; align-items: center; }
 .slide-text { position: relative; z-index: 2; max-width: 640px; }
 .slide-text h1, .slide-text h2 {
   font-size: clamp(34px, 4.3vw, 62px);
   font-weight: 200;
-  color: #2f2a25;
+  color: #fff;
   letter-spacing: -.01em;
 }
 .slide-text h1 strong, .slide-text h2 strong { font-weight: 500; }
@@ -160,7 +162,7 @@ p { margin: 0 0 1em; }
   margin-top: 34px;
   font-size: clamp(17px, 1.75vw, 24px);
   font-weight: 300;
-  color: #3a332c;
+  color: rgba(255, 255, 255, .9);
 }
 .slide-text .tagline strong { font-weight: 500; }
 .underline {
@@ -175,7 +177,7 @@ p { margin: 0 0 1em; }
   right: 0;
   bottom: -2px;
   height: 3px;
-  background: var(--maroon);
+  background: #fff;
   transform-origin: left;
   transform: scaleX(0);
   transition: transform 1s ease 1.6s;
@@ -203,13 +205,13 @@ p { margin: 0 0 1em; }
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 2px solid var(--maroon);
+  border: 2px solid rgba(255, 255, 255, .85);
   background: transparent;
   padding: 0;
   cursor: pointer;
   transition: background .3s ease;
 }
-.slider-dots button.active { background: var(--maroon); }
+.slider-dots button.active { background: #fff; }
 
 .slider-arrow {
   position: absolute;
@@ -218,10 +220,10 @@ p { margin: 0 0 1em; }
   width: 48px;
   height: 48px;
   margin-top: -24px;
-  border: 1px solid rgba(155, 42, 38, .5);
+  border: 1px solid rgba(255, 255, 255, .55);
   border-radius: 50%;
-  background: rgba(255, 255, 255, .55);
-  color: var(--maroon);
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
   font-size: 16px;
   cursor: pointer;
   opacity: 0;
@@ -230,7 +232,7 @@ p { margin: 0 0 1em; }
 .slider-arrow.prev { left: 18px; }
 .slider-arrow.next { right: 18px; }
 .hero:hover .slider-arrow, .slider-arrow:focus-visible { opacity: 1; }
-.slider-arrow:hover { background: var(--maroon); color: #fff; }
+.slider-arrow:hover { background: #fff; color: var(--maroon); }
 
 /* 3D art on the right side of each slide */
 .hero-art {
@@ -247,7 +249,7 @@ p { margin: 0 0 1em; }
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter: drop-shadow(0 26px 30px rgba(110, 70, 30, .22));
+  filter: drop-shadow(0 26px 30px rgba(20, 0, 3, .45));
 }
 .iso-scene {
   transform-origin: center;
@@ -273,14 +275,14 @@ p { margin: 0 0 1em; }
   min-height: 380px;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #f8ead3 0%, #ecd1a6 55%, #dfb97f 100%);
+  background: linear-gradient(135deg, #4a0b0f 0%, #6e1216 42%, #8f1b1f 72%, #a61c1f 100%);
 }
 .page-banner .container { position: relative; z-index: 2; }
-.page-banner h1 { font-size: clamp(36px, 5vw, 64px); font-weight: 200; color: #2f2a25; }
+.page-banner h1 { font-size: clamp(36px, 5vw, 64px); font-weight: 200; color: #fff; }
 .page-banner h1 strong { font-weight: 500; }
-.page-banner p { margin-top: 18px; font-size: 18px; color: #4a4038; max-width: 560px; }
+.page-banner p { margin-top: 18px; font-size: 18px; color: rgba(255, 255, 255, .88); max-width: 560px; }
 .page-banner .hero-art { width: 48%; }
-.crumbs { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px; color: var(--maroon); font-weight: 500; }
+.crumbs { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px; color: #f6cdc8; font-weight: 500; }
 
 /* ---------- Titles (boxed style) ---------- */
 .title-wrp { margin-bottom: 48px; }
@@ -362,7 +364,7 @@ p { margin: 0 0 1em; }
 .network-art { perspective: 1000px; }
 .network-art svg {
   overflow: visible;
-  filter: drop-shadow(0 14px 18px rgba(110, 70, 30, .22));
+  filter: drop-shadow(0 14px 18px rgba(90, 14, 18, .22));
   animation: net-sway 12s ease-in-out infinite;
   transform-style: preserve-3d;
 }
@@ -444,27 +446,27 @@ p { margin: 0 0 1em; }
 /* ---------- 3D slab cards ---------- */
 .slab {
   position: relative;
-  background: linear-gradient(160deg, #fffdf9 0%, #faf1e3 100%);
-  border: 1px solid #ecdcc0;
+  background: linear-gradient(160deg, #ffffff 0%, #fcefee 100%);
+  border: 1px solid #efd3cf;
   /* stacked shadows = light extruded edge */
-  box-shadow: 1px 1px 0 #ead6b4, 2px 2px 0 #e3caa2, 3px 3px 0 #dcbf92, 4px 4px 0 #d4b384, 5px 5px 0 #cca877,
-    10px 14px 22px rgba(110, 70, 30, .1);
+  box-shadow: 1px 1px 0 #f2d0cc, 2px 2px 0 #eab8b3, 3px 3px 0 #e0a19b, 4px 4px 0 #d58a83, 5px 5px 0 #c9736c,
+    10px 14px 22px rgba(90, 14, 18, .1);
   transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translate(var(--lift, 0), var(--lift, 0));
   transform-style: preserve-3d;
   transition: transform .25s ease, box-shadow .35s ease;
 }
 .slab:hover {
   --lift: -2px;
-  box-shadow: 1px 1px 0 #ead6b4, 2px 2px 0 #e3caa2, 3px 3px 0 #dcbf92, 4px 4px 0 #d4b384, 5px 5px 0 #cca877, 6px 6px 0 #c49d6b, 7px 7px 0 #bb9261,
-    14px 18px 28px rgba(110, 70, 30, .14);
+  box-shadow: 1px 1px 0 #f2d0cc, 2px 2px 0 #eab8b3, 3px 3px 0 #e0a19b, 4px 4px 0 #d58a83, 5px 5px 0 #c9736c, 6px 6px 0 #bd5f58, 7px 7px 0 #b04d47,
+    14px 18px 28px rgba(90, 14, 18, .14);
 }
 .slab.slab-thin {
-  box-shadow: 1px 1px 0 #ead6b4, 2px 2px 0 #e3caa2, 3px 3px 0 #dcbf92,
-    8px 10px 18px rgba(110, 70, 30, .08);
+  box-shadow: 1px 1px 0 #f2d0cc, 2px 2px 0 #eab8b3, 3px 3px 0 #e0a19b,
+    8px 10px 18px rgba(90, 14, 18, .08);
 }
 .slab.slab-thin:hover {
-  box-shadow: 1px 1px 0 #ead6b4, 2px 2px 0 #e3caa2, 3px 3px 0 #dcbf92, 4px 4px 0 #d4b384, 5px 5px 0 #cca877,
-    10px 14px 22px rgba(110, 70, 30, .12);
+  box-shadow: 1px 1px 0 #f2d0cc, 2px 2px 0 #eab8b3, 3px 3px 0 #e0a19b, 4px 4px 0 #d58a83, 5px 5px 0 #c9736c,
+    10px 14px 22px rgba(90, 14, 18, .12);
 }
 .slab h3, .slab h4, .slab .name, .slab .n { transform: translateZ(18px); }
 
@@ -472,7 +474,7 @@ p { margin: 0 0 1em; }
 .principals { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; padding: 10px 0 24px; }
 .principal { min-width: 250px; padding: 30px 30px 32px; text-align: center; }
 .principal .p-icon { display: flex; justify-content: center; margin-bottom: 16px; transform: translateZ(30px); }
-.principal .p-icon svg { filter: drop-shadow(0 8px 8px rgba(110, 70, 30, .25)); animation: iso-bob 5s ease-in-out infinite; }
+.principal .p-icon svg { filter: drop-shadow(0 8px 8px rgba(90, 14, 18, .25)); animation: iso-bob 5s ease-in-out infinite; }
 .principal:nth-child(2) .p-icon svg { animation-delay: -1.6s; }
 .principal:nth-child(3) .p-icon svg { animation-delay: -3.2s; }
 .principal .name { font-size: 24px; font-weight: 500; letter-spacing: .04em; color: var(--maroon); transform: translateZ(20px); }
@@ -529,7 +531,7 @@ p { margin: 0 0 1em; }
 }
 .client .logo {
   background: #fff;
-  border: 1px solid #f0e4cf;
+  border: 1px solid #f3dcd9;
   height: 110px;
   margin: -6px -2px 18px;
   display: grid;
@@ -653,7 +655,7 @@ p { margin: 0 0 1em; }
 }
 
 .facts { width: 100%; border-collapse: collapse; }
-.facts th, .facts td { text-align: left; padding: 14px 18px; border-bottom: 1px solid #eedfc6; font-size: 15px; }
+.facts th, .facts td { text-align: left; padding: 14px 18px; border-bottom: 1px solid #f2d8d5; font-size: 15px; }
 .facts th { width: 40%; font-weight: 500; color: var(--maroon); }
 
 /* ---------- Products page ---------- */
@@ -673,7 +675,7 @@ p { margin: 0 0 1em; }
   gap: 56px;
   align-items: center;
   padding: 70px 0;
-  border-bottom: 1px solid #eedfc6;
+  border-bottom: 1px solid #f2d8d5;
 }
 .category:nth-of-type(even) { grid-template-columns: 7fr 5fr; }
 .category:nth-of-type(even) .cat-media { order: 2; }
@@ -704,7 +706,7 @@ p { margin: 0 0 1em; }
 
 /* ---------- Contact page ---------- */
 .contact-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 60px; }
-.contact-list li { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid #eedfc6; }
+.contact-list li { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid #f2d8d5; }
 .contact-list .ic {
   flex: 0 0 48px;
   height: 48px;
@@ -722,7 +724,7 @@ p { margin: 0 0 1em; }
 .form input, .form textarea, .form select {
   width: 100%;
   padding: 14px 16px;
-  border: 1px solid #dcc7a4;
+  border: 1px solid #e6bfbb;
   background: #fff;
   font-family: inherit;
   font-size: 15px;
@@ -740,11 +742,14 @@ p { margin: 0 0 1em; }
 
 /* ---------- CTA ---------- */
 .cta {
-  background: linear-gradient(135deg, #f8ead3, #e6c391);
+  background: linear-gradient(135deg, #4a0b0f 0%, #6e1216 42%, #8f1b1f 72%, #a61c1f 100%);
+  color: #fff;
   padding: 70px 0;
 }
 .cta .container { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
-.cta h2 { font-size: clamp(26px, 3.4vw, 42px); font-weight: 200; }
+.cta h2 { font-size: clamp(26px, 3.4vw, 42px); font-weight: 200; color: #fff; }
+.cta .btn { background: #fff; color: var(--maroon); border-color: #fff; }
+.cta .btn:hover { background: transparent; color: #fff; }
 .cta h2 strong { font-weight: 500; }
 
 /* ---------- Footer ---------- */
