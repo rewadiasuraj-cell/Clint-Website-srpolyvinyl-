@@ -286,6 +286,15 @@ p { margin: 0 0 1em; }
   /* keep the visual's right edge on the header's content line */
   right: max(24px, calc((100% - 1240px) / 2 + 24px));
 }
+/* About hero only: chain visual + load fade-up */
+.page-banner--about .chain-art { top: 6%; bottom: 4%; }
+.page-banner--about .chain-art svg { filter: drop-shadow(0 22px 24px rgba(0, 0, 0, .25)); }
+.page-banner--about .chain-float { animation: chain-float 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes chain-float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(-1.2deg); } }
+.page-banner--about .ch-contact { animation: ch-contact 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes ch-contact { 50% { opacity: .08; transform: scaleX(.9); } }
+.page-banner--about .ab-in { animation: ab-in .9s cubic-bezier(.22, .61, .36, 1) both; animation-delay: var(--d, 0s); }
+@keyframes ab-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 .crumbs { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px; color: #f6cdc8; font-weight: 500; }
 
 /* ---------- Titles (boxed style) ---------- */
