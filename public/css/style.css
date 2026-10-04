@@ -296,6 +296,10 @@ p { margin: 0 0 1em; }
 .page-banner--products .prod-art { top: 6%; bottom: 4%; }
 .page-banner--products .prod-art svg { filter: drop-shadow(0 22px 24px rgba(0, 0, 0, .25)); }
 .page-banner--products .prod-float { animation: chain-float 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.page-banner--industries .ind-art { top: 6%; bottom: 4%; }
+.page-banner--industries .ind-art svg { filter: drop-shadow(0 22px 24px rgba(0, 0, 0, .25)); }
+.page-banner--industries .ind-float { animation: chain-float 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.page-banner--industries .ab-in,
 .page-banner--products .ab-in,
 .page-banner--about .ab-in { animation: ab-in .9s cubic-bezier(.22, .61, .36, 1) both; animation-delay: var(--d, 0s); }
 @keyframes ab-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
