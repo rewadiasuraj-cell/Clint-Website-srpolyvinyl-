@@ -451,11 +451,9 @@ p { margin: 0 0 1em; }
   overflow: hidden;
   display: flex;
   align-items: center;
-  min-height: calc(560px * var(--k) + 140px); /* + the two 70px edge bands */
+  min-height: calc(560px * var(--k));
   background: #4d0c10;
   color: #fff;
-  border-top: 70px solid var(--sand);
-  border-bottom: 70px solid var(--sand);
 }
 .band-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 .band-copy { position: relative; z-index: 1; padding-top: 60px; padding-bottom: 60px; }
@@ -480,7 +478,7 @@ p { margin: 0 0 1em; }
 .band p { text-align: center; margin: 26px auto 0; max-width: 660px; color: rgba(255, 255, 255, .8); font-size: calc((18px) * var(--k)); line-height: 1.6; }
 @media (max-width: 1100px) and (min-width: 901px) {
   /* small laptop / landscape tablet: the photo crops tighter, so keep a soft dark field behind the copy */
-  .band { min-height: 520px; }
+  .band { min-height: 380px; }
   .band p { max-width: 520px; }
   .band-bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 42% 60% at 50% 50%, rgba(60, 6, 10, .78), rgba(60, 6, 10, 0) 100%); }
 }
@@ -1285,7 +1283,6 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
   .cat-media { max-width: 420px; }
   .cat-media::after { inset: 12px -10px -12px 12px; }
   .cert-grid, .gallery { grid-template-columns: repeat(2, 1fr); }
-  .band { border-width: 40px 0; }
 }
 @media (max-width: 560px) {
   .page-banner .hero-art { width: calc(100% - 32px); right: 16px; }
