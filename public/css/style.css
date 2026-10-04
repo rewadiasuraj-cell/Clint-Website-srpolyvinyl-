@@ -1471,7 +1471,7 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
   align-items: center;
   min-height: max(calc(var(--wh-art) / 1.618), calc(560px * var(--k)));
   padding: calc(80px * var(--k)) 0;
-  background: #f4f0ed;                     /* same tone as the photo's backdrop */
+  background: #fff;
 }
 .wh-art {
   position: absolute;
