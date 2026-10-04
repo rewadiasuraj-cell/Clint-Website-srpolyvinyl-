@@ -122,6 +122,7 @@
   }
   function countUp(el) {
     var target = parseFloat(el.getAttribute("data-count"));
+    var from = parseFloat(el.getAttribute("data-from")) || 0;
     var suffix = el.getAttribute("data-suffix") || "";
     if (reduced) { el.textContent = target + suffix; return; }
     var start = null;
@@ -130,7 +131,7 @@
       if (!start) start = ts;
       var p = Math.min((ts - start) / dur, 1);
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
+      el.textContent = Math.round(from + (target - from) * eased) + suffix;
       if (p < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -139,7 +140,7 @@
   if ("IntersectionObserver" in window && !reduced) {
     // Counters start from zero so they don't flash the final value first.
     document.querySelectorAll("[data-count]").forEach(function (el) {
-      el.textContent = "0" + (el.getAttribute("data-suffix") || "");
+      el.textContent = (el.getAttribute("data-from") || "0") + (el.getAttribute("data-suffix") || "");
     });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
