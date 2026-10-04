@@ -1123,9 +1123,25 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
 
 /* ---------- CTA ---------- */
 .cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   background: linear-gradient(135deg, #4a0b0f 0%, #6e1216 42%, #8f1b1f 72%, #a61c1f 100%);
   color: #fff;
-  padding: 70px 0;
+  padding: calc(76px * var(--k)) 0;
+}
+/* topic photo per page (natural colours), burgundy only in the overlay on top of it */
+.cta-bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.cta:has(.cta-bg)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(64, 5, 10, .95) 0%, rgba(84, 10, 16, .88) 38%, rgba(104, 14, 20, .35) 64%, rgba(104, 14, 20, .06) 100%);
+}
+@media (max-width: 760px) {
+  .cta:has(.cta-bg)::before { background: linear-gradient(100deg, rgba(64, 5, 10, .94) 0%, rgba(84, 10, 16, .84) 48%, rgba(104, 14, 20, .14) 100%); }
+  .cta:has(.cta-bg) h2 { text-shadow: 0 2px 14px rgba(40, 0, 4, .55); }
 }
 .cta .container { display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
 .cta h2 { font-size: calc((clamp(26px, 3.4vw, 42px)) * var(--k)); font-weight: 200; color: #fff; }
