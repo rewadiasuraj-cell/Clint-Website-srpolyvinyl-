@@ -50,45 +50,41 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container contact-grid">
-    <div data-anim="fadeInLeft">
-      <div class="title-wrp">
-        <h2>Reach</h2>
-        <div class="title-box">us</div>
-        <div class="title-bar"></div>
+<section class="ct-sec">
+  <img class="ct-pipes" src="images/contact-pipes.webp" width="481" height="551" alt="" aria-hidden="true" loading="lazy">
+  <div class="container ct-wrap">
+    <div class="ct-grid">
+      <div class="ct-info">
+        <div class="ct-eyebrow">Contact</div>
+        <h2 class="ct-h"><span>Reach</span> <strong>us</strong></h2>
+        <ul class="ct-list">
+          <li><span class="ct-ic"><i class="fa-solid fa-location-dot"></i></span><div><h4>Office</h4><p>S. R. Polyvinyl Ltd.<br>4261/3, 1st Floor, Jai Mata Market, Tri Nagar, Delhi &ndash; 110035, India</p></div></li>
+          <li><span class="ct-ic"><i class="fa-solid fa-phone"></i></span><div><h4>Phone</h4><p><a href="tel:+918586980901">+91-8586980901</a><br><a href="tel:+918586980905">+91-8586980905</a></p></div></li>
+          <li><span class="ct-ic"><i class="fa-solid fa-envelope"></i></span><div><h4>Email</h4><p><a href="mailto:info@srpolyvinyl.com">info@srpolyvinyl.com</a><br><a href="mailto:srpolyvinyl@gmail.com">srpolyvinyl@gmail.com</a></p></div></li>
+          <li><span class="ct-ic"><i class="fa-brands fa-whatsapp"></i></span><div><h4>WhatsApp</h4><p><a href="https://wa.me/918586980901" target="_blank" rel="noopener">Chat with our sales team</a></p></div></li>
+        </ul>
       </div>
-      <ul class="contact-list">
-        <li><span class="ic"><i class="fa-solid fa-location-dot"></i></span><div><h4>Office</h4>S. R. Polyvinyl Ltd.<br>4261/3, 1st Floor, Jai Mata Market, Tri Nagar, Delhi &ndash; 110035, India</div></li>
-        <li><span class="ic"><i class="fa-solid fa-phone"></i></span><div><h4>Phone</h4><a href="tel:+918586980901">+91-8586980901</a><br><a href="tel:+918586980905">+91-8586980905</a></div></li>
-        <li><span class="ic"><i class="fa-solid fa-envelope"></i></span><div><h4>Email</h4><a href="mailto:info@srpolyvinyl.com">info@srpolyvinyl.com</a><br><a href="mailto:srpolyvinyl@gmail.com">srpolyvinyl@gmail.com</a></div></li>
-        <li><span class="ic"><i class="fa-brands fa-whatsapp"></i></span><div><h4>WhatsApp</h4><a href="https://wa.me/918586980901" target="_blank" rel="noopener">Chat with our sales team</a></div></li>
-      </ul>
-    </div>
-    <div data-anim="fadeInRight">
-      <div class="title-wrp">
-        <h2>Send an</h2>
-        <div class="title-box">enquiry</div>
-        <div class="title-bar"></div>
+      <div class="ct-formcol">
+        <div class="ct-eyebrow">Get in touch</div>
+        <h2 class="ct-h ct-h--red"><span>Send an</span> <strong>enquiry</strong></h2>
+        <form class="ct-form" id="enquiryForm" data-email="info@srpolyvinyl.com" data-whatsapp="918586980901" novalidate>
+          <div><label for="f-name">Name <span class="req">*</span></label><input id="f-name" name="name" required autocomplete="name"></div>
+          <div><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization"></div>
+          <div><label for="f-phone">Phone <span class="req">*</span></label><input id="f-phone" name="phone" type="tel" required autocomplete="tel"></div>
+          <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+          <div class="full"><label for="f-product">Product</label><select id="f-product" name="product"><option value="">Select a product</option><option>PVC Resin</option><option>PVC Paste Resin</option><option>PVC Copolymer Resin</option><option>Plasticizers</option><option>Blowing Agent</option><option>Processing Aids &amp; Lubricants</option><option>Chlorinated Polyethylene</option><option>Methyl Tin Stabilizer</option><option>Dearomatised Solvents</option><option>Other</option></select></div>
+          <div class="full"><label for="f-message">Message / Requirement <span class="req">*</span></label><textarea id="f-message" name="message" required placeholder="Grade, quantity, delivery location..."></textarea></div>
+          <div class="full ct-actions">
+            <button class="ct-btn ct-btn--mail" type="submit"><i class="fa-solid fa-envelope"></i> Send by email</button>
+            <button class="ct-btn ct-btn--wa" type="button" id="sendWhatsApp"><i class="fa-brands fa-whatsapp"></i> Send on WhatsApp</button>
+          </div>
+        </form>
       </div>
-      <form class="form" id="enquiryForm" data-email="info@srpolyvinyl.com" data-whatsapp="918586980901" novalidate>
-        <div><label for="f-name">Name *</label><input id="f-name" name="name" required autocomplete="name"></div>
-        <div><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization"></div>
-        <div><label for="f-phone">Phone *</label><input id="f-phone" name="phone" type="tel" required autocomplete="tel"></div>
-        <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
-        <div class="full"><label for="f-product">Product</label><select id="f-product" name="product"><option value="">Select a product</option><option>PVC Resin</option><option>PVC Paste Resin</option><option>PVC Copolymer Resin</option><option>Plasticizers</option><option>Blowing Agent</option><option>Processing Aids &amp; Lubricants</option><option>Chlorinated Polyethylene</option><option>Methyl Tin Stabilizer</option><option>Dearomatised Solvents</option><option>Other</option></select></div>
-        <div class="full"><label for="f-message">Requirement *</label><textarea id="f-message" name="message" required placeholder="Grade, quantity, delivery location..."></textarea></div>
-        <div class="full form-actions">
-          <button class="btn" type="submit"><i class="fa-solid fa-envelope"></i>&nbsp; Send by email</button>
-          <button class="btn whatsapp" type="button" id="sendWhatsApp"><i class="fa-brands fa-whatsapp"></i>&nbsp; Send on WhatsApp</button>
-        </div>
-      </form>
     </div>
-  </div>
-  <div class="container">
-    <div class="map" data-anim="fadeInUp">
+    <div class="ct-map">
       <iframe title="S. R. Polyvinyl Ltd. location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
         src="https://maps.google.com/maps?q=Jai%20Mata%20Market%2C%20Tri%20Nagar%2C%20Delhi%20110035&amp;z=16&amp;output=embed"></iframe>
+      <div class="ct-card"><i class="fa-solid fa-location-dot"></i><div><h4>Our Office</h4><p>4261/3, 1st Floor, Jai Mata Market, Tri Nagar, Delhi &ndash; 110035, India</p></div></div>
     </div>
   </div>
 </section>
