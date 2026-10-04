@@ -7,8 +7,8 @@ Live: https://clint-website-srpolyvinyl.rewadiasuraj.workers.dev/
 ## Pages
 | File | Page |
 |---|---|
-| `public/index.html` | Home: hero slider, about, stats, products, authorized distributors, industries, why us, clientele, group companies |
-| `public/about.html` | Profile, vision & mission, values, quality assurance, certifications, infrastructure, company factsheet |
+| `public/index.html` | Home: hero slider, intro, statement, journey in numbers, product preview (4), authorized distributors, industries, why-us preview (3), clientele preview (3) |
+| `public/about.html` | Profile, vision & mission, values, quality assurance, certifications, infrastructure, why us (all 6), clientele (all 6), group companies, company factsheet |
 | `public/products.html` | All product categories with grades, plus other specialty products |
 | `public/contact.html` | Contact details, enquiry form, map |
 | `public/404.html` | Page not found |
@@ -24,7 +24,7 @@ No build step or framework: edit the HTML/CSS directly.
 - **Phone / email / address**: search and replace in the 5 HTML files (header, footer, contact page).
 - **WhatsApp number**: `https://wa.me/918586980901` and `data-whatsapp="918586980901"` on the contact form.
 - **Product grades**: edit the `<ul class="grades">` lists in `public/products.html`.
-- **Add a client logo**: add a WebP to `public/images/clients/` and copy one `<div class="client ...">` block in `public/index.html`.
+- **Add a client logo**: add a WebP to `public/images/clients/` and copy one `<div class="client ...">` block in `public/about.html` (the Home page shows the first three).
 
 ## Enquiry form
 The site is static (no server), so the form does not send email by itself:
