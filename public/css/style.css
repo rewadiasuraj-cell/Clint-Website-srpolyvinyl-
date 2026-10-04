@@ -669,6 +669,7 @@ p { margin: 0 0 1em; }
   transition: background .3s ease, color .3s ease;
 }
 .cat-nav a:hover { background: var(--maroon); color: #fff; border-color: var(--maroon); }
+.category-list { overflow-x: clip; }
 .category {
   display: grid;
   grid-template-columns: 5fr 7fr;
