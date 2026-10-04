@@ -578,7 +578,8 @@ p { margin: 0 0 1em; }
 /* ---------- Product cards ---------- */
 /* Home: "The widest range of PVC raw materials" (white section, four cards) */
 .pr-sec { background: #fff; }
-.pr-head { margin-bottom: 46px; }
+.pr-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 46px; }
+.pr-head { min-width: 0; }
 .pr-accent { display: block; width: 62px; height: 3px; background: var(--logo-red); transform-origin: left; }
 .pr-head h2 { margin: 22px 0 20px; line-height: 1.08; color: #1f1f1f; }
 .pr-head .thin { display: block; font-size: calc((clamp(34px, 4.4vw, 62px)) * var(--k)); font-weight: 200; letter-spacing: -.01em; }
@@ -622,7 +623,7 @@ p { margin: 0 0 1em; }
   font-size: calc((16px) * var(--k));
   transition: transform .35s ease, border-color .35s ease, background .35s ease;
 }
-.pr-cta { margin-top: 48px; text-align: center; }
+.pr-cta { flex: none; padding-bottom: 3px; } /* bottom lines up with the lower red accent */
 .pr-btn { border-radius: 3px; padding: 16px 40px; transition: background .3s ease, color .3s ease, transform .3s ease, box-shadow .3s ease; }
 .pr-btn i { margin-left: 12px; transition: transform .3s ease; }
 .pr-btn:hover { background: var(--maroon); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(120, 20, 22, .18); }
@@ -1301,8 +1302,7 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
   .pr-grid { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -16px; padding: 4px 16px 24px; scrollbar-width: none; }
   .pr-grid::-webkit-scrollbar { display: none; }
   .pr-card { flex: 0 0 80%; scroll-snap-align: start; scroll-margin-left: 16px; }
-  .pr-head { margin-bottom: 30px; }
-  .pr-cta { margin-top: 22px; }
+  .pr-top { flex-direction: column; align-items: flex-start; gap: 22px; margin-bottom: 30px; }
   .cs-eyebrow { font-size: calc((12.5px) * var(--k)); gap: 14px; }
   .cs-eyebrow::before, .cs-eyebrow::after { width: 34px; }
   .cs-head h2 { font-size: calc((38px) * var(--k)); }
