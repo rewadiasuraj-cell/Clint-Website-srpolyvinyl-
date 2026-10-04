@@ -623,7 +623,7 @@ p { margin: 0 0 1em; }
   font-size: calc((16px) * var(--k));
   transition: transform .35s ease, border-color .35s ease, background .35s ease;
 }
-.pr-cta { flex: none; padding-bottom: 3px; } /* bottom lines up with the lower red accent */
+.pr-cta { flex: none; padding-bottom: calc(26px * var(--k)); }
 .pr-btn { border-radius: 3px; padding: 16px 40px; transition: background .3s ease, color .3s ease, transform .3s ease, box-shadow .3s ease; }
 .pr-btn i { margin-left: 12px; transition: transform .3s ease; }
 .pr-btn:hover { background: var(--maroon); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(120, 20, 22, .18); }
@@ -1303,6 +1303,7 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
   .pr-grid::-webkit-scrollbar { display: none; }
   .pr-card { flex: 0 0 80%; scroll-snap-align: start; scroll-margin-left: 16px; }
   .pr-top { flex-direction: column; align-items: flex-start; gap: 22px; margin-bottom: 30px; }
+  .pr-cta { padding-bottom: 0; }
   .cs-eyebrow { font-size: calc((12.5px) * var(--k)); gap: 14px; }
   .cs-eyebrow::before, .cs-eyebrow::after { width: 34px; }
   .cs-head h2 { font-size: calc((38px) * var(--k)); }
