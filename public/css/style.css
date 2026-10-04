@@ -1037,3 +1037,10 @@ p { margin: 0 0 1em; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   [data-anim] { opacity: 1; }
 }
+
+/* Home hero, phones only: nudge each slide's 3D composition up and left */
+@media (max-width: 767px) {
+  .hero .slide:nth-of-type(1) .hero-art svg { transform: translate(-50px, -60px); }
+  .hero .slide:nth-of-type(2) .hero-art svg { transform: translate(-45px, -65px); }
+  .hero .slide:nth-of-type(3) .hero-art svg { transform: translate(-50px, -40px); }
+}
