@@ -514,26 +514,26 @@ p { margin: 0 0 1em; }
 .slab {
   position: relative;
   background: #ffffff;
-  border: 1px solid #efd3cf;
+  border: 1px solid #e8e8e8;
   /* stacked shadows = light extruded edge */
-  box-shadow: 1px 1px 0 #f2d0cc, 2px 2px 0 #eab8b3, 3px 3px 0 #e0a19b, 4px 4px 0 #d58a83, 5px 5px 0 #c9736c,
-    10px 14px 22px rgba(90, 14, 18, .1);
+  box-shadow: 1px 1px 0 #fafafa, 2px 2px 0 #f3f3f3, 3px 3px 0 #ececec, 4px 4px 0 #e5e5e5, 5px 5px 0 #dedede,
+    10px 14px 22px rgba(0, 0, 0, .1);
   transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translate(var(--lift, 0), var(--lift, 0));
   transform-style: preserve-3d;
   transition: transform .25s ease, box-shadow .35s ease;
 }
 .slab:hover {
   --lift: -2px;
-  box-shadow: 1px 1px 0 #f2d0cc, 2px 2px 0 #eab8b3, 3px 3px 0 #e0a19b, 4px 4px 0 #d58a83, 5px 5px 0 #c9736c, 6px 6px 0 #bd5f58, 7px 7px 0 #b04d47,
-    14px 18px 28px rgba(90, 14, 18, .14);
+  box-shadow: 1px 1px 0 #fafafa, 2px 2px 0 #f3f3f3, 3px 3px 0 #ececec, 4px 4px 0 #e5e5e5, 5px 5px 0 #dedede, 6px 6px 0 #d8d8d8, 7px 7px 0 #d2d2d2,
+    14px 18px 28px rgba(0, 0, 0, .14);
 }
 .slab.slab-thin {
-  box-shadow: 1px 1px 0 #f2d0cc, 2px 2px 0 #eab8b3, 3px 3px 0 #e0a19b,
-    8px 10px 18px rgba(90, 14, 18, .08);
+  box-shadow: 1px 1px 0 #fafafa, 2px 2px 0 #f3f3f3, 3px 3px 0 #ececec,
+    8px 10px 18px rgba(0, 0, 0, .08);
 }
 .slab.slab-thin:hover {
-  box-shadow: 1px 1px 0 #f2d0cc, 2px 2px 0 #eab8b3, 3px 3px 0 #e0a19b, 4px 4px 0 #d58a83, 5px 5px 0 #c9736c,
-    10px 14px 22px rgba(90, 14, 18, .12);
+  box-shadow: 1px 1px 0 #fafafa, 2px 2px 0 #f3f3f3, 3px 3px 0 #ececec, 4px 4px 0 #e5e5e5, 5px 5px 0 #dedede,
+    10px 14px 22px rgba(0, 0, 0, .12);
 }
 .slab h3, .slab h4, .slab .name, .slab .n { transform: translateZ(18px); }
 
