@@ -147,7 +147,7 @@
     }
     requestAnimationFrame(tick);
   }
-  var watched = document.querySelectorAll("[data-anim], [data-count], .band");
+  var watched = document.querySelectorAll("[data-anim], [data-count], .band, .pr-sec");
   if ("IntersectionObserver" in window && !reduced) {
     // Counters start from zero so they don't flash the final value first.
     document.querySelectorAll("[data-count]").forEach(function (el) {
@@ -161,6 +161,27 @@
     watched.forEach(function (el) { io.observe(el); });
   } else {
     watched.forEach(reveal);
+  }
+
+  /* Product images drift a few pixels inside their cards while scrolling */
+  var prImgs = document.querySelectorAll(".pr-img img");
+  if (prImgs.length && !reduced) {
+    var prTick = false;
+    var prMax = window.matchMedia("(max-width: 560px)").matches ? 3 : 6;
+    function prDrift() {
+      prTick = false;
+      var vh = window.innerHeight;
+      prImgs.forEach(function (img) {
+        var r = img.parentNode.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        var t = ((r.top + r.height / 2) - vh / 2) / vh; // -0.5 .. 0.5 while on screen
+        img.style.setProperty("--py", (Math.max(-1, Math.min(1, t * 2)) * -prMax).toFixed(2) + "px");
+      });
+    }
+    window.addEventListener("scroll", function () {
+      if (!prTick) { prTick = true; requestAnimationFrame(prDrift); }
+    }, { passive: true });
+    prDrift();
   }
 
   /* 3D tilt on cards (mouse devices only) */
