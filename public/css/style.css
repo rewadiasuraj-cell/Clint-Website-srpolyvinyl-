@@ -1522,7 +1522,7 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
 
 /* ---------- Home: customer-centric banner ---------- */
 .why-home {
-  --wh-art: min(58vw, 1110px);            /* width of the still life on the right */
+  --wh-art: min(44vw, 900px);             /* video width: stays clear of the copy on the left */
   position: relative;
   overflow: hidden;
   display: flex;
@@ -1534,12 +1534,16 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
 .wh-art {
   position: absolute;
   right: 0;
-  bottom: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: var(--wh-art);
   height: auto;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%), linear-gradient(180deg, transparent 0, #000 8%);
+  aspect-ratio: 1280 / 790;
+  object-fit: cover;
+  /* the video is full-bleed photography, so fade its left and top edges into the white section */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 26%), linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
   -webkit-mask-composite: source-in;
-          mask-image: linear-gradient(90deg, transparent 0, #000 12%), linear-gradient(180deg, transparent 0, #000 8%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 26%), linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
           mask-composite: intersect;
   pointer-events: none;
 }
@@ -1584,7 +1588,7 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
   .why-home { flex-direction: column; align-items: stretch; min-height: 0; padding: 64px 0 0; }
   .wh-art { order: 2; }
   .wh-copy { width: auto; }
-  .wh-art { position: static; display: block; width: 100%; margin-top: 30px; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 14%); mask-image: linear-gradient(180deg, transparent 0, #000 14%); }
+  .wh-art { position: static; transform: none; display: block; width: 100%; margin-top: 30px; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 14%); mask-image: linear-gradient(180deg, transparent 0, #000 14%); }
 }
 @media (max-width: 640px) {
   .why-home .container { padding: 0 22px; }
@@ -1595,7 +1599,7 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
   .wh-val:first-child { padding-top: 0; border-top: 0; }
   .wh-val .n::after { margin: 12px 0 14px; }
   .wh-btn { margin-top: 18px; }
-  .wh-art { width: 150%; max-width: none; margin-left: -45%; } /* crop to the pellets, sack and pipes */
+  .wh-art { width: 100%; }
 }
 
 /* ---------- Large desktop (1441px and up): wider container, ~3–10% larger type and components ----------

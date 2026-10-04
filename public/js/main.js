@@ -217,6 +217,32 @@
     spy();
   }
 
+  /* Background videos: load only when near the screen, smaller file on phones,
+     play only while visible; poster stays for reduced motion */
+  document.querySelectorAll("video[data-src-mp4]").forEach(function (v) {
+    if (reduced) return;
+    var loaded = false;
+    function load() {
+      if (loaded) return;
+      loaded = true;
+      var phone = window.matchMedia("(max-width: 760px)").matches && v.dataset.srcMobileMp4;
+      [["Webm", "video/webm"], ["Mp4", "video/mp4"]].forEach(function (t) {
+        var url = v.dataset[(phone ? "srcMobile" : "src") + t[0]];
+        if (!url) return;
+        var src = document.createElement("source");
+        src.src = url; src.type = t[1];
+        v.appendChild(src);
+      });
+      v.load();
+    }
+    if (!("IntersectionObserver" in window)) { load(); v.play().catch(function () {}); return; }
+    new IntersectionObserver(function (entries) {
+      var e = entries[0];
+      if (e.isIntersecting) { load(); var pr = v.play(); if (pr) pr.catch(function () {}); }
+      else if (loaded) v.pause();
+    }, { rootMargin: "200px 0px" }).observe(v);
+  });
+
   /* 3D tilt on cards (mouse devices only) */
   if (!reduced && window.matchMedia && window.matchMedia("(hover: hover)").matches) {
     document.querySelectorAll("[data-tilt]").forEach(function (card) {
