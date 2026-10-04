@@ -730,7 +730,7 @@ html:not(.no-js) .pr-sec:not(.in-view) .pr-accent { transform: scaleX(0); }
   .dist-grid { grid-template-columns: 1fr; gap: 18px; }
   .dist-grid .dist-card:last-child { width: auto; justify-self: stretch; }
   .dist-sec .container { padding: 0 22px; }
-  .dist-deco--bl { width: 70vw; } .dist-deco--tr { width: 55vw; opacity: .35; }
+  .dist-deco--bl { width: 85vw; } .dist-deco--tr { width: 70vw; opacity: .5; }
 }
 .principals { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; padding: 10px 0 24px; }
 .principal { min-width: 250px; padding: 30px 30px 32px; text-align: center; }

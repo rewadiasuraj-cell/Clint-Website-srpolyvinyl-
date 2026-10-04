@@ -257,7 +257,7 @@
       var r = distSec.getBoundingClientRect(), vh = window.innerHeight;
       if (r.bottom < 0 || r.top > vh) return;
       var t = ((r.top + r.height / 2) - vh / 2) / (vh / 2 + r.height / 2); // -1 .. 1 across the pass
-      var k = window.matchMedia("(max-width: 760px)").matches ? .5 : 1;
+      var k = window.matchMedia("(max-width: 760px)").matches ? .8 : 1;
       layers.forEach(function (l) { l[0].style.transform = "translate3d(0," + (t * l[1] * k).toFixed(1) + "px,0)"; });
     }
     window.addEventListener("scroll", function () {
