@@ -152,6 +152,23 @@
     watched.forEach(reveal);
   }
 
+  /* 3D tilt on cards (mouse devices only) */
+  if (!reduced && window.matchMedia && window.matchMedia("(hover: hover)").matches) {
+    document.querySelectorAll("[data-tilt]").forEach(function (card) {
+      card.addEventListener("mousemove", function (e) {
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.setProperty("--ry", (x * 14).toFixed(2) + "deg");
+        card.style.setProperty("--rx", (-y * 14).toFixed(2) + "deg");
+      });
+      card.addEventListener("mouseleave", function () {
+        card.style.setProperty("--ry", "0deg");
+        card.style.setProperty("--rx", "0deg");
+      });
+    });
+  }
+
   /* Read more toggle */
   document.querySelectorAll("[data-toggle]").forEach(function (btn) {
     var target = document.getElementById(btn.getAttribute("data-toggle"));
