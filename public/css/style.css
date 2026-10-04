@@ -1309,6 +1309,8 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
   .pr-card { flex: 0 0 80%; scroll-snap-align: start; scroll-margin-left: 16px; }
   .pr-top { flex-direction: column; align-items: flex-start; gap: 22px; margin-bottom: 30px; }
   .pr-cta { padding-bottom: 0; }
+  .pr-btn { padding: 11px 22px; font-size: 12px; letter-spacing: .08em; }
+  .pr-btn i { margin-left: 8px; }
   .cs-eyebrow { font-size: calc((12.5px) * var(--k)); gap: 14px; }
   .cs-eyebrow::before, .cs-eyebrow::after { width: 34px; }
   .cs-head h2 { font-size: calc((38px) * var(--k)); }
