@@ -1040,7 +1040,8 @@ p { margin: 0 0 1em; }
 
 /* Home hero, phones only: nudge each slide's 3D composition up and left */
 @media (max-width: 767px) {
-  .hero .slide:nth-of-type(1) .hero-art svg { transform: translate(-50px, -60px); }
-  .hero .slide:nth-of-type(2) .hero-art svg { transform: translate(-45px, -65px); }
-  .hero .slide:nth-of-type(3) .hero-art svg { transform: translate(-50px, -40px); }
+  .hero .slide .hero-art svg { transform-origin: 70% 60%; }
+  .hero .slide:nth-of-type(1) .hero-art svg { transform: translate(-50px, -74px) scale(1.12); }
+  .hero .slide:nth-of-type(2) .hero-art svg { transform: translate(-45px, -79px) scale(1.12); }
+  .hero .slide:nth-of-type(3) .hero-art svg { transform: translate(-50px, -54px) scale(1.12); }
 }
