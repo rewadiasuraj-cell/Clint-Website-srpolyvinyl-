@@ -416,15 +416,11 @@ p { margin: 0 0 1em; }
 .step .lbl { font-size: 15px; color: #3d3630; }
 
 /* ---------- Product cards ---------- */
-.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; }
 .product-card {
   position: relative;
-  background: #fff;
-  border: 1px solid #eedfc6;
   overflow: hidden;
-  transition: transform .4s ease, box-shadow .4s ease;
 }
-.product-card:hover { transform: translateY(-8px); box-shadow: 0 24px 40px rgba(120, 80, 40, .16); }
 .product-card .img {
   aspect-ratio: 1 / 1;
   background: var(--beige-light);
@@ -436,35 +432,36 @@ p { margin: 0 0 1em; }
 .product-card h3 { font-size: 19px; font-weight: 500; color: #2f2a25; }
 .product-card p { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
 
-/* ---------- Principals ---------- */
-.principals { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; padding: 10px 0 24px; }
-.principal {
+/* ---------- 3D slab cards ---------- */
+.slab {
   position: relative;
-  min-width: 250px;
-  padding: 30px 30px 32px;
-  text-align: center;
-  background: linear-gradient(160deg, #fffdf9 0%, #f8ecd9 100%);
-  border: 1px solid #e3cba4;
-  /* stacked shadows = extruded gold slab */
-  box-shadow:
-    1px 1px 0 #e0c497, 2px 2px 0 #dbbd8e, 3px 3px 0 #d6b685, 4px 4px 0 #d1af7c,
-    5px 5px 0 #cba873, 6px 6px 0 #c5a06a, 7px 7px 0 #bf9862, 8px 8px 0 #b8905a,
-    9px 9px 0 #b08752, 10px 10px 0 #a87d45,
-    22px 26px 34px rgba(110, 70, 30, .22);
+  background: linear-gradient(160deg, #fffdf9 0%, #faf1e3 100%);
+  border: 1px solid #ecdcc0;
+  /* stacked shadows = light extruded edge */
+  box-shadow: 1px 1px 0 #ead6b4, 2px 2px 0 #e3caa2, 3px 3px 0 #dcbf92, 4px 4px 0 #d4b384, 5px 5px 0 #cca877,
+    10px 14px 22px rgba(110, 70, 30, .1);
   transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translate(var(--lift, 0), var(--lift, 0));
   transform-style: preserve-3d;
   transition: transform .25s ease, box-shadow .35s ease;
-  will-change: transform;
 }
-.principal:hover {
-  --lift: -4px;
-  box-shadow:
-    1px 1px 0 #e0c497, 2px 2px 0 #dbbd8e, 3px 3px 0 #d6b685, 4px 4px 0 #d1af7c,
-    5px 5px 0 #cba873, 6px 6px 0 #c5a06a, 7px 7px 0 #bf9862, 8px 8px 0 #b8905a,
-    9px 9px 0 #b08752, 10px 10px 0 #a87d45, 11px 11px 0 #a17641, 12px 12px 0 #9a6f3c,
-    13px 13px 0 #936838, 14px 14px 0 #8c6234,
-    30px 36px 44px rgba(110, 70, 30, .28);
+.slab:hover {
+  --lift: -2px;
+  box-shadow: 1px 1px 0 #ead6b4, 2px 2px 0 #e3caa2, 3px 3px 0 #dcbf92, 4px 4px 0 #d4b384, 5px 5px 0 #cca877, 6px 6px 0 #c49d6b, 7px 7px 0 #bb9261,
+    14px 18px 28px rgba(110, 70, 30, .14);
 }
+.slab.slab-thin {
+  box-shadow: 1px 1px 0 #ead6b4, 2px 2px 0 #e3caa2, 3px 3px 0 #dcbf92,
+    8px 10px 18px rgba(110, 70, 30, .08);
+}
+.slab.slab-thin:hover {
+  box-shadow: 1px 1px 0 #ead6b4, 2px 2px 0 #e3caa2, 3px 3px 0 #dcbf92, 4px 4px 0 #d4b384, 5px 5px 0 #cca877,
+    10px 14px 22px rgba(110, 70, 30, .12);
+}
+.slab h3, .slab h4, .slab .name, .slab .n { transform: translateZ(18px); }
+
+/* ---------- Principals ---------- */
+.principals { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; padding: 10px 0 24px; }
+.principal { min-width: 250px; padding: 30px 30px 32px; text-align: center; }
 .principal .p-icon { display: flex; justify-content: center; margin-bottom: 16px; transform: translateZ(30px); }
 .principal .p-icon svg { filter: drop-shadow(0 8px 8px rgba(110, 70, 30, .25)); animation: iso-bob 5s ease-in-out infinite; }
 .principal:nth-child(2) .p-icon svg { animation-delay: -1.6s; }
@@ -473,13 +470,11 @@ p { margin: 0 0 1em; }
 .principal .sub { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; transform: translateZ(14px); }
 
 /* ---------- Industries ---------- */
-.industry-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.industry-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; }
 .industry {
   padding: 40px 28px;
   text-align: center;
-  border-right: 1px solid #e8d6b8;
 }
-.industry:last-child { border-right: 0; }
 .industry .icon {
   width: 92px;
   height: 92px;
@@ -497,12 +492,9 @@ p { margin: 0 0 1em; }
 .industry p { font-size: 14px; color: var(--muted); margin: 8px 0 0; }
 
 /* ---------- Why us ---------- */
-.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid #e8d6b8; border-left: 1px solid #e8d6b8; }
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
 .why {
   padding: 40px 34px;
-  border-right: 1px solid #e8d6b8;
-  border-bottom: 1px solid #e8d6b8;
-  position: relative;
   overflow: hidden;
 }
 .why::before {
@@ -521,15 +513,11 @@ p { margin: 0 0 1em; }
 .why p { font-size: 15px; color: var(--muted); margin: 0; }
 
 /* ---------- Clients ---------- */
-.client-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.client-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; }
 .client {
   padding: 30px 20px;
   text-align: center;
-  background: #fff;
-  border: 1px solid #eedfc6;
-  transition: border-color .3s ease, transform .3s ease;
 }
-.client:hover { border-color: var(--maroon); transform: translateY(-4px); }
 .client .name { font-size: 18px; font-weight: 500; color: #2f2a25; }
 .client p { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
 
@@ -587,8 +575,8 @@ p { margin: 0 0 1em; }
 }
 .vision-card h3 { font-size: 30px; font-weight: 300; margin-bottom: 18px; }
 .vision-card h3 strong { font-weight: 600; }
-.values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
-.value { padding: 30px; border: 2px solid var(--gold); background: #fff; }
+.values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
+.value { padding: 30px; }
 .value h4 { font-size: 20px; font-weight: 500; color: var(--maroon); margin-bottom: 10px; }
 .value p { margin: 0; font-size: 15px; color: var(--muted); }
 
@@ -622,8 +610,8 @@ p { margin: 0 0 1em; }
 .qa h4 { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
 .qa p { font-size: 14px; color: var(--muted); margin: 0; }
 
-.cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-.cert { background: #fff; border: 1px solid #eedfc6; padding: 18px; text-align: center; }
+.cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+.cert { padding: 18px; text-align: center; }
 .cert img { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: var(--beige-light); }
 .cert h4 { font-size: 17px; font-weight: 500; margin-top: 16px; }
 .cert p { font-size: 13px; color: var(--muted); margin: 4px 0 0; }
@@ -689,14 +677,8 @@ p { margin: 0 0 1em; }
   font-size: 14px;
   font-weight: 400;
 }
-.mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-.mini {
-  padding: 28px;
-  border: 1px solid #eedfc6;
-  background: #fff;
-  transition: border-color .3s ease;
-}
-.mini:hover { border-color: var(--maroon); }
+.mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.mini { padding: 28px; }
 .mini i { font-size: 26px; color: var(--gold); }
 .mini h3 { font-size: 18px; font-weight: 500; margin: 14px 0 6px; }
 .mini p { font-size: 14px; color: var(--muted); margin: 0; }
@@ -852,8 +834,6 @@ p { margin: 0 0 1em; }
   .steps { flex-direction: column; align-items: stretch; padding-top: 0; }
   .step, .step:nth-child(n) { margin: 0 0 22px; border-right: 0; padding: 0 0 16px; }
   .industry-grid { grid-template-columns: repeat(2, 1fr); }
-  .industry { border-bottom: 1px solid #e8d6b8; }
-  .industry:nth-child(2n) { border-right: 0; }
   .why-grid, .values, .mini-grid { grid-template-columns: repeat(2, 1fr); }
   .qa-steps { grid-template-columns: 1fr; gap: 26px; }
   .qa-steps::before { left: 34px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; }
@@ -875,7 +855,6 @@ p { margin: 0 0 1em; }
   .container { padding: 0 16px; }
   .title-box { padding: 4px 16px 8px; }
   .product-grid, .why-grid, .values, .mini-grid, .cert-grid, .gallery, .industry-grid { grid-template-columns: 1fr; }
-  .industry { border-right: 0; }
   .client-grid { grid-template-columns: 1fr; }
   .form { grid-template-columns: 1fr; }
   .vision-card { padding: 36px 26px; }
