@@ -461,6 +461,23 @@ p { margin: 0 0 1em; }
 }
 .band-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 .band-copy { position: relative; z-index: 1; padding-top: 44px; padding-bottom: 44px; }
+/* very light black blur only behind the copy (desktop/tablet, where it sits on the video) */
+@media (min-width: 901px) {
+  .band-copy::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 50%;
+    width: min(980px, 72%);
+    height: 76%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .32);
+    filter: blur(48px);
+    pointer-events: none;
+  }
+}
 .band h2 br.m-only { display: none; } /* desktop: two lines */
 .band h2 {
   text-align: center;
