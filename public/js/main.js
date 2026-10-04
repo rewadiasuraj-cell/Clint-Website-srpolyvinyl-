@@ -120,6 +120,13 @@
       var delay = el.getAttribute("data-delay");
       if (delay) el.style.animationDelay = delay;
       el.classList.add("animate__animated", "animate__" + name);
+      // drop the animation classes when done so hover transforms work again
+      el.addEventListener("animationend", function done(e) {
+        if (e.target !== el) return;
+        el.classList.remove("animate__animated", "animate__" + name);
+        el.style.animationDelay = "";
+        el.removeEventListener("animationend", done);
+      });
     }
     if (el.hasAttribute("data-count")) countUp(el);
     el.classList.add("in-view");
