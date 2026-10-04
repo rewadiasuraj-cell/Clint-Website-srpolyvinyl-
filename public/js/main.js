@@ -10,7 +10,11 @@
   /* Sticky header */
   var header = document.querySelector(".site-header");
   function onScroll() {
-    if (header) header.classList.toggle("is-sticky", window.scrollY > 20);
+    if (!header) return;
+    // hysteresis: shrink past 40px, grow back only near the top
+    var y = window.scrollY;
+    if (y > 40) header.classList.add("is-sticky");
+    else if (y < 8) header.classList.remove("is-sticky");
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();

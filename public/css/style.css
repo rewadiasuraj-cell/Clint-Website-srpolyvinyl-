@@ -17,9 +17,10 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
 body {
   margin: 0;
+  padding-top: var(--header-h);
   font-family: var(--font);
   font-weight: 300;
   color: var(--ink);
@@ -42,8 +43,11 @@ p { margin: 0 0 1em; }
 
 /* ---------- Header ---------- */
 .site-header {
-  position: sticky;
+  /* fixed + reserved space below, so shrinking never shifts the page */
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.97);
   transition: box-shadow .3s ease, padding .3s ease;
@@ -658,7 +662,6 @@ p { margin: 0 0 1em; }
   align-items: center;
   padding: 70px 0;
   border-bottom: 1px solid #eedfc6;
-  scroll-margin-top: 100px;
 }
 .category:nth-of-type(even) { grid-template-columns: 7fr 5fr; }
 .category:nth-of-type(even) .cat-media { order: 2; }
