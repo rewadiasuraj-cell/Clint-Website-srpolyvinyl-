@@ -46,6 +46,8 @@
     var current = 0;
     var timer;
     var dots = [];
+    var userPaused = false;
+    var pauseButton = document.querySelector(".slider-pause");
     slides.forEach(function (_, i) {
       if (!dotsWrap) return;
       var b = document.createElement("button");
@@ -60,14 +62,34 @@
       if (dots[current]) dots[current].classList.remove("active");
       current = (i + slides.length) % slides.length;
       slides[current].classList.add("active");
+      slides.forEach(function (slide, index) {
+        slide.setAttribute("aria-hidden", index === current ? "false" : "true");
+        slide.inert = index !== current;
+        var video = slide.querySelector("video");
+        if (video && index !== current) video.pause();
+        else if (video && !reduced && !userPaused) video.play().catch(function () {});
+      });
+      dots.forEach(function (dot, index) { dot.setAttribute("aria-current", index === current ? "true" : "false"); });
       if (dots[current]) dots[current].classList.add("active");
     }
     var paused = false;
     function restart() {
       clearInterval(timer);
-      if (!reduced && !paused && slides.length > 1) timer = setInterval(function () { go(current + 1); }, 6500);
+      if (!reduced && !paused && !userPaused && !document.hidden && slides.length > 1) timer = setInterval(function () { go(current + 1); }, 6500);
     }
     var hero = document.querySelector(".hero");
+    if (pauseButton) pauseButton.addEventListener("click", function () {
+      userPaused = !userPaused;
+      pauseButton.setAttribute("aria-pressed", String(userPaused));
+      pauseButton.setAttribute("aria-label", userPaused ? "Resume slideshow" : "Pause slideshow");
+      pauseButton.textContent = userPaused ? "Resume" : "Pause";
+      hero.querySelectorAll("video").forEach(function (video) {
+        if (userPaused) video.pause();
+        else if (!reduced && video.closest(".slide").classList.contains("active")) video.play().catch(function () {});
+      });
+      restart();
+    });
+    document.addEventListener("visibilitychange", restart);
     var prev = hero.querySelector(".slider-arrow.prev");
     var next = hero.querySelector(".slider-arrow.next");
     if (prev) prev.addEventListener("click", function () { go(current - 1); restart(); });
@@ -238,7 +260,12 @@
     if (!("IntersectionObserver" in window)) { load(); v.play().catch(function () {}); return; }
     new IntersectionObserver(function (entries) {
       var e = entries[0];
-      if (e.isIntersecting) { load(); var pr = v.play(); if (pr) pr.catch(function () {}); }
+      if (e.isIntersecting) {
+        load();
+        var slide = v.closest(".slide");
+        if (slide && (!slide.classList.contains("active") || userPaused)) return;
+        var pr = v.play(); if (pr) pr.catch(function () {});
+      }
       else if (loaded) v.pause();
     }, { rootMargin: "200px 0px" }).observe(v);
   });
@@ -422,6 +449,12 @@
         "Phone: " + (d.get("phone") || ""),
         "Email: " + (d.get("email") || ""),
         "Product: " + (d.get("product") || ""),
+        "Enquiry type: " + (d.get("purpose") || ""),
+        "Manufacturer: " + (d.get("brand") || ""),
+        "Grade: " + (d.get("grade") || ""),
+        "Quantity: " + (d.get("quantity") || ""),
+        "Delivery location: " + (d.get("location") || ""),
+        "Preferred contact: " + (d.get("preference") || ""),
         "",
         String(d.get("message") || "")
       ].join("\n");
@@ -441,6 +474,55 @@
           "?text=" + encodeURIComponent(compose()), "_blank", "noopener");
       });
     }
+  }
+
+  /* All-product catalog: search includes grade details, filter and search combine. */
+  var search = document.getElementById("product-search");
+  var filter = document.getElementById("product-filter");
+  if (search && filter) {
+    var cards = Array.prototype.slice.call(document.querySelectorAll(".catalog-card"));
+    function filterProducts() {
+      var query = search.value.toLowerCase().trim(), count = 0;
+      cards.forEach(function (card) {
+        var show = (filter.value === "all" || card.dataset.category === filter.value) && card.textContent.toLowerCase().includes(query);
+        card.hidden = !show;
+        if (show) count++;
+      });
+      document.getElementById("product-count").textContent = count + " of " + cards.length + " products";
+      document.getElementById("catalog-empty").hidden = count !== 0;
+    }
+    search.addEventListener("input", filterProducts);
+    filter.addEventListener("change", filterProducts);
+    filterProducts();
+  }
+  /* Enquiry links can carry a manufacturer or a specific product. */
+  var params = new URLSearchParams(window.location.search);
+  var brandField = document.getElementById("f-brand");
+  if (brandField && params.get("brand")) brandField.value = params.get("brand");
+  var productField = document.getElementById("f-product");
+  if (productField && params.get("product")) {
+    var wanted = params.get("product");
+    var option = Array.prototype.find.call(productField.options, function (o) { return o.text.toLowerCase() === wanted.toLowerCase(); });
+    if (!option) { option = new Option(wanted, wanted); productField.add(option); }
+    productField.value = option.value;
+  }
+  /* Bounded parallax; disabled on small screens and for reduced motion. */
+  if (!reduced && window.matchMedia("(min-width: 761px)").matches) {
+    var parallaxLayers = document.querySelectorAll("[data-parallax]");
+    var parallaxTick = false;
+    function paintParallax() {
+      parallaxTick = false;
+      parallaxLayers.forEach(function (layer) {
+        var parent = layer.parentElement, rect = parent.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+        var offset = Math.max(-60, Math.min(60, -rect.top * Number(layer.dataset.parallax)));
+        layer.style.setProperty("--parallax-y", offset.toFixed(1) + "px");
+      });
+    }
+    window.addEventListener("scroll", function () {
+      if (!parallaxTick) { parallaxTick = true; requestAnimationFrame(paintParallax); }
+    }, { passive: true });
+    paintParallax();
   }
 
   /* Footer year */
