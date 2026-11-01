@@ -1,5 +1,18 @@
 # S. R. Polyvinyl Ltd. — Website
 
+## Client review revision — 1 November 2026
+
+- Home: five slides (SR Polyvinyl, IG Petro, Payal, Tricon, SR applications), existing video banners with pause controls, complete core-product grid and revised distributor section.
+- Shared header: expandable product menu; maroon header and white logo on scroll.
+- About options: `public/about.html` (corporate) and `public/about-option-2.html` (editorial), linked by a review switch. Option 2 is marked noindex. Certificate photos, infrastructure and values sections removed.
+- Products: compact searchable grid, consistent image frames, expandable grades and product-specific enquiry links.
+- Contact: enquiry purpose, quantity and delivery city; included in email/WhatsApp message preparation.
+- BPCL, IG Petro and Tricon use text branding where approved logo assets were not included. Existing product photos are retained, with consistent framing; they have not been retouched or relabelled.
+
+Preview: `python -m http.server 8765 --bind 127.0.0.1 --directory public`, then open http://127.0.0.1:8765/.
+Check internal links/assets: `python check_site.py`. Check scripts: `node --check public/js/main.js` and `node --check public/js/revision.js`.
+Original files are preserved in `backups/before-client-revision/`. Published to GitHub main via connector commit a8ee16837fe2fd81a11710f188f0f87ce2620951 on 1 November 2026. Cloudflare production build succeeded (version 368a5fc7-a76e-41c2-bef2-fad9e69dd93a); live homepage and About option 2 verified. This local folder still has no Git metadata.
+
 Static website for S. R. Polyvinyl Ltd. (PVC resin, PVC paste resin, plasticizers and allied chemicals), New Delhi.
 
 Live: https://clint-website-srpolyvinyl.rewadiasuraj.workers.dev/
