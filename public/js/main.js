@@ -7,34 +7,106 @@
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduced) doc.classList.add("reduced");
 
-  /* Sticky header */
+  /* Pinned header & dynamic hero boundary transition */
   var header = document.querySelector(".site-header");
-  function onScroll() {
+  function updateHeaderState() {
     if (!header) return;
-    // hysteresis: shrink past 40px, grow back only near the top
-    var y = window.scrollY;
-    if (y > 40) header.classList.add("is-sticky");
-    else if (y < 8) header.classList.remove("is-sticky");
+    var hero = document.querySelector(".hero.tricon-hero, .hero-overlay");
+    if (hero) {
+      var headerH = header.offsetHeight || 70;
+      var heroRect = hero.getBoundingClientRect();
+      var isPast = heroRect.bottom <= headerH;
+      header.classList.toggle("is-past-hero", isPast);
+      header.classList.toggle("is-sticky", isPast);
+    } else {
+      header.classList.add("is-sticky", "is-past-hero");
+    }
   }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  window.addEventListener("scroll", updateHeaderState, { passive: true });
+  window.addEventListener("resize", updateHeaderState, { passive: true });
+  window.addEventListener("orientationchange", updateHeaderState, { passive: true });
+  window.addEventListener("pageshow", updateHeaderState);
+  document.addEventListener("DOMContentLoaded", updateHeaderState);
+  updateHeaderState();
 
-  /* Mobile menu */
+  /* -------------------------------------------------------------
+     Mobile Navigation Drawer & Submenu Interaction
+     ------------------------------------------------------------- */
   var burger = document.querySelector(".hamburger");
   var nav = document.querySelector(".nav-wrap");
-  if (burger && nav) {
-    burger.addEventListener("click", function () {
-      var open = nav.classList.toggle("open");
-      burger.classList.toggle("active", open);
-      burger.setAttribute("aria-expanded", open ? "true" : "false");
-      document.body.style.overflow = open ? "hidden" : "";
+  var closeBtn = document.querySelector(".mobile-drawer-close");
+
+  function openMobileNav() {
+    if (!nav) return;
+    nav.classList.add("open");
+    if (burger) {
+      burger.classList.add("active");
+      burger.setAttribute("aria-expanded", "true");
+    }
+    document.body.classList.add("mobile-nav-open");
+    document.documentElement.classList.add("mobile-nav-open");
+  }
+
+  function closeMobileNav() {
+    if (!nav) return;
+    nav.classList.remove("open");
+    if (burger) {
+      burger.classList.remove("active");
+      burger.setAttribute("aria-expanded", "false");
+    }
+    document.body.classList.remove("mobile-nav-open");
+    document.documentElement.classList.remove("mobile-nav-open");
+  }
+
+  if (burger) {
+    burger.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (nav && nav.classList.contains("open")) {
+        closeMobileNav();
+      } else {
+        openMobileNav();
+      }
     });
-    nav.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        nav.classList.remove("open");
-        burger.classList.remove("active");
-        burger.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      closeMobileNav();
+    });
+  }
+
+  // Close on Escape key
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && nav && nav.classList.contains("open")) {
+      closeMobileNav();
+      if (burger) burger.focus();
+    }
+  });
+
+  // Mobile Products Submenu Accordion Toggle
+  document.querySelectorAll(".mobile-submenu-toggle").forEach(function (toggle) {
+    toggle.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var parentMenu = toggle.closest(".products-menu");
+      var submenu = document.getElementById(toggle.getAttribute("aria-controls")) || 
+                    (parentMenu ? parentMenu.querySelector(".mobile-submenu") : null);
+      if (!parentMenu) return;
+
+      var isExpanded = parentMenu.classList.toggle("is-submenu-open");
+      toggle.setAttribute("aria-expanded", String(isExpanded));
+      if (submenu) {
+        submenu.setAttribute("aria-hidden", String(!isExpanded));
+      }
+    });
+  });
+
+  // Clicking any destination link closes the drawer and allows navigation
+  if (nav) {
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        closeMobileNav();
       });
     });
   }

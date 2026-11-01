@@ -1565,12 +1565,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   .hero-controls { left: 16px; bottom: 16px; }
   .hero-caption { display: none; }
 }
-  .catalog-toolbar { flex-direction: column; align-items: stretch; }
-  .catalog-search-wrap input { min-width: 0; width: 100%; }
-  
-  .hero-controls { left: 16px; bottom: 16px; }
-  .hero-caption { display: none; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -2538,42 +2532,81 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 
 .site-header.tricon-header.is-sticky {
   height: var(--header-height-sticky);
-  background: #791419 !important;
-  border-bottom: 2px solid #B3262D !important;
+  background: #9F2028 !important;
+  background-color: #9F2028 !important;
+  border-bottom: 2px solid #791419 !important;
   box-shadow: 0 8px 24px rgba(40, 10, 12, 0.45) !important;
 }
 
 /* =============================================================
-   HOMEPAGE ONLY: Transparent Overlay Header at Top (Scroll 0)
-   Smoothly Transitions to Solid Burgundy Red upon Scrolling (>60px)
+   PINNED HEADER & TRANSPARENT-UNTIL-HERO-ENDS DYNAMIC TRANSITION
+   - Header is pinned fixed at top (Y = 0) with zero position jump
+   - 100% transparent overlay while over hero (scroll 0, small scroll, halfway)
+   - Transitions to solid brand burgundy #9F2028 only when hero bottom reaches header
+   - Restores transparency immediately when scrolling back into hero
    ============================================================= */
-body.page-home .site-header.tricon-header:not(.is-sticky):not(.has-open-menu) {
-  background: transparent !important;
-  background-image: linear-gradient(180deg, rgba(15, 4, 6, 0.62) 0%, rgba(15, 4, 6, 0.28) 65%, transparent 100%) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: none !important;
+body.page-home {
+  padding-top: 0 !important;
 }
 
-/* Homepage Logo Container at Top of Page: Clean integrated white geometric cut */
-body.page-home .site-header.tricon-header:not(.is-sticky):not(.has-open-menu) .header-logo-container {
+body.page-home .site-header.tricon-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: var(--header-height) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  z-index: 1000 !important;
+  transition: background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s ease !important;
+}
+
+/* Homepage Logo Container over Hero: clean semi-translucent crisp cut */
+body.page-home .site-header.tricon-header .header-logo-container {
   background: rgba(255, 255, 255, 0.96) !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+  transition: background 0.28s ease, box-shadow 0.28s ease !important;
 }
 
-/* Homepage Scrolled Sticky & Open Menu State: Solid Deep Burgundy Red */
-body.page-home .site-header.tricon-header.is-sticky,
+/* Past Hero & Open Mega-Menu State: Solid Deep Burgundy Red (#9F2028) */
+body.page-home .site-header.tricon-header.is-past-hero,
 body.page-home .site-header.tricon-header.has-open-menu {
   background: #9F2028 !important;
+  background-color: #9F2028 !important;
   background-image: none !important;
-  height: var(--header-height-sticky);
+  height: var(--header-height-sticky) !important;
   border-bottom: 2px solid #791419 !important;
   box-shadow: 0 8px 26px rgba(40, 10, 12, 0.45) !important;
 }
 
-body.page-home .site-header.tricon-header.is-sticky .header-logo-container,
+body.page-home .site-header.tricon-header.is-past-hero .header-logo-container,
 body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   background: #FFFFFF !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Non-Home Pages (Pages without overlay hero) retain solid header */
+body:not(.page-home) .site-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  background: #9F2028 !important;
+  background-color: #9F2028 !important;
+  border-bottom: 2px solid #791419 !important;
+  box-shadow: 0 8px 26px rgba(40, 10, 12, 0.45) !important;
+  z-index: 1000 !important;
 }
 
 .header-main-bar {
@@ -2626,21 +2659,22 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   -webkit-filter: none !important;
   opacity: 1 !important;
 }
-}
 
 /* Navigation Links */
-.tricon-header .nav-wrap {
-  display: flex;
-  align-items: center;
-}
+@media (min-width: 992px) {
+  .tricon-header .nav-wrap {
+    display: flex;
+    align-items: center;
+  }
 
-.tricon-header .main-links {
-  display: flex;
-  align-items: center;
-  gap: 34px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  .tricon-header .main-links {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 /* Disable all legacy/duplicate pseudo-element underlines */
@@ -2787,13 +2821,14 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
 .hero.tricon-hero {
   position: relative;
   width: 100%;
-  height: 82vh;
-  min-height: 640px;
-  max-height: 840px;
-  background: #490C11 !important;
+  height: 100vh;
+  min-height: 720px;
+  max-height: 980px;
+  background: #140508 !important;
   color: var(--sr-white);
   overflow: hidden;
-  margin-top: 0;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 .tricon-slide {
@@ -2880,6 +2915,7 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   width: min(88%, 1440px) !important;
   max-width: 100% !important;
   margin: 0 !important;
+  padding-top: calc(var(--header-height) + 24px) !important;
   padding-left: clamp(24px, 6vw, 115px) !important;
   padding-right: 24px !important;
   box-sizing: border-box !important;
@@ -3316,24 +3352,32 @@ section.cta-banner h2 {
 
 /* -------------------------------------------------------------
    3. TRICON Slider Navigation & Controls
+   - Bottom-left pagination starts aligned with hero content edge
+   - Bottom-right arrows aligned to right padding with WhatsApp clearance
+   - Common baseline alignment
    ------------------------------------------------------------- */
 .tricon-slider-nav {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 5;
-  background: linear-gradient(180deg, transparent 0%, rgba(40, 10, 12, 0.88) 100%);
-  padding: 24px 0 28px;
+  width: 100%;
+  z-index: 10;
+  background: linear-gradient(180deg, transparent 0%, rgba(20, 5, 8, 0.92) 100%);
+  padding: 24px 0 32px;
+  box-sizing: border-box;
 }
 
 .tricon-nav-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding-left: clamp(24px, 6vw, 115px) !important;
+  padding-right: max(clamp(24px, 6vw, 115px), 96px) !important;
+  box-sizing: border-box !important;
 }
 
 .tricon-pagination {
@@ -3604,5 +3648,573 @@ section.cta-banner h2 {
     flex-direction: row !important;
     align-items: center !important;
     gap: 18px !important;
+  }
+}
+
+
+/* =============================================================
+   ANTIGRAVITY DEFINITIVE MOBILE NAVIGATION SYSTEM
+   - Fixed viewport drawer (100vw x 100dvh) anchored to screen
+   - Clean, left-aligned, spacious typography (Manrope 18px semibold)
+   - Dedicated Products submenu accordion with single rotating chevron
+   - Dedicated close button 'X' & tap-target optimization (min 48px)
+   - Full isolation from scroll offset, header state, and floating elements
+   ============================================================= */
+
+/* Page scroll lock & background element shielding */
+body.mobile-nav-open {
+  overflow: hidden !important;
+  height: 100vh !important;
+  touch-action: none !important;
+}
+
+body.mobile-nav-open .wa-float,
+body.mobile-nav-open .tricon-slider-nav,
+body.mobile-nav-open .rev-video-control {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Mobile Screen Breakpoints (< 992px) */
+@media (max-width: 991px) {
+  /* Header adjustments on mobile */
+  :root {
+    --header-height: 70px;
+    --header-height-sticky: 64px;
+  }
+
+  .site-header.tricon-header {
+    height: 70px !important;
+  }
+
+  .site-header.tricon-header.is-sticky {
+    height: 64px !important;
+  }
+
+  .header-main-bar {
+    padding-right: 16px !important;
+    height: 100% !important;
+  }
+
+  .header-logo-container {
+    padding: 0 28px 0 16px !important;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%) !important;
+    -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%) !important;
+  }
+
+  .header-logo-container .brand img {
+    height: 38px !important;
+    width: auto !important;
+  }
+
+  /* Hamburger Menu Toggle Button */
+  .site-header.tricon-header .hamburger,
+  .site-header .hamburger,
+  .hamburger {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    border-radius: 8px !important;
+    padding: 8px !important;
+    cursor: pointer !important;
+    z-index: 1002 !important;
+    transition: background 0.2s ease, transform 0.2s ease !important;
+  }
+
+  .hamburger:active {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: scale(0.96) !important;
+  }
+
+  .hamburger span {
+    display: block !important;
+    width: 24px !important;
+    height: 2.5px !important;
+    margin: 4px 0 !important;
+    background: #FFFFFF !important;
+    border-radius: 2px !important;
+    transition: transform 0.3s ease, opacity 0.3s ease !important;
+  }
+
+  .site-header.tricon-header:not(.is-sticky) .hamburger span,
+  .site-header.tricon-header.is-sticky .hamburger span {
+    background: #FFFFFF !important;
+  }
+
+  /* The Mobile Navigation Drawer Container */
+  .site-header.tricon-header .nav-wrap,
+  .site-header .nav-wrap,
+  .nav-wrap {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    background: #801418 !important;
+    background-image: linear-gradient(180deg, #9F2028 0%, #6E1015 100%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 999999 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+    transform: translateX(100%) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.24s ease,
+                visibility 0.32s ease !important;
+    box-sizing: border-box !important;
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.35) !important;
+  }
+
+  .site-header.tricon-header .nav-wrap.open,
+  .site-header .nav-wrap.open,
+  .nav-wrap.open {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Mobile Drawer Header with Logo & Close Button */
+  .mobile-drawer-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: max(16px, env(safe-area-inset-top)) 24px 16px 24px !important;
+    background: #FFFFFF !important;
+    border-bottom: 2px solid #791419 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 20 !important;
+    flex-shrink: 0 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+  }
+
+  .mobile-drawer-brand {
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+  }
+
+  .mobile-drawer-brand img {
+    height: 40px !important;
+    width: auto !important;
+    display: block !important;
+  }
+
+  .mobile-drawer-close {
+    background: #faf4f5 !important;
+    border: 1px solid #ebd0d2 !important;
+    color: #9F2028 !important;
+    font-size: 22px !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .mobile-drawer-close:active {
+    background: #9F2028 !important;
+    color: #FFFFFF !important;
+    transform: scale(0.95) !important;
+  }
+
+  /* Left-Aligned Primary Navigation List */
+  .site-header.tricon-header .main-links,
+  .site-header .main-links,
+  .main-links {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 16px 24px 28px 24px !important;
+    margin: 0 !important;
+    gap: 0 !important;
+    list-style: none !important;
+    flex-grow: 1 !important;
+  }
+
+  .main-links > li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .main-links > li > a {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 52px !important;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    padding: 12px 0 !important;
+    transition: color 0.2s ease, padding-left 0.2s ease !important;
+  }
+
+  .main-links > li > a:active,
+  .main-links > li > a.active {
+    color: #F0A39A !important;
+  }
+
+  /* Products Row: Link + Submenu Toggle Button */
+  .nav-product-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    min-height: 52px !important;
+  }
+
+  .nav-product-row .nav-product-link {
+    flex: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    min-height: 52px !important;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    padding: 12px 0 !important;
+  }
+
+  .mobile-submenu-toggle {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    color: #FFFFFF !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    transition: all 0.25s ease !important;
+    flex-shrink: 0 !important;
+  }
+
+  .mobile-submenu-toggle:active {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: scale(0.95) !important;
+  }
+
+  .mobile-submenu-toggle .submenu-chevron {
+    font-size: 14px !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .products-menu.is-submenu-open .mobile-submenu-toggle {
+    background: rgba(255, 255, 255, 0.28) !important;
+    border-color: #F0A39A !important;
+  }
+
+  .products-menu.is-submenu-open .submenu-chevron {
+    transform: rotate(180deg) !important;
+    color: #F0A39A !important;
+  }
+
+  /* Dedicated Mobile Submenu Accordion */
+  .mobile-submenu {
+    display: none !important;
+    list-style: none !important;
+    margin: 0 0 12px 6px !important;
+    padding: 4px 0 8px 18px !important;
+    border-left: 2px solid rgba(240, 163, 154, 0.45) !important;
+  }
+
+  .products-menu.is-submenu-open .mobile-submenu {
+    display: flex !important;
+    flex-direction: column !important;
+    animation: mobileSubmenuOpen 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  @keyframes mobileSubmenuOpen {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .mobile-submenu li {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .mobile-submenu a {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 44px !important;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    text-decoration: none !important;
+    padding: 8px 0 !important;
+    transition: color 0.2s ease, padding-left 0.2s ease !important;
+  }
+
+  .mobile-submenu a:active {
+    color: #F0A39A !important;
+    padding-left: 4px !important;
+  }
+
+  .mobile-submenu .mobile-submenu-all a {
+    color: #F0A39A !important;
+    font-weight: 700 !important;
+    margin-top: 4px !important;
+  }
+
+  /* Hide Desktop chevrons and Mega Menu on Mobile */
+  .nav-desktop-chevron,
+  .zenith-mega-menu,
+  .mega-panel {
+    display: none !important;
+  }
+
+  /* Mobile Drawer Footer with Contact Info */
+  .mobile-drawer-footer {
+    margin-top: auto !important;
+    padding: 20px 24px calc(20px + env(safe-area-inset-bottom)) 24px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(0, 0, 0, 0.18) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .mobile-contact-line {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    font-size: 14px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .mobile-contact-line i {
+    color: #F0A39A !important;
+    font-size: 14px !important;
+    width: 18px !important;
+    text-align: center !important;
+  }
+
+  .mobile-contact-line a {
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+  }
+
+  .mobile-contact-badge {
+    font-size: 11px !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    margin-top: 4px !important;
+  }
+
+  /* Hero Section Secondary Mobile Refinements */
+  .hero.tricon-hero {
+    height: auto !important;
+    min-height: 560px !important;
+    padding-top: calc(var(--header-height) + 16px) !important;
+    padding-bottom: 70px !important;
+  }
+
+  .tricon-hero-copy {
+    padding-top: 12px !important;
+  }
+
+  .tricon-hero-copy h1,
+  .tricon-hero-copy h2 {
+    font-size: clamp(28px, 7.5vw, 38px) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .tricon-hero-copy p {
+    font-size: 14.5px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 22px !important;
+  }
+
+  .tricon-slider-nav {
+    bottom: 14px !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .tricon-nav-inner {
+    padding-left: 20px !important;
+    padding-right: 76px !important;
+    gap: 10px !important;
+  }
+
+  .tricon-counter {
+    font-size: 12px !important;
+  }
+
+  .tricon-bars {
+    gap: 6px !important;
+  }
+
+  .tricon-bar {
+    width: 22px !important;
+    height: 3px !important;
+  }
+
+  .tricon-bar.active {
+    width: 36px !important;
+  }
+
+  .tricon-arrow {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 11px !important;
+  }
+
+  .tricon-pause {
+    padding: 6px 12px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* Desktop-Only Rules (>= 992px) */
+@media (min-width: 992px) {
+  .mobile-drawer-header,
+  .mobile-drawer-footer,
+  .mobile-submenu,
+  .mobile-submenu-toggle {
+    display: none !important;
+  }
+
+  .nav-desktop-chevron {
+    display: inline-block !important;
+    font-size: 10px !important;
+    margin-left: 5px !important;
+    vertical-align: middle !important;
+    transition: transform 0.25s ease !important;
+  }
+
+  .products-menu:hover .nav-desktop-chevron,
+  .products-menu.is-open .nav-desktop-chevron {
+    transform: rotate(180deg) !important;
+  }
+
+  .nav-product-row {
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+}
+
+
+/* =============================================================
+   HERO TEXT FADE-UP ANIMATIONS & SECTION SCROLL REVEALS
+   - Staggered sequence: Eyebrow -> Heading -> Subtitle -> Description -> CTA
+   - 20px movement, ~700ms duration, 100ms stagger
+   - Replays on every slide change (autoplay & manual)
+   - Viewport scroll reveal for all pages with reduced-motion respect
+   ============================================================= */
+@keyframes srHeroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tricon-slide .hero-eyebrow,
+.tricon-slide .tricon-hero-copy h1,
+.tricon-slide .tricon-hero-copy h2,
+.tricon-slide .hero-tagline,
+.tricon-slide .tricon-hero-copy p,
+.tricon-slide .hero-cta-wrap {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.tricon-slide.active .hero-eyebrow {
+  animation: srHeroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.tricon-slide.active .tricon-hero-copy h1,
+.tricon-slide.active .tricon-hero-copy h2 {
+  animation: srHeroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+}
+
+.tricon-slide.active .hero-tagline {
+  animation: srHeroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.27s both;
+}
+
+.tricon-slide.active .tricon-hero-copy p {
+  animation: srHeroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
+}
+
+.tricon-slide.active .hero-cta-wrap {
+  animation: srHeroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.49s both;
+}
+
+/* Viewport Scroll Reveal for Headings, Descriptions, Lists and Cards */
+html.js-reveal-ready .reveal-group:not(.is-revealed) {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.reveal-group.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tricon-slide .hero-eyebrow,
+  .tricon-slide .tricon-hero-copy h1,
+  .tricon-slide .tricon-hero-copy h2,
+  .tricon-slide .hero-tagline,
+  .tricon-slide .tricon-hero-copy p,
+  .tricon-slide .hero-cta-wrap,
+  html.js-reveal-ready .reveal-group:not(.is-revealed),
+  .reveal-group.is-revealed {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
   }
 }

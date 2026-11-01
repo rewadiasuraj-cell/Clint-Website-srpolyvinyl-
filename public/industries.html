@@ -34,7 +34,7 @@
 
   <link rel="stylesheet" href="css/style.css?v=5.3">
 
-  <link rel="stylesheet" href="css/revision.css?v=5.5">
+  <link rel="stylesheet" href="css/revision.css?v=5.8">
 
 </head>
 
@@ -64,17 +64,42 @@
 
     <nav class="nav-wrap" aria-label="Main">
 
-      <ul class="main-links">
+            <!-- Mobile Drawer Topbar -->
+      <div class="mobile-drawer-header">
+        <a class="mobile-drawer-brand" href="index.html" aria-label="S. R. Polyvinyl Ltd. home">
+          <img width="180" height="52" src="images/logo.webp" alt="S. R. Polyvinyl Ltd.">
+        </a>
+        <button class="mobile-drawer-close" type="button" aria-label="Close navigation menu">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+
+<ul class="main-links">
 
           <li><a href="index.html"><span class="nav-label">HOME</span></a></li>
 
           <li><a href="about.html"><span class="nav-label">ABOUT US</span></a></li>
 
-          <li class="products-menu">
+          <li class="products-menu has-dropdown">
+          <div class="nav-product-row">
+            <a href="products.html" class="nav-product-link"><span class="nav-label">PRODUCTS</span> <i class="fa-solid fa-chevron-down nav-desktop-chevron" aria-hidden="true"></i></a>
+            <button class="mobile-submenu-toggle" type="button" aria-expanded="false" aria-controls="mobile-products-submenu" aria-label="Toggle Products submenu">
+              <i class="fa-solid fa-chevron-down submenu-chevron" aria-hidden="true"></i>
+            </button>
+          </div>
 
-  <a href="products.html" class="nav-product-link"><span class="nav-label">PRODUCTS</span> <i class="fa-solid fa-chevron-down nav-chevron"></i></a>
-
-  <button class="mega-toggle" aria-expanded="false" aria-controls="product-mega-menu" aria-label="Open product categories">＋</button>
+          <!-- Dedicated Mobile Submenu -->
+          <ul class="mobile-submenu" id="mobile-products-submenu" aria-hidden="true">
+            <li><a href="products.html#pvc-resin">PVC Resin (Suspension)</a></li>
+            <li><a href="products.html#pvc-paste">PVC Paste Resin (Emulsion)</a></li>
+            <li><a href="products.html#copolymer">PVC Copolymer Resin</a></li>
+            <li><a href="products.html#plasticizers">Primary &amp; Secondary Plasticizers</a></li>
+            <li><a href="products.html#solvents">Specialty Chemicals &amp; Solvents</a></li>
+            <li><a href="products.html#blowing-agent">Foaming Blowing Agents</a></li>
+            <li><a href="products.html#processing-aids">Processing Aids &amp; Modifiers</a></li>
+            <li><a href="products.html#others">Other Specialty Products</a></li>
+            <li class="mobile-submenu-all"><a href="products.html"><strong>View Full Product Catalog &rarr;</strong></a></li>
+          </ul>
 
 
 
@@ -908,7 +933,22 @@
 
       </ul>
 
-    </nav>
+    
+      <!-- Mobile Drawer Footer with Quick Contact Info -->
+      <div class="mobile-drawer-footer">
+        <div class="mobile-contact-line">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <a href="tel:+918586980901">+91-8586980901</a>
+        </div>
+        <div class="mobile-contact-line">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <a href="mailto:info@srpolyvinyl.com">info@srpolyvinyl.com</a>
+        </div>
+        <div class="mobile-contact-badge">
+          <span>ISO 9001:2015 Certified Polymer Distributor</span>
+        </div>
+      </div>
+</nav>
 
 
 
@@ -1108,9 +1148,9 @@
 
 <a class="wa-float" href="https://wa.me/918586980901" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=5.8"></script>
 
-<script src="js/revision.js?v=5.3"></script>
+<script src="js/revision.js?v=5.8"></script>
 
 </body>
 

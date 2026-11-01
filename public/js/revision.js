@@ -5,56 +5,45 @@
      1. Zenith Split Product Mega-Menu (Tabs, Hover & Keyboard)
      ------------------------------------------------------------- */
   var menu = document.querySelector('.products-menu');
-  var toggle = document.querySelector('.mega-toggle');
   var siteHeader = document.querySelector('.site-header');
   var hoverTimer = null;
 
-  function setMenu(open) {
+  function setMegaMenu(open) {
     if (!menu) return;
+    if (window.innerWidth < 992) return; // Desktop mega-menu only
     menu.classList.toggle('is-open', open);
     if (siteHeader) {
       siteHeader.classList.toggle('has-open-menu', open);
     }
-    if (toggle) {
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close product menu' : 'Open product menu');
-    }
   }
 
   if (menu) {
-    if (toggle) {
-      toggle.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        setMenu(!menu.classList.contains('is-open'));
-      });
-    }
-
     // Desktop hover handling with debounce
-    if (window.matchMedia('(min-width: 901px)').matches) {
-      menu.addEventListener('mouseenter', function () {
+    menu.addEventListener('mouseenter', function () {
+      if (window.innerWidth >= 992) {
         clearTimeout(hoverTimer);
-        setMenu(true);
-      });
-      menu.addEventListener('mouseleave', function () {
+        setMegaMenu(true);
+      }
+    });
+    menu.addEventListener('mouseleave', function () {
+      if (window.innerWidth >= 992) {
         clearTimeout(hoverTimer);
         hoverTimer = setTimeout(function () {
-          setMenu(false);
+          setMegaMenu(false);
         }, 220);
-      });
-    }
+      }
+    });
 
-    // Global click & escape key
+    // Global click & escape key for desktop mega-menu
     document.addEventListener('click', function (event) {
-      if (!menu.contains(event.target)) {
-        setMenu(false);
+      if (window.innerWidth >= 992 && !menu.contains(event.target)) {
+        setMegaMenu(false);
       }
     });
 
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && menu.classList.contains('is-open')) {
-        setMenu(false);
-        if (toggle) toggle.focus();
+      if (event.key === 'Escape' && window.innerWidth >= 992 && menu.classList.contains('is-open')) {
+        setMegaMenu(false);
       }
     });
 
@@ -177,12 +166,17 @@
     var vh = window.innerHeight || document.documentElement.clientHeight;
     var scrollY = window.scrollY || window.pageYOffset;
 
-    // Transparent-to-Solid Sticky Navbar Transition
+    // Transparent-to-Solid Sticky Navbar Transition based on actual hero boundary
     if (siteHeader) {
-      if (scrollY > 60) {
-        siteHeader.classList.add('is-sticky');
-      } else if (scrollY < 20) {
-        siteHeader.classList.remove('is-sticky');
+      var hero = document.querySelector('.hero.tricon-hero, .hero-overlay');
+      if (hero) {
+        var headerH = siteHeader.offsetHeight || 70;
+        var heroRect = hero.getBoundingClientRect();
+        var isPast = heroRect.bottom <= headerH;
+        siteHeader.classList.toggle('is-past-hero', isPast);
+        siteHeader.classList.toggle('is-sticky', isPast);
+      } else {
+        siteHeader.classList.add('is-past-hero', 'is-sticky');
       }
     }
 
@@ -399,8 +393,15 @@
 
       slides.forEach(function (slide, i) {
         var active = (i === currentIdx);
-        slide.classList.toggle('active', active);
-        slide.setAttribute('aria-hidden', String(!active));
+        if (active) {
+          slide.classList.remove('active');
+          void slide.offsetWidth; // Force reflow to replay CSS keyframe entrance animations cleanly
+          slide.classList.add('active');
+          slide.setAttribute('aria-hidden', 'false');
+        } else {
+          slide.classList.remove('active');
+          slide.setAttribute('aria-hidden', 'true');
+        }
       });
 
       bars.forEach(function (bar, i) {
@@ -521,6 +522,82 @@
     indCards.forEach(function (card) {
       card.classList.add('is-revealed');
     });
+  }
+
+  /* -------------------------------------------------------------
+     Unified Viewport Content Group Reveal (Home, About, Products,
+     Industries, Clientele, Contact)
+     ------------------------------------------------------------- */
+  function initSectionScrollReveal() {
+    if (reduced || !('IntersectionObserver' in window)) {
+      return;
+    }
+
+    document.documentElement.classList.add('js-reveal-ready');
+
+    var revealSelectors = [
+      'main h2',
+      'main h3',
+      'main .section-desc',
+      'main .section-head',
+      'main .lead',
+      'main .ph-text',
+      'main .title-wrp',
+      'main .wh-card',
+      'main .ind2-card',
+      'main .client-card',
+      'main .cat-card',
+      'main .stat-card',
+      'main .catalog-card',
+      'main .catalog-toolbar',
+      'main article.industry',
+      'main article.client-card',
+      'main article',
+      'main .pd-item',
+      'main .pd-card',
+      'main .contact-card',
+      'main .contact-form',
+      'main .info-card',
+      'main .value-card',
+      'main .timeline-card',
+      'main .team-card',
+      'main .cert-card',
+      'main .testimonial-card',
+      'main .band-copy',
+      'main .cta-banner .cta-content',
+      'main .table-wrap',
+      'main ul.wh-list',
+      'main ul.feature-list',
+      'main ul.grades'
+    ].join(', ');
+
+    var elements = Array.from(document.querySelectorAll(revealSelectors));
+    elements = elements.filter(function (el) {
+      return !el.closest('.hero') && !el.closest('.site-header') && !el.closest('.nav-wrap');
+    });
+
+    var groupObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          groupObs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -20px 0px'
+    });
+
+    elements.forEach(function (el) {
+      el.classList.add('reveal-group');
+      groupObs.observe(el);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSectionScrollReveal);
+  } else {
+    initSectionScrollReveal();
   }
 
 })();
