@@ -89,7 +89,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background: #f7f6f3 !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #f0ede6 !important;
   border-radius: 3px !important;
   margin-bottom: 16px !important;
   padding: 14px !important;
@@ -102,7 +103,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
-  mix-blend-mode: multiply !important;
+  mix-blend-mode: normal !important;
   transition: transform .28s cubic-bezier(.2, .8, .2, 1) !important;
 }
 
@@ -152,7 +153,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   box-shadow: 0 8px 24px rgba(0,0,0,.18);
 }
 .site-header.is-sticky .brand img {
-  filter: brightness(0) invert(1);
+  filter: none !important;
+  opacity: 1 !important;
 }
 .site-header.is-sticky .main-links > li > a {
   color: #fff;
@@ -998,7 +1000,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   height: 325px;
   display: grid;
   place-items: center;
-  background: #f7f6f3;
+  background: #ffffff !important;
+  border-bottom: 1px solid #f0ede6;
   padding: 12px 14px;
   position: relative;
   overflow: hidden;
@@ -1826,9 +1829,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 
 .zenith-all-btn {
-  font-size: 12.5px;
+  font-size: 11px;
   font-weight: 600;
-  color: #8f1b1f;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9F2028;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -1837,7 +1842,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 
 .zenith-all-btn:hover {
-  color: #681216;
+  color: #791419;
   text-decoration: underline;
 }
 
@@ -1845,21 +1850,23 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: #8f1b1f;
+  padding: 7px 14px;
+  border-radius: 4px; /* Refined corporate shape instead of 999px pill */
+  background: #9F2028;
   color: #ffffff !important;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   text-decoration: none !important;
   transition: background .2s, transform .2s, box-shadow .2s;
-  box-shadow: 0 4px 12px rgba(143, 27, 31, 0.25);
+  box-shadow: 0 3px 10px rgba(159, 32, 40, 0.25);
 }
 
 .zenith-rfq-btn:hover {
-  background: #681216;
+  background: #791419;
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(143, 27, 31, 0.35);
+  box-shadow: 0 5px 14px rgba(159, 32, 40, 0.35);
 }
 
 /* =============================================================
@@ -1890,14 +1897,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   padding-bottom: 8px !important;
 }
 
-/* Logo Color Shifting on Scroll (Goldstab Effect) */
-.site-header.is-sticky .brand img {
-  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 215, 0, 0.42)) !important;
-  transform: scale(0.96);
-}
-
-.site-header.is-sticky .brand:hover img {
-  filter: brightness(0) invert(1) drop-shadow(0 0 14px rgba(255, 215, 0, 0.8)) !important;
+/* Logo Color on Scroll: ALWAYS PRESERVE AUTHENTIC SR BRAND RED (Never invert to white on white background!) */
+.site-header.is-sticky .brand img,
+.site-header.is-sticky .brand:hover img,
+.header-logo-container .brand img {
+  filter: none !important;
+  opacity: 1 !important;
+  transform: scale(0.98);
 }
 
 .site-header.is-sticky .main-links > li > a {
@@ -2364,14 +2370,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 
 /* =============================================================
    TRICON INDUSTRIAL DESIGN SYSTEM & UPGRADE
-   - Palette: #17243B (Navy), #111827 (Charcoal), #A52A2A (SR Red), #FFFFFF, #F6F5F3
+   - Palette: #9F2028 (Corporate Red), #111827 (Charcoal), #A52A2A (SR Red), #FFFFFF, #F6F5F3
    - Diagonal Logo Container (TRICON Geometric Signature)
    - Cinematic Fullscreen Industrial Hero Banner & Slider
    - Precision Editorial Typography Scale
    ============================================================= */
 
 :root {
-  --tricon-navy: #17243B;
+  --tricon-navy: #9F2028;
+  --sr-corporate-red: #9F2028;
+  --sr-corporate-red-dark: #791419;
+  --sr-cta-red: #B3262D;
   --tricon-charcoal: #111827;
   --sr-red: #A52A2A;
   --sr-red-hover: #8B2222;
@@ -2396,7 +2405,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   color: var(--sr-white);
   z-index: 1000;
   border-bottom: 2px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 20px rgba(17, 24, 39, 0.35);
+  box-shadow: 0 4px 20px rgba(73, 12, 17, 0.35);
   transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
@@ -2406,9 +2415,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 
 .site-header.tricon-header.is-sticky {
   height: var(--header-height-sticky);
-  background: #111B2D;
+  background: #791419 !important;
   border-bottom: 2px solid var(--sr-red);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 30px rgba(40, 10, 12, 0.55);
 }
 
 .header-main-bar {
@@ -2519,7 +2528,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   height: 82vh;
   min-height: 640px;
   max-height: 840px;
-  background: var(--tricon-navy);
+  background: #490C11 !important;
   color: var(--sr-white);
   overflow: hidden;
   margin-top: 0;
@@ -2568,7 +2577,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   transform: scale(1);
 }
 
-/* Dark Navy Translucent Gradient Overlay (from left) */
+/* Dark Corporate Red Translucent Gradient Overlay (from left) */
 .tricon-slide-overlay {
   position: absolute;
   inset: 0;
@@ -2576,11 +2585,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   height: 100%;
   background: linear-gradient(
     90deg,
-    rgba(23, 36, 59, 0.96) 0%,
-    rgba(23, 36, 59, 0.86) 42%,
-    rgba(23, 36, 59, 0.45) 75%,
-    rgba(23, 36, 59, 0.2) 100%
-  );
+    rgba(73, 12, 17, 0.90) 0%,
+    rgba(115, 25, 31, 0.65) 48%,
+    rgba(40, 10, 12, 0.15) 100%
+  ) !important;
   z-index: 2;
   pointer-events: none;
 }
@@ -2681,7 +2689,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: var(--sr-red);
+  background: #B3262D !important;
   color: #FFFFFF !important;
   font-family: "Inter", sans-serif;
   font-size: 13px;
@@ -2697,7 +2705,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 
 .hero-cta-btn:hover {
-  background: var(--sr-red-hover);
+  background: #961E24 !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(165, 42, 42, 0.55);
 }
@@ -2720,7 +2728,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   left: 0;
   right: 0;
   z-index: 5;
-  background: linear-gradient(180deg, transparent 0%, rgba(17, 24, 39, 0.85) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(40, 10, 12, 0.88) 100%);
   padding: 24px 0 28px;
 }
 
@@ -2774,7 +2782,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 
 .tricon-bar.active {
-  background: var(--sr-red);
+  background: #B3262D !important;
   width: 64px;
 }
 
@@ -2800,8 +2808,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 
 .tricon-arrow:hover {
-  background: var(--sr-red);
-  border-color: var(--sr-red);
+  background: #B3262D !important; border-color: #B3262D !important;
   color: #FFFFFF;
   transform: translateY(-1px);
 }
@@ -2901,5 +2908,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   }
   .tricon-bar.active {
     width: 44px;
+  }
+}
+
+/* Mobile Navigation Drawer - Corporate Red Palette */
+@media (max-width: 900px) {
+  .site-header.tricon-header .nav-wrap {
+    background: #9F2028 !important;
   }
 }
