@@ -149,7 +149,7 @@
   }
 
   /* -------------------------------------------------------------
-     3. Parallax Treatment (Zenith & Goldstab Inspired)
+     3. Comprehensive Scroll Parallax Treatment (Images & Sections)
      ------------------------------------------------------------- */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var layers = document.querySelectorAll('.parallax-image, .parallax-layer, [data-parallax-speed]');
@@ -165,6 +165,7 @@
     queued = false;
     var vh = window.innerHeight || document.documentElement.clientHeight;
     var scrollY = window.scrollY || window.pageYOffset;
+    var isMobile = window.innerWidth < 768;
 
     // Transparent-to-Solid Sticky Navbar Transition based on actual hero boundary
     if (siteHeader) {
@@ -182,7 +183,56 @@
 
     if (reduced) return;
 
-    // Standard Parallax Layers (Video banner, etc.)
+    // 1. Hero Section Subtle Cinematic Slide Background Parallax
+    var heroSec = document.querySelector('.hero.tricon-hero');
+    if (heroSec && scrollY < vh * 1.2) {
+      var heroShift = scrollY * (isMobile ? 0.15 : 0.28);
+      var activeBg = heroSec.querySelector('.tricon-slide.active .tricon-slide-bg');
+      if (activeBg) {
+        activeBg.style.transform = 'translate3d(0, ' + heroShift.toFixed(1) + 'px, 0)';
+      }
+    }
+
+    // 2. Page Hero Headers on Inner Pages (.ph .ph-bg)
+    var pageHeros = document.querySelectorAll('.ph');
+    pageHeros.forEach(function (ph) {
+      var rect = ph.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < vh) {
+        var bg = ph.querySelector('.ph-bg');
+        if (bg) {
+          var phProgress = (vh - rect.top) / (vh + rect.height);
+          var phShift = (phProgress - 0.5) * (isMobile ? 22 : 48);
+          bg.style.transform = 'translate3d(0, ' + phShift.toFixed(1) + 'px, 0)';
+        }
+      }
+    });
+
+    // 3. PVC Raw Materials / About Section Image & Elements
+    var aboutSec = document.getElementById('about') || document.querySelector('.intro2');
+    if (aboutSec) {
+      var abRect = aboutSec.getBoundingClientRect();
+      if (abRect.bottom > 0 && abRect.top < vh) {
+        var abProgress = (vh - abRect.top) / (vh + abRect.height);
+        var abShift = (abProgress - 0.5) * (isMobile ? 16 : 38);
+        var visImg = aboutSec.querySelector('.i2-vis img');
+        if (visImg) {
+          if (isMobile) {
+            var xOffset = window.innerWidth <= 480 ? -14 : -12;
+            var scale = window.innerWidth <= 480 ? 1.1 : 1.08;
+            visImg.style.transform = 'translate3d(' + xOffset + 'px, ' + abShift.toFixed(1) + 'px, 0) scale(' + scale + ')';
+          } else {
+            visImg.style.transform = 'translate3d(0, ' + abShift.toFixed(1) + 'px, 0)';
+          }
+        }
+        var trustStrip = aboutSec.querySelector('.i2-trust');
+        if (trustStrip) {
+          var trustShift = (abProgress - 0.5) * (isMobile ? -8 : -18);
+          trustStrip.style.transform = 'translate3d(0, ' + trustShift.toFixed(1) + 'px, 0)';
+        }
+      }
+    }
+
+    // 4. Standard Parallax Layers (Video banner, etc.)
     layers.forEach(function (layer) {
       var parent = layer.parentElement || layer;
       var rect = parent.getBoundingClientRect();
@@ -193,7 +243,7 @@
       }
     });
 
-    // Zenith Industrial Section Smooth Multi-Layer Parallax
+    // 5. Zenith Industrial Section Smooth Multi-Layer Parallax
     if (zenithSec && zenithBgImg) {
       var zRect = zenithSec.getBoundingClientRect();
       if (zRect.top < vh && zRect.bottom > 0) {
@@ -209,21 +259,86 @@
       }
     }
 
-    // Industries We Serve Scroll Parallax (Single image inside stationary clipped frame)
+    // 6. Principal Distributors Section (BPCL, Chemplast, Payal depth)
+    var distSec = document.getElementById('distributors');
+    if (distSec) {
+      var dRect = distSec.getBoundingClientRect();
+      if (dRect.bottom > 0 && dRect.top < vh) {
+        var dProgress = (vh - dRect.top) / (vh + dRect.height);
+        var distCards = distSec.querySelectorAll('.dist-card');
+        distCards.forEach(function (card, i) {
+          var offsetMultiplier = (i === 0 ? -1 : (i === 2 ? 1 : 0));
+          var cardShift = (dProgress - 0.5) * (isMobile ? 6 : 14) * offsetMultiplier;
+          card.style.transform = 'translate3d(0, ' + cardShift.toFixed(1) + 'px, 0)';
+        });
+      }
+    }
+
+    // 7. Industries We Serve (Pellets image + card depth)
     var indSec = document.getElementById('industries') || document.querySelector('.ind2');
-    if (indSec && !reduced) {
+    if (indSec) {
       var indRect = indSec.getBoundingClientRect();
       if (indRect.top < vh && indRect.bottom > 0) {
-        var indProgress = (vh - indRect.top) / (vh + indRect.height); // 0 to 1 through viewport
-        var isMobile = window.innerWidth < 768;
-        var maxTravel = isMobile ? 18 : 44; // ~40-44px desktop, ~18px mobile
-        var shift = (indProgress - 0.5) * maxTravel; // Smooth displacement lagging scroll
+        var indProgress = (vh - indRect.top) / (vh + indRect.height);
+        var maxTravel = isMobile ? 18 : 44;
+        var shift = (indProgress - 0.5) * maxTravel;
         var parallaxImg = indSec.querySelector('.ind2-parallax-img');
         if (parallaxImg) {
           parallaxImg.style.transform = 'translate3d(0, ' + shift.toFixed(2) + 'px, 0)';
         }
+        var indCards = indSec.querySelectorAll('.ind2-card');
+        indCards.forEach(function (c, ci) {
+          if (c.classList.contains('is-revealed') || !c.hasAttribute('data-anim')) {
+            var cMultiplier = (ci % 2 === 0 ? -1 : 1);
+            var cShift = (indProgress - 0.5) * (isMobile ? 5 : 12) * cMultiplier;
+            c.style.transform = 'translate3d(0, ' + cShift.toFixed(1) + 'px, 0)';
+          }
+        });
       }
     }
+
+    // 8. Why S. R. Polyvinyl Section (.wh-art + value columns)
+    var whySec = document.getElementById('why') || document.querySelector('.why-home');
+    if (whySec) {
+      var wRect = whySec.getBoundingClientRect();
+      if (wRect.bottom > 0 && wRect.top < vh) {
+        var wProgress = (vh - wRect.top) / (vh + wRect.height);
+        var whArt = whySec.querySelector('.wh-art');
+        if (whArt && !isMobile) {
+          var artShift = (wProgress - 0.5) * 50;
+          whArt.style.transform = 'translateY(calc(-50% + ' + artShift.toFixed(1) + 'px))';
+        }
+        var whVals = whySec.querySelectorAll('.wh-val');
+        whVals.forEach(function (v, vi) {
+          var vShift = (wProgress - 0.5) * (isMobile ? 4 : 10) * (vi - 1);
+          v.style.transform = 'translate3d(0, ' + vShift.toFixed(1) + 'px, 0)';
+        });
+      }
+    }
+
+    // 9. About Page Picture
+    var aboutPic = document.querySelector('.about-picture img');
+    if (aboutPic) {
+      var apParent = aboutPic.closest('.about-picture') || aboutPic;
+      var apRect = apParent.getBoundingClientRect();
+      if (apRect.bottom > 0 && apRect.top < vh) {
+        var apProgress = (vh - apRect.top) / (vh + apRect.height);
+        var apShift = (apProgress - 0.5) * (isMobile ? 16 : 38);
+        aboutPic.style.transform = 'translate3d(0, ' + apShift.toFixed(1) + 'px, 0)';
+      }
+    }
+
+    // 10. Call-To-Action (CTA) Background Parallax
+    var ctaBgs = document.querySelectorAll('.cta-bg');
+    ctaBgs.forEach(function (cBg) {
+      var cParent = cBg.closest('.cta') || cBg.parentElement;
+      var cRect = cParent.getBoundingClientRect();
+      if (cRect.bottom > 0 && cRect.top < vh) {
+        var cProgress = (vh - cRect.top) / (vh + cRect.height);
+        var cShift = (cProgress - 0.5) * (isMobile ? 24 : 55);
+        cBg.style.transform = 'translate3d(0, ' + cShift.toFixed(1) + 'px, 0)';
+      }
+    });
   }
 
   window.addEventListener('scroll', function () {

@@ -4333,3 +4333,79 @@ html.js-reveal-ready .reveal-group:not(.is-revealed) {
     mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 48%, transparent 94%);
   }
 }
+
+
+/* =============================================================
+   COMPREHENSIVE SCROLL PARALLAX SYSTEM STYLING & OVERSCAN
+   - Stationary clipping frames with 30-50px overscan
+   - GPU-accelerated translate3d transforms (0 layout shifts)
+   - Staggered card plane depth (distributors, values, industries)
+   ============================================================= */
+.hero.tricon-hero {
+  overflow: hidden;
+  position: relative;
+}
+.tricon-slide-bg {
+  top: -40px !important;
+  height: calc(100% + 80px) !important;
+  will-change: transform;
+}
+
+/* Page Heros (Products, Contact, Industries, Clientele) */
+.ph {
+  overflow: hidden;
+  position: relative;
+}
+.ph .ph-bg {
+  top: -40px !important;
+  height: calc(100% + 80px) !important;
+  will-change: transform;
+  object-fit: cover;
+}
+
+/* About Picture Frame */
+.about-picture {
+  overflow: hidden;
+  position: relative;
+}
+.about-picture img {
+  will-change: transform;
+}
+
+/* CTA Background Parallax Frame */
+.cta {
+  overflow: hidden;
+  position: relative;
+}
+.cta-bg {
+  top: -35px !important;
+  height: calc(100% + 70px) !important;
+  will-change: transform;
+  object-fit: cover;
+}
+
+/* Parallax Card & Graphic Depth */
+.i2-vis img,
+.i2-trust,
+.dist-card,
+.wh-val,
+.wh-art {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tricon-slide-bg,
+  .ph .ph-bg,
+  .i2-vis img,
+  .i2-trust,
+  .dist-card,
+  .ind2-card,
+  .wh-art,
+  .wh-val,
+  .about-picture img,
+  .cta-bg {
+    transform: none !important;
+    top: 0 !important;
+    height: 100% !important;
+  }
+}
