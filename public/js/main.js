@@ -65,9 +65,20 @@
     var paused = false;
     function restart() {
       clearInterval(timer);
-      if (!reduced && !paused && slides.length > 1) timer = setInterval(function () { go(current + 1); }, 6500);
+      if (!reduced && !paused && !userPaused && slides.length > 1) timer = setInterval(function () { go(current + 1); }, 6500);
     }
+    var userPaused = false;
     var hero = document.querySelector(".hero");
+    var pauseButton = hero.querySelector('.hero-pause');
+    if (pauseButton) {
+      if (reduced) pauseButton.hidden = true;
+      pauseButton.addEventListener('click', function () {
+        userPaused = !userPaused;
+        pauseButton.textContent = userPaused ? 'Play slides' : 'Pause slides';
+        pauseButton.setAttribute('aria-pressed', String(userPaused));
+        restart();
+      });
+    }
     var prev = hero.querySelector(".slider-arrow.prev");
     var next = hero.querySelector(".slider-arrow.next");
     if (prev) prev.addEventListener("click", function () { go(current - 1); restart(); });
@@ -238,7 +249,7 @@
     if (!("IntersectionObserver" in window)) { load(); v.play().catch(function () {}); return; }
     new IntersectionObserver(function (entries) {
       var e = entries[0];
-      if (e.isIntersecting) { load(); var pr = v.play(); if (pr) pr.catch(function () {}); }
+      if (e.isIntersecting && v.dataset.userPaused !== 'true') { load(); var pr = v.play(); if (pr) pr.catch(function () {}); }
       else if (loaded) v.pause();
     }, { rootMargin: "200px 0px" }).observe(v);
   });
@@ -422,6 +433,9 @@
         "Phone: " + (d.get("phone") || ""),
         "Email: " + (d.get("email") || ""),
         "Product: " + (d.get("product") || ""),
+        "Enquiry type: " + (d.get("purpose") || ""),
+        "Quantity: " + (d.get("quantity") || ""),
+        "Delivery city: " + (d.get("location") || ""),
         "",
         String(d.get("message") || "")
       ].join("\n");
