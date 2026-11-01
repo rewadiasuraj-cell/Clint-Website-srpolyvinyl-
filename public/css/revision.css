@@ -41,3 +41,38 @@ body{font-weight:400}button,input,select,textarea{font:inherit}button,a,input,su
  .revision-hero .slide-text h1,.revision-hero .slide-text h2{font-size:34px}
  .revision-hero .rev-hero-image{height:300px;bottom:85px;padding:18px}
 }
+
+/* Compact portrait catalogue and naturally coloured hero artwork. */
+.catalog-section>.container{max-width:1480px}
+.catalog-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:start}
+.catalog-image{height:300px;padding:18px}
+.catalog-image img{height:264px;width:100%;object-fit:contain;mix-blend-mode:normal}
+.catalog-copy{padding:22px}
+.catalog-copy h2{font-size:22px;min-height:0;line-height:1.25}
+.catalog-copy p{margin:16px 0;font-size:13px}
+.catalog-copy .eyebrow{margin-bottom:12px}
+.revision-hero,.revision-hero .slide{background:#f2efeb;color:#281c1c}
+.revision-hero .slide::before{display:none}
+.revision-hero .rev-hero-image{mask-image:none;-webkit-mask-image:none;mix-blend-mode:multiply}
+.revision-hero .slide-text{max-width:46%}
+.revision-hero .slide-text h1,.revision-hero .slide-text h2{color:#281c1c;font-size:clamp(34px,3.3vw,54px)}
+.revision-hero .slide-text strong{color:#8b2426}
+.revision-hero .slide-text p{color:#4e4140}
+.revision-hero .eyebrow{color:#8b2426}
+.revision-hero .rev-button{background:#8b2426;color:#fff;border-color:#8b2426}
+.revision-hero .rev-button:hover{background:#521619;border-color:#521619}
+.revision-hero .slider-arrow{border-color:#9f8c88;color:#4b2929}
+.revision-hero .slider-arrow:hover{background:#8b2426;color:#fff}
+.revision-hero .slider-dots button{border-color:#8b2426;background:transparent}
+.revision-hero .slider-dots button.active{background:#8b2426}
+.revision-hero .hero-pause{color:#4b2929}
+.revision-hero .slide:nth-child(2){background:#381215;color:#fff}
+.revision-hero .slide:nth-child(2) .slide-text h2,.revision-hero .slide:nth-child(2) .slide-text strong{color:#fff}
+.revision-hero .slide:nth-child(2) .slide-text p,.revision-hero .slide:nth-child(2) .eyebrow{color:#f3d9d0}
+.revision-hero .slide:nth-child(2) .rev-hero-image{mix-blend-mode:normal;background:#381215}
+.revision-hero:has(.slide:nth-child(2).active) .hero-controls button{color:#fff;border-color:#e0bcb5}
+.revision-hero:has(.slide:nth-child(2).active) .slider-dots button.active{background:#fff}
+.revision-hero:has(.slide:nth-child(2).active) .hero-caption{color:#f3d9d0}
+@media(max-width:1150px){.catalog-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.catalog-image{height:270px}.catalog-image img{height:234px}}
+@media(max-width:900px){.catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.revision-hero .slide-text{max-width:100%}.revision-hero .slide{background:#f2efeb}.revision-hero .rev-hero-image{background:transparent}.revision-hero .slide-text h1,.revision-hero .slide-text h2{font-size:clamp(32px,5vw,44px)}}
+@media(max-width:600px){.catalog-grid{grid-template-columns:1fr}.catalog-image{height:310px}.catalog-image img{height:274px}.catalog-card{max-width:420px;width:100%;margin-inline:auto}.revision-hero .slide-text h1,.revision-hero .slide-text h2{font-size:34px}}
