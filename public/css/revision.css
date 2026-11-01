@@ -1486,7 +1486,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
   .catalog-toolbar { flex-direction: column; align-items: stretch; }
   .catalog-search-wrap input { min-width: 0; width: 100%; }
-  .band-metrics { flex-direction: column; align-items: center; gap: 18px; }
+  
   .hero-controls { left: 16px; bottom: 16px; }
   .hero-caption { display: none; }
 }
@@ -2278,5 +2278,84 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 
   .zenith-parallax-section {
     padding: 70px 0 !important;
+  }
+}
+
+
+/* =============================================================
+   Video Statement Banner: Strictly Horizontal Distributed Metrics Row
+   ============================================================= */
+.band-metrics {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 20px !important;
+  margin-top: 36px !important;
+  padding-top: 28px !important;
+  border-top: 1px solid rgba(255, 255, 255, .16) !important;
+  width: 100% !important;
+  max-width: 1150px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.band-metric-item {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  font-size: 13.5px !important;
+  white-space: nowrap !important;
+  letter-spacing: .02em !important;
+  color: #f7d3cf !important;
+  background: rgba(255, 255, 255, .08) !important;
+  padding: 10px 22px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(247, 211, 207, .25) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+  transition: all .25s ease !important;
+}
+
+.band-metric-item:hover {
+  background: rgba(143, 27, 31, .6) !important;
+  border-color: #f7d3cf !important;
+  transform: translateY(-2px) !important;
+}
+
+.band-metric-item i {
+  color: #ff9d8c !important;
+  font-size: 15px !important;
+}
+
+.band-metric-item strong {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+@media (max-width: 1024px) {
+  .band-metrics {
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .band-metrics {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    padding-top: 20px !important;
+    margin-top: 24px !important;
+  }
+  .band-metric-item {
+    font-size: 11.5px !important;
+    padding: 8px 10px !important;
+    white-space: normal !important;
+    text-align: center !important;
   }
 }
