@@ -2,11 +2,10 @@
   'use strict';
 
   /* -------------------------------------------------------------
-     1. Navigation Mega-Menu (Hover & Click & Keyboard)
+     1. Zenith Split Product Mega-Menu (Tabs, Hover & Keyboard)
      ------------------------------------------------------------- */
   var menu = document.querySelector('.products-menu');
   var toggle = document.querySelector('.mega-toggle');
-  var menuLink = menu ? menu.querySelector('a') : null;
   var hoverTimer = null;
 
   function setMenu(open) {
@@ -37,7 +36,7 @@
         clearTimeout(hoverTimer);
         hoverTimer = setTimeout(function () {
           setMenu(false);
-        }, 180);
+        }, 220);
       });
     }
 
@@ -53,6 +52,45 @@
         setMenu(false);
         if (toggle) toggle.focus();
       }
+    });
+
+    // Zenith Tab Switching (Instantaneous Hover & Click)
+    var catButtons = menu.querySelectorAll('.zenith-cat-btn');
+    var tabPanels = menu.querySelectorAll('.zenith-tab-panel');
+
+    function activateZenithTab(btn) {
+      if (!btn) return;
+      var tabId = btn.getAttribute('data-tab');
+      if (!tabId) return;
+
+      catButtons.forEach(function (b) {
+        b.classList.remove('is-active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('is-active');
+      btn.setAttribute('aria-selected', 'true');
+
+      tabPanels.forEach(function (p) {
+        p.classList.remove('is-active');
+      });
+
+      var targetPanel = document.getElementById('panel-' + tabId);
+      if (targetPanel) {
+        targetPanel.classList.add('is-active');
+      }
+    }
+
+    catButtons.forEach(function (btn) {
+      btn.addEventListener('mouseenter', function () {
+        activateZenithTab(btn);
+      });
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        activateZenithTab(btn);
+      });
+      btn.addEventListener('focus', function () {
+        activateZenithTab(btn);
+      });
     });
   }
 
@@ -121,33 +159,66 @@
      3. Parallax Treatment (Zenith & Goldstab Inspired)
      ------------------------------------------------------------- */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var layers = document.querySelectorAll('.parallax-image, .parallax-layer');
+  var layers = document.querySelectorAll('.parallax-image, .parallax-layer, [data-parallax-speed]');
+  var zenithSec = document.getElementById('infrastructure-facility');
+  var zenithBgImg = zenithSec ? zenithSec.querySelector('.zenith-parallax-bg img') : null;
+  var zenithCards = zenithSec ? Array.from(zenithSec.querySelectorAll('.zenith-card')) : [];
 
-  if (!reduced && layers.length) {
-    var queued = false;
-    function paint() {
-      queued = false;
-      var vh = window.innerHeight;
+  // Goldstab Scroll & Logo Color Transition Hook
+  var siteHeader = document.querySelector('.site-header');
 
-      layers.forEach(function (layer) {
-        var rect = layer.parentElement.getBoundingClientRect();
-        if (rect.bottom > 0 && rect.top < vh) {
-          // Smooth normalized vertical travel
-          var speed = parseFloat(layer.dataset.parallaxSpeed) || 0.12;
-          var offset = Math.max(-35, Math.min(35, (rect.top - vh / 2) * -speed));
-          layer.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
-        }
-      });
+  var queued = false;
+  function updateScrollVisuals() {
+    queued = false;
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var scrollY = window.scrollY || window.pageYOffset;
+
+    // Goldstab Dynamic Sticky Navbar & Logo Color Shift
+    if (siteHeader) {
+      if (scrollY > 45) {
+        siteHeader.classList.add('is-sticky');
+      } else if (scrollY < 12) {
+        siteHeader.classList.remove('is-sticky');
+      }
     }
 
-    window.addEventListener('scroll', function () {
-      if (!queued) {
-        queued = true;
-        requestAnimationFrame(paint);
+    if (reduced) return;
+
+    // Standard Parallax Layers (Video banner, etc.)
+    layers.forEach(function (layer) {
+      var parent = layer.parentElement || layer;
+      var rect = parent.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < vh) {
+        var speed = parseFloat(layer.dataset.parallaxSpeed) || 0.12;
+        var offset = Math.max(-45, Math.min(45, (rect.top - vh / 2) * -speed));
+        layer.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
       }
-    }, { passive: true });
-    paint();
+    });
+
+    // Zenith Industrial Section Smooth Multi-Layer Parallax
+    if (zenithSec && zenithBgImg) {
+      var zRect = zenithSec.getBoundingClientRect();
+      if (zRect.top < vh && zRect.bottom > 0) {
+        var progress = (vh - zRect.top) / (vh + zRect.height);
+        var offset = (progress - 0.5) * 110;
+        zenithBgImg.style.transform = 'translate3d(0, ' + offset.toFixed(1) + 'px, 0) scale(1.08)';
+
+        // Subtle Card Parallax Depth
+        zenithCards.forEach(function (card, idx) {
+          var cardShift = (progress - 0.5) * (14 + idx * 6);
+          card.style.transform = 'translate3d(0, ' + (-cardShift.toFixed(1)) + 'px, 0)';
+        });
+      }
+    }
   }
+
+  window.addEventListener('scroll', function () {
+    if (!queued) {
+      queued = true;
+      requestAnimationFrame(updateScrollVisuals);
+    }
+  }, { passive: true });
+  updateScrollVisuals();
 
   /* -------------------------------------------------------------
      4. Video Banner Controls
