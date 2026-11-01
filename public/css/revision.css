@@ -53,90 +53,151 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 .text-link:hover { gap: 12px; }
 
-/* -------------------------------------------------------------
-   Homepage Product Portfolio Showcase Grid
-   ------------------------------------------------------------- */
+/* =============================================================
+   PREMIUM B2B PRODUCT CATEGORY GRID REDESIGN
+   3-Column Equal Cards, Consistent Heights, 224px Media Frames, 
+   Semibold 20px Titles, 14px Interactive Brand CTA
+   ============================================================= */
 .home-product-grid {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 24px !important;
-  margin-bottom: 35px !important;
+  margin-top: 36px !important;
+  margin-bottom: 40px !important;
   align-items: stretch !important;
 }
 
 .home-product {
-  border: 1px solid var(--line) !important;
-  background: #fff !important;
-  padding: 22px 20px !important;
-  border-radius: 4px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #e5e0d8 !important;   /* Subtle neutral grey */
+  border-radius: 10px !important;         /* 8-12px corporate radius */
+  padding: 22px 22px 20px !important;     /* 20-24px internal padding */
   display: flex !important;
   flex-direction: column !important;
+  justify-content: space-between !important;
   text-decoration: none !important;
-  color: var(--text-dark) !important;
-  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease !important;
+  color: #1a1a1a !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 200ms ease !important;
   position: relative !important;
   overflow: hidden !important;
+  box-sizing: border-box !important;
+  height: 100% !important;
 }
 
-.home-product:hover {
-  transform: translateY(-5px) !important;
-  border-color: var(--maroon) !important;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, .08) !important;
+/* Subtle, smooth hover elevation & brand red border highlight */
+.home-product:hover,
+.home-product:focus-visible {
+  transform: translateY(-4px) !important;  /* 3-4px slight upward lift */
+  border-color: #9F2028 !important;        /* Subtle red highlight */
+  box-shadow: 0 12px 28px rgba(159, 32, 40, 0.09), 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+  outline: none !important;
 }
 
-.home-product > div {
-  height: 200px !important;
+/* Consistent Product Image Container System */
+.home-product-media,
+.home-product > div:first-child {
+  height: 224px !important;              /* Consistent 210-240px desktop height */
+  width: 100% !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background: #ffffff !important;
-  border-bottom: 1px solid #f0ede6 !important;
-  border-radius: 3px !important;
-  margin-bottom: 16px !important;
-  padding: 14px !important;
+  background: #faf8f5 !important;        /* Clean, subtle warm off-white */
+  border: 1px solid #f0ece6 !important;
+  border-radius: 8px !important;
+  margin-bottom: 18px !important;
+  padding: 16px 20px !important;
   overflow: hidden !important;
+  box-sizing: border-box !important;
+  transition: background 200ms ease !important;
 }
 
+.home-product:hover .home-product-media,
+.home-product:hover > div:first-child {
+  background: #ffffff !important;
+}
+
+/* Product Imagery: Natural proportion preservation with zero distortion */
 .home-product img {
-  max-width: 88% !important;
-  max-height: 168px !important;
+  max-width: 86% !important;
+  max-height: 182px !important;
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
-  mix-blend-mode: normal !important;
-  transition: transform .28s cubic-bezier(.2, .8, .2, 1) !important;
+  object-position: center !important;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: block !important;
+  margin: 0 auto !important;
 }
 
 .home-product:hover img {
-  transform: scale(1.06) !important;
+  transform: scale(1.03) !important;     /* Extremely subtle, max 1.03 */
 }
 
-.home-product h3 {
-  font-size: 17px !important;
-  font-weight: 600 !important;
-  margin: 0 0 8px !important;
-  color: var(--text-dark) !important;
-  line-height: 1.3 !important;
+/* Card Body Content */
+.home-product-body {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+  justify-content: space-between !important;
+}
+
+/* Consistent Semibold Near-Black Typography */
+.home-product h3,
+.home-product-title {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 20px !important;            /* 19-21px */
+  font-weight: 600 !important;           /* Semibold */
+  color: #1a1a1a !important;             /* Near-black */
+  line-height: 1.32 !important;
+  margin: 0 0 14px !important;
+  letter-spacing: -0.015em !important;
+  transition: color 200ms ease !important;
 }
 
 .home-product h3 strong {
-  color: var(--maroon) !important;
   font-weight: 600 !important;
+  color: #1a1a1a !important;             /* Eliminate random red highlighted words */
 }
 
+.home-product:hover h3,
+.home-product:hover .home-product-title {
+  color: #9F2028 !important;             /* Elegant title shift to corporate red on hover */
+}
+
+/* Prominent, Accessible Call to Action */
+.home-product-cta,
 .home-product span {
-  font-size: 12px !important;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 14px !important;            /* 14px CTA font size */
   font-weight: 600 !important;
-  color: var(--maroon) !important;
-  margin-top: auto !important;
+  color: #9F2028 !important;             /* Brand burgundy #9F2028 */
   display: inline-flex !important;
   align-items: center !important;
-  gap: 6px !important;
-  transition: gap .2s ease !important;
+  gap: 8px !important;
+  margin-top: auto !important;
+  padding: 4px 0 !important;
+  transition: color 200ms ease, gap 200ms ease !important;
 }
 
+.home-product-cta i,
+.home-product span i {
+  font-size: 13px !important;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: inline-block !important;
+}
+
+.home-product:hover .home-product-cta,
 .home-product:hover span {
-  gap: 10px !important;
+  color: #791419 !important;
+  gap: 12px !important;                  /* Smooth interactive arrow progression */
+}
+
+.home-product:hover .home-product-cta i,
+.home-product:hover span i {
+  transform: translateX(4px) !important; /* Subtle 4px arrow movement */
 }
 
 
@@ -1315,7 +1376,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 @media (max-width: 1024px) {
   .home-product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 18px !important;
+    gap: 20px !important;
+  }
+  .home-product-media,
+  .home-product > div:first-child {
+    height: 204px !important;
+  }
+  .home-product img {
+    max-height: 164px !important;
   }
 }
 
@@ -1324,11 +1392,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
-  .home-product > div {
-    height: 180px !important;
+  .home-product {
+    padding: 18px 18px 16px !important;
+  }
+  .home-product-media,
+  .home-product > div:first-child {
+    height: 195px !important;
+    margin-bottom: 14px !important;
   }
   .home-product img {
-    max-height: 145px !important;
+    max-height: 156px !important;
+  }
+  .home-product h3,
+  .home-product-title {
+    font-size: 18px !important;
+    margin-bottom: 10px !important;
   }
 }
 
@@ -1586,11 +1664,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 
 /* Left Column: Brand Maroon Category Sidebar */
 .zenith-mega-sidebar {
-  width: 310px;
+  width: 275px;
   flex-shrink: 0;
   background: #681216;
   color: #ffffff;
-  padding: 24px 0 20px;
+  padding: 20px 0 16px;
   border-right: 1px solid rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
@@ -1676,11 +1754,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 /* Right Column: Clean White Detail Panel */
 .zenith-mega-content {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background: #ffffff;
-  padding: 30px 40px 20px;
+  padding: 24px 30px 16px;
 }
 
 .zenith-tab-panel {
@@ -1805,31 +1884,32 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   transform: translateY(-2px);
 }
 
-/* Mega-Menu Footer Bar: 3-column balanced layout */
+/* Mega-Menu Footer Bar: Precision Balanced Responsive Corporate Layout */
 .zenith-mega-footer {
-  margin-top: 24px;
-  padding: 18px 32px !important;
+  margin-top: 18px;
+  padding: 12px 22px !important;
   background: #faf8f5 !important;
   border-top: 1px solid #ede8e3 !important;
+  border-radius: 0 0 12px 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  gap: 24px !important;
-  flex-wrap: nowrap !important;
+  gap: 14px !important;
+  flex-wrap: wrap !important;
   box-sizing: border-box !important;
 }
 
 .zenith-footer-principals {
-  font-size: 13px !important;
-  color: #555555 !important;
-  line-height: 1.45 !important;
+  font-size: 11px !important;
+  color: #666666 !important;
+  line-height: 1.4 !important;
   flex: 1 1 auto !important;
-  min-width: 280px !important;
+  min-width: 260px !important;
 }
 
 .zenith-footer-principals span {
-  color: #777777 !important;
-  margin-right: 6px !important;
+  color: #888888 !important;
+  margin-right: 5px !important;
   font-weight: 500 !important;
 }
 
@@ -1839,15 +1919,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 
 .zenith-footer-actions {
-  display: flex !important;
+  display: inline-flex !important;
   align-items: center !important;
-  gap: 20px !important;
+  gap: 12px !important;
   flex-shrink: 0 !important;
-  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  margin-left: auto !important;
 }
 
 .zenith-all-btn {
-  font-size: 13.5px !important;
+  font-size: 11px !important;
   font-weight: 600 !important;
   letter-spacing: 0.03em !important;
   text-transform: uppercase !important;
@@ -1855,8 +1936,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   text-decoration: none !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
-  padding: 10px 16px !important;
+  gap: 6px !important;
+  padding: 7px 12px !important;
   border-radius: 4px !important;
   white-space: nowrap !important;
   flex-shrink: 0 !important;
@@ -1870,27 +1951,29 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 
 .zenith-all-btn i {
-  font-size: 13px;
+  font-size: 10px !important;
+  display: inline-block !important;
 }
 
 .zenith-rfq-btn {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 10px !important;
-  min-height: 50px !important;
-  padding: 0 26px !important;
-  border-radius: 6px !important; /* Subtle 6-8px corporate border radius */
+  gap: 8px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  padding: 0 16px !important;
+  border-radius: 4px !important; /* Sharp corporate 4px radius, never a 999px pill */
   background: #9F2028 !important;
   color: #ffffff !important;
-  font-size: 13px !important;
+  font-size: 11px !important;
   font-weight: 600 !important;
   letter-spacing: 0.04em !important;
   text-transform: uppercase !important;
   text-decoration: none !important;
   white-space: nowrap !important;
   flex-shrink: 0 !important;
-  box-shadow: 0 4px 14px rgba(159, 32, 40, 0.28) !important;
+  box-shadow: 0 2px 8px rgba(159, 32, 40, 0.22) !important;
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
@@ -1898,12 +1981,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .zenith-rfq-btn:focus-visible {
   background: #791419 !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 6px 18px rgba(121, 20, 25, 0.4) !important;
+  box-shadow: 0 4px 12px rgba(121, 20, 25, 0.35) !important;
   color: #ffffff !important;
 }
 
 .zenith-rfq-btn i {
-  font-size: 13px;
+  font-size: 10px !important;
+  display: inline-block !important;
 }
 
 /* =============================================================
@@ -2528,12 +2612,20 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   width: auto;
   max-width: 220px;
   object-fit: contain;
-  filter: none !important; /* Authentic SR Polyvinyl original logo colors */
+  filter: none !important; /* Authentic SR Polyvinyl original red logo */
+  -webkit-filter: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
   transition: height 0.35s ease;
 }
 
-.site-header.tricon-header.is-sticky .header-logo-container .brand img {
+.site-header.tricon-header.is-sticky .header-logo-container .brand img,
+.site-header.is-sticky .brand img {
   height: 42px;
+  filter: none !important;
+  -webkit-filter: none !important;
+  opacity: 1 !important;
+}
 }
 
 /* Navigation Links */
