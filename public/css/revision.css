@@ -54,6 +54,92 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .text-link:hover { gap: 12px; }
 
 /* -------------------------------------------------------------
+   Homepage Product Portfolio Showcase Grid
+   ------------------------------------------------------------- */
+.home-product-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  margin-bottom: 35px !important;
+  align-items: stretch !important;
+}
+
+.home-product {
+  border: 1px solid var(--line) !important;
+  background: #fff !important;
+  padding: 22px 20px !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  text-decoration: none !important;
+  color: var(--text-dark) !important;
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.home-product:hover {
+  transform: translateY(-5px) !important;
+  border-color: var(--maroon) !important;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .08) !important;
+}
+
+.home-product > div {
+  height: 200px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #f7f6f3 !important;
+  border-radius: 3px !important;
+  margin-bottom: 16px !important;
+  padding: 14px !important;
+  overflow: hidden !important;
+}
+
+.home-product img {
+  max-width: 88% !important;
+  max-height: 168px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  mix-blend-mode: multiply !important;
+  transition: transform .28s cubic-bezier(.2, .8, .2, 1) !important;
+}
+
+.home-product:hover img {
+  transform: scale(1.06) !important;
+}
+
+.home-product h3 {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  margin: 0 0 8px !important;
+  color: var(--text-dark) !important;
+  line-height: 1.3 !important;
+}
+
+.home-product h3 strong {
+  color: var(--maroon) !important;
+  font-weight: 600 !important;
+}
+
+.home-product span {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--maroon) !important;
+  margin-top: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: gap .2s ease !important;
+}
+
+.home-product:hover span {
+  gap: 10px !important;
+}
+
+
+/* -------------------------------------------------------------
    1. Shared Header & Product Mega-Menu
    ------------------------------------------------------------- */
 .site-header {
@@ -1221,6 +1307,26 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 @media (max-width: 1079px) and (min-width: 768px) {
   .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .dist-grid-prominent { gap: 18px; }
+}
+
+@media (max-width: 1024px) {
+  .home-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-product-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .home-product > div {
+    height: 180px !important;
+  }
+  .home-product img {
+    max-height: 145px !important;
+  }
 }
 
 @media (max-width: 900px) {
