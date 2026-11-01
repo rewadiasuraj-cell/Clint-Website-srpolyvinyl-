@@ -1805,64 +1805,68 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   transform: translateY(-2px);
 }
 
-/* Mega-Menu Footer Bar */
+/* Mega-Menu Footer Bar: 3-column balanced layout */
 .zenith-mega-footer {
   margin-top: 24px;
-  padding: 16px 28px;
-  background: #faf8f5;
-  border-top: 1px solid #ede8e3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: nowrap;
+  padding: 18px 32px !important;
+  background: #faf8f5 !important;
+  border-top: 1px solid #ede8e3 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 24px !important;
+  flex-wrap: nowrap !important;
+  box-sizing: border-box !important;
 }
 
 .zenith-footer-principals {
-  font-size: 13px;
-  color: #555555;
-  line-height: 1.45;
-  flex: 1 1 auto;
+  font-size: 13px !important;
+  color: #555555 !important;
+  line-height: 1.45 !important;
+  flex: 1 1 auto !important;
+  min-width: 280px !important;
 }
 
 .zenith-footer-principals span {
-  color: #777777;
-  margin-right: 6px;
+  color: #777777 !important;
+  margin-right: 6px !important;
+  font-weight: 500 !important;
 }
 
 .zenith-footer-principals strong {
-  color: #1a1a1a;
-  font-weight: 600;
+  color: #1a1a1a !important;
+  font-weight: 600 !important;
 }
 
 .zenith-footer-actions {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex-shrink: 0;
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  flex-shrink: 0 !important;
+  flex-wrap: nowrap !important;
 }
 
 .zenith-all-btn {
-  font-size: 13.5px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: #9F2028;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: color 0.18s ease, background 0.18s ease;
-  white-space: nowrap;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  color: #9F2028 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 10px 16px !important;
+  border-radius: 4px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  transition: color 0.18s ease, background 0.18s ease !important;
 }
 
 .zenith-all-btn:hover,
 .zenith-all-btn:focus-visible {
-  color: #791419;
-  background: rgba(159, 32, 40, 0.06);
-  text-decoration: none;
+  color: #791419 !important;
+  background: rgba(159, 32, 40, 0.06) !important;
 }
 
 .zenith-all-btn i {
@@ -1870,30 +1874,31 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 
 .zenith-rfq-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 50px;
-  padding: 0 24px;
-  border-radius: 6px; /* Subtle 6-8px corporate border radius */
-  background: #9F2028;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  min-height: 50px !important;
+  padding: 0 26px !important;
+  border-radius: 6px !important; /* Subtle 6-8px corporate border radius */
+  background: #9F2028 !important;
   color: #ffffff !important;
-  font-size: 13.5px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
   text-decoration: none !important;
-  white-space: nowrap;
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 14px rgba(159, 32, 40, 0.28);
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 4px 14px rgba(159, 32, 40, 0.28) !important;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 .zenith-rfq-btn:hover,
 .zenith-rfq-btn:focus-visible {
-  background: #791419;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(121, 20, 25, 0.4);
+  background: #791419 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 18px rgba(121, 20, 25, 0.4) !important;
   color: #ffffff !important;
 }
 
@@ -2700,9 +2705,9 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   height: 100%;
   background: linear-gradient(
     90deg,
-    rgba(73, 12, 17, 0.90) 0%,
-    rgba(115, 25, 31, 0.65) 48%,
-    rgba(40, 10, 12, 0.15) 100%
+    rgba(20, 5, 8, 0.92) 0%,
+    rgba(30, 8, 12, 0.75) 45%,
+    rgba(20, 5, 8, 0.15) 100%
   ) !important;
   z-index: 2;
   pointer-events: none;
@@ -2725,18 +2730,27 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   height: 100%;
 }
 
-/* Hero Content Container (Left-aligned & vertically centered) */
+/* Hero Content Container (Left-aligned & vertically centered at ~6vw) */
+.hero.tricon-hero .container.tricon-hero-content,
 .tricon-hero-content {
   position: relative;
   z-index: 3;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
+  width: min(88%, 1440px) !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding-left: clamp(24px, 6vw, 115px) !important;
+  padding-right: 24px !important;
+  box-sizing: border-box !important;
 }
 
 .tricon-hero-copy {
-  max-width: 680px;
+  max-width: 700px !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  text-align: left !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
 }
 
 /* Small uppercase eyebrow with red horizontal accent line */
@@ -2744,7 +2758,7 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .hero-eyebrow-line {
@@ -2755,7 +2769,7 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
 }
 
 .hero-eyebrow-text {
-  font-family: "Inter", sans-serif;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -2763,40 +2777,46 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   color: #f7d3cf;
 }
 
-/* Headline Scale: 64-72px desktop */
+/* Headline Scale: Thin, modern, elegant typography */
 .tricon-hero-copy h1,
 .tricon-hero-copy h2 {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: clamp(38px, 4.4vw, 68px);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  color: #FFFFFF;
-  margin: 0 0 16px;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: clamp(44px, 4vw, 64px) !important;
+  font-weight: 300 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.035em !important;
+  color: #FFFFFF !important;
+  margin: 0 0 16px !important;
+  text-transform: none !important;
 }
 
 .tricon-hero-copy h1 strong,
 .tricon-hero-copy h2 strong {
-  font-weight: 800;
-  color: #FFFFFF;
+  font-family: inherit !important;
+  font-weight: 700 !important;
+  color: #F0A39A !important; /* Coral Accent */
+  display: inline !important;
 }
 
 .hero-tagline {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #f7a89b;
-  margin-bottom: 14px;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: #F0A39A !important;
+  margin-bottom: 14px !important;
 }
 
-/* Description (Max 2 lines) */
+/* Description (Supporting text: 16-17px, weight 400) */
 .tricon-hero-copy p {
-  font-size: 16.5px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.86);
-  max-width: 580px;
-  margin: 0 0 28px;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 16.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  max-width: 620px !important;
+  margin: 0 0 28px !important;
 }
 
 /* Solid Red Rectangular Industrial CTA Button */
@@ -3020,9 +3040,9 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   }
   .tricon-hero-copy h1,
   .tricon-hero-copy h2 {
-    font-size: 28px;
-    line-height: 1.18;
-    letter-spacing: -0.01em;
+    font-size: clamp(32px, 7vw, 42px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.025em !important;
   }
   .tricon-hero-copy p {
     font-size: 14px;
@@ -3068,4 +3088,26 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   .site-header.tricon-header .nav-wrap {
     background: #9F2028 !important;
   }
+}
+
+/* -------------------------------------------------------------
+   Industries Section Parallax & Stagger Reveal
+   ------------------------------------------------------------- */
+.ind2-art {
+  will-change: transform;
+  transition: transform 0.12s ease-out;
+}
+.ind2-gem--big,
+.ind2-gem--small {
+  will-change: transform;
+  transition: transform 0.15s ease-out;
+}
+.ind2-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+.ind2-card.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
 }

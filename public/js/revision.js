@@ -214,6 +214,28 @@
         });
       }
     }
+
+    // Industries We Serve Scroll Parallax (Diamond artwork .ind2-art & gems)
+    var indSec = document.getElementById('industries') || document.querySelector('.ind2');
+    if (indSec) {
+      var indRect = indSec.getBoundingClientRect();
+      if (indRect.top < vh && indRect.bottom > 0) {
+        var indProgress = (vh - indRect.top) / (vh + indRect.height);
+        var artShift = (indProgress - 0.5) * 50; // 20-30px relative displacement
+        var indArt = indSec.querySelector('.ind2-art');
+        if (indArt) {
+          indArt.style.transform = 'translate3d(0, ' + (-artShift.toFixed(1)) + 'px, 0)';
+        }
+        var bigGem = indSec.querySelector('.ind2-gem--big');
+        if (bigGem) {
+          bigGem.style.transform = 'rotate(45deg) translate3d(0, ' + (-artShift * 0.4).toFixed(1) + 'px, 0)';
+        }
+        var smallGem = indSec.querySelector('.ind2-gem--small');
+        if (smallGem) {
+          smallGem.style.transform = 'rotate(45deg) translate3d(0, ' + (artShift * 0.5).toFixed(1) + 'px, 0)';
+        }
+      }
+    }
   }
 
   window.addEventListener('scroll', function () {
@@ -477,6 +499,28 @@
     // Initial start
     showSlide(0);
     startTimer();
+  }
+
+
+  // Industries Staggered Card Reveal with IntersectionObserver
+  var indCards = Array.from(document.querySelectorAll('.ind2-card'));
+  if (indCards.length && 'IntersectionObserver' in window && !reduced) {
+    var indCardObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          indCardObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    indCards.forEach(function (card, idx) {
+      card.style.transitionDelay = (idx * 0.09) + 's';
+      indCardObs.observe(card);
+    });
+  } else {
+    indCards.forEach(function (card) {
+      card.classList.add('is-revealed');
+    });
   }
 
 })();
