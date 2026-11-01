@@ -209,24 +209,18 @@
       }
     }
 
-    // Industries We Serve Scroll Parallax (Diamond artwork .ind2-art & gems)
+    // Industries We Serve Scroll Parallax (Single image inside stationary clipped frame)
     var indSec = document.getElementById('industries') || document.querySelector('.ind2');
-    if (indSec) {
+    if (indSec && !reduced) {
       var indRect = indSec.getBoundingClientRect();
       if (indRect.top < vh && indRect.bottom > 0) {
-        var indProgress = (vh - indRect.top) / (vh + indRect.height);
-        var artShift = (indProgress - 0.5) * 50; // 20-30px relative displacement
-        var indArt = indSec.querySelector('.ind2-art');
-        if (indArt) {
-          indArt.style.transform = 'translate3d(0, ' + (-artShift.toFixed(1)) + 'px, 0)';
-        }
-        var bigGem = indSec.querySelector('.ind2-gem--big');
-        if (bigGem) {
-          bigGem.style.transform = 'rotate(45deg) translate3d(0, ' + (-artShift * 0.4).toFixed(1) + 'px, 0)';
-        }
-        var smallGem = indSec.querySelector('.ind2-gem--small');
-        if (smallGem) {
-          smallGem.style.transform = 'rotate(45deg) translate3d(0, ' + (artShift * 0.5).toFixed(1) + 'px, 0)';
+        var indProgress = (vh - indRect.top) / (vh + indRect.height); // 0 to 1 through viewport
+        var isMobile = window.innerWidth < 768;
+        var maxTravel = isMobile ? 18 : 44; // ~40-44px desktop, ~18px mobile
+        var shift = (indProgress - 0.5) * maxTravel; // Smooth displacement lagging scroll
+        var parallaxImg = indSec.querySelector('.ind2-parallax-img');
+        if (parallaxImg) {
+          parallaxImg.style.transform = 'translate3d(0, ' + shift.toFixed(2) + 'px, 0)';
         }
       }
     }
