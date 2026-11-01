@@ -1636,9 +1636,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   align-items: center;
   justify-content: space-between;
   padding: 10px 24px;
-  font-size: 12.5px;
+  font-size: 13.5px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.84);
+  color: rgba(255, 255, 255, 0.88);
   background: transparent;
   border: none;
   border-left: 4px solid transparent;
@@ -1745,8 +1745,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 
 .zenith-panel-desc {
-  font-size: 13.5px;
-  line-height: 1.5;
+  font-size: 14.5px;
+  line-height: 1.55;
   color: #5c5751;
   margin: 0;
   max-width: 680px;
@@ -1782,7 +1782,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   display: flex;
   align-items: baseline;
   gap: 8px;
-  font-size: 13px;
+  font-size: 13.5px;
   color: #383430;
   text-decoration: none;
   padding: 2px 0;
@@ -1807,66 +1807,98 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 
 /* Mega-Menu Footer Bar */
 .zenith-mega-footer {
-  margin-top: 28px;
-  padding-top: 16px;
-  border-top: 1px solid #eeebe5;
+  margin-top: 24px;
+  padding: 16px 28px;
+  background: #faf8f5;
+  border-top: 1px solid #ede8e3;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  font-size: 12.5px;
-  color: #635d57;
+  gap: 24px;
+  flex-wrap: nowrap;
+}
+
+.zenith-footer-principals {
+  font-size: 13px;
+  color: #555555;
+  line-height: 1.45;
+  flex: 1 1 auto;
+}
+
+.zenith-footer-principals span {
+  color: #777777;
+  margin-right: 6px;
 }
 
 .zenith-footer-principals strong {
-  color: #1c1b18;
+  color: #1a1a1a;
+  font-weight: 600;
 }
 
 .zenith-footer-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
+  flex-shrink: 0;
 }
 
 .zenith-all-btn {
-  font-size: 11px;
+  font-size: 13.5px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #9F2028;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  transition: color .18s;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: color 0.18s ease, background 0.18s ease;
+  white-space: nowrap;
 }
 
-.zenith-all-btn:hover {
+.zenith-all-btn:hover,
+.zenith-all-btn:focus-visible {
   color: #791419;
-  text-decoration: underline;
+  background: rgba(159, 32, 40, 0.06);
+  text-decoration: none;
+}
+
+.zenith-all-btn i {
+  font-size: 13px;
 }
 
 .zenith-rfq-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  border-radius: 4px; /* Refined corporate shape instead of 999px pill */
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 24px;
+  border-radius: 6px; /* Subtle 6-8px corporate border radius */
   background: #9F2028;
   color: #ffffff !important;
-  font-size: 11px;
+  font-size: 13.5px;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   text-decoration: none !important;
-  transition: background .2s, transform .2s, box-shadow .2s;
-  box-shadow: 0 3px 10px rgba(159, 32, 40, 0.25);
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(159, 32, 40, 0.28);
 }
 
-.zenith-rfq-btn:hover {
+.zenith-rfq-btn:hover,
+.zenith-rfq-btn:focus-visible {
   background: #791419;
   transform: translateY(-1px);
-  box-shadow: 0 5px 14px rgba(159, 32, 40, 0.35);
+  box-shadow: 0 6px 18px rgba(121, 20, 25, 0.4);
+  color: #ffffff !important;
+}
+
+.zenith-rfq-btn i {
+  font-size: 13px;
 }
 
 /* =============================================================
@@ -2490,29 +2522,77 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   text-decoration: none;
   padding: 10px 0;
   position: relative;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  opacity: 1 !important;
 }
 
+/* Hover, Focus, Active and Open States: Text stays crisp WHITE at all times */
 .tricon-header .main-links > li > a:hover,
+.tricon-header .main-links > li > a:focus,
+.tricon-header .main-links > li > a:focus-visible,
+.tricon-header .main-links > li > a.active,
 .tricon-header .nav-product-link:hover,
-.tricon-header .products-menu.is-open .nav-product-link {
-  color: var(--sr-red) !important;
+.tricon-header .nav-product-link:focus,
+.tricon-header .nav-product-link:focus-visible,
+.tricon-header .products-menu:hover .nav-product-link,
+.tricon-header .products-menu.is-open .nav-product-link,
+.tricon-header .products-menu > a:hover,
+.tricon-header .products-menu.is-open > a {
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
-/* Active Indicator */
-.tricon-header .main-links > li > a.active::after,
-.tricon-header .main-links > li > a:hover::after {
+/* Chevron Icon: Always visible white, rotates on open */
+.tricon-header .nav-chevron,
+.tricon-header .nav-product-link i,
+.tricon-header .nav-product-link .nav-chevron {
+  color: #FFFFFF !important;
+  font-size: 10px;
+  opacity: 0.9 !important;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.tricon-header .products-menu:hover .nav-chevron,
+.tricon-header .products-menu.is-open .nav-chevron,
+.tricon-header .products-menu.is-open .nav-product-link i {
+  transform: rotate(180deg);
+  opacity: 1 !important;
+  color: #FFFFFF !important;
+}
+
+/* Restrained Brand-Consistent Hover & Active Indicator: Clean white bottom underline */
+.tricon-header .main-links > li > a::after,
+.tricon-header .nav-product-link::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 0%;
   height: 2px;
-  background: var(--sr-red);
+  background: #FFFFFF;
   transition: width 0.25s ease;
+  border-radius: 1px;
+}
+
+.tricon-header .main-links > li > a:hover::after,
+.tricon-header .main-links > li > a:focus::after,
+.tricon-header .main-links > li > a.active::after,
+.tricon-header .nav-product-link:hover::after,
+.tricon-header .nav-product-link:focus::after,
+.tricon-header .products-menu:hover .nav-product-link::after,
+.tricon-header .products-menu.is-open .nav-product-link::after {
+  width: 100%;
+}
+
+/* Disable duplicate pseudo arrows */
+.products-menu > a::after {
+  display: none !important;
 }
 
 .tricon-header .hamburger span {
@@ -2898,16 +2978,53 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 
 @media (max-width: 600px) {
+  .hero.tricon-hero {
+    min-height: 520px;
+    padding-top: 86px;
+    padding-bottom: 90px;
+  }
+  .tricon-hero-copy h1,
+  .tricon-hero-copy h2 {
+    font-size: 28px;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+  }
+  .tricon-hero-copy p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .hero-eyebrow {
+    margin-bottom: 12px;
+  }
   .tricon-nav-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 16px;
+  }
+  .tricon-counter {
+    font-size: 12px;
+  }
+  .tricon-bars {
+    gap: 6px;
   }
   .tricon-bar {
-    width: 28px;
+    width: 22px;
+    height: 3px;
   }
   .tricon-bar.active {
-    width: 44px;
+    width: 36px;
+  }
+  .tricon-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 11px;
+  }
+  .tricon-pause {
+    padding: 6px 12px;
+    font-size: 10px;
   }
 }
 
