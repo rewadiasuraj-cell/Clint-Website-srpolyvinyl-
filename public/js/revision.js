@@ -6,11 +6,15 @@
      ------------------------------------------------------------- */
   var menu = document.querySelector('.products-menu');
   var toggle = document.querySelector('.mega-toggle');
+  var siteHeader = document.querySelector('.site-header');
   var hoverTimer = null;
 
   function setMenu(open) {
     if (!menu) return;
     menu.classList.toggle('is-open', open);
+    if (siteHeader) {
+      siteHeader.classList.toggle('has-open-menu', open);
+    }
     if (toggle) {
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute('aria-label', open ? 'Close product menu' : 'Open product menu');
@@ -173,11 +177,11 @@
     var vh = window.innerHeight || document.documentElement.clientHeight;
     var scrollY = window.scrollY || window.pageYOffset;
 
-    // Goldstab Dynamic Sticky Navbar & Logo Color Shift
+    // Transparent-to-Solid Sticky Navbar Transition
     if (siteHeader) {
-      if (scrollY > 45) {
+      if (scrollY > 60) {
         siteHeader.classList.add('is-sticky');
-      } else if (scrollY < 12) {
+      } else if (scrollY < 20) {
         siteHeader.classList.remove('is-sticky');
       }
     }
