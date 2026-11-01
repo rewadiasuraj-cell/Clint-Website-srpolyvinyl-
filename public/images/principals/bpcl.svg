@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" width="600" height="300">
+  <defs>
+    <style>
+      .bpcl-blue { fill: #004B87; }
+      .bpcl-gold { fill: #FBAF17; }
+      .bpcl-text { font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif; font-weight: 900; }
+    </style>
+  </defs>
+  <g transform="translate(40, 30)">
+    <!-- Iconic BPCL Circle & Ring -->
+    <circle cx="120" cy="120" r="105" fill="#004B87"/>
+    <circle cx="120" cy="120" r="92" fill="#FFFFFF"/>
+    <circle cx="120" cy="120" r="82" fill="#004B87"/>
+    
+    <!-- Central Torch / Wave Emblem in Gold & Blue -->
+    <path d="M 120 48 C 138 72 166 98 166 126 C 166 151 145 172 120 172 C 95 172 74 151 74 126 C 74 98 102 72 120 48 Z" fill="#FBAF17"/>
+    <path d="M 120 78 C 131 96 148 114 148 132 C 148 147 135 158 120 158 C 105 158 92 147 92 132 C 92 114 109 96 120 78 Z" fill="#004B87"/>
+    <path d="M 120 98 C 126 110 135 122 135 133 C 135 141 128 147 120 147 C 112 147 105 141 105 133 C 105 122 114 110 120 98 Z" fill="#FBAF17"/>
+    <circle cx="120" cy="133" r="5" fill="#FFFFFF"/>
+
+    <!-- Corporate Typography: Bharat Petroleum -->
+    <g transform="translate(255, 60)">
+      <text x="0" y="32" font-family="'Noto Sans Devanagari', 'Mangal', 'Segoe UI', Arial, sans-serif" font-weight="700" font-size="28" fill="#004B87" letter-spacing="0.5">भारत पेट्रोलियम</text>
+      <text x="0" y="74" class="bpcl-blue bpcl-text" font-size="34" letter-spacing="-0.5">Bharat</text>
+      <text x="0" y="112" class="bpcl-blue bpcl-text" font-size="34" letter-spacing="-0.5">Petroleum</text>
+      <rect x="0" y="128" width="220" height="3" fill="#FBAF17" rx="1.5"/>
+      <text x="0" y="146" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="13" fill="#666666" letter-spacing="2.5">ENERGISING LIVES</text>
+    </g>
+  </g>
+</svg>
+

@@ -490,7 +490,7 @@
     var pauseBtn = triconHero.querySelector('.tricon-pause');
 
     var currentIdx = 0;
-    var totalSlides = slides.length || 4;
+    var totalSlides = slides.length || 6;
     var slideTimer = null;
     var isPaused = false;
     var duration = 3000; // 3 seconds per slide (autoplay)
