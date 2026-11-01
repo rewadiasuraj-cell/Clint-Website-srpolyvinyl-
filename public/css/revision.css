@@ -2868,7 +2868,7 @@ body:not(.page-home) .site-header {
   object-fit: cover;
   object-position: center;
   transform: scale(1.04);
-  transition: transform 6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 3.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tricon-slide.active .tricon-slide-bg img {

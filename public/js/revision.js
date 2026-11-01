@@ -493,7 +493,7 @@
     var totalSlides = slides.length || 4;
     var slideTimer = null;
     var isPaused = false;
-    var duration = 6000; // 6 seconds per slide
+    var duration = 3000; // 3 seconds per slide (autoplay)
 
     function showSlide(index) {
       if (index < 0) index = totalSlides - 1;

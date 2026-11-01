@@ -137,7 +137,7 @@
     var paused = false;
     function restart() {
       clearInterval(timer);
-      if (!reduced && !paused && !userPaused && slides.length > 1) timer = setInterval(function () { go(current + 1); }, 6500);
+      if (!reduced && !paused && !userPaused && slides.length > 1) timer = setInterval(function () { go(current + 1); }, 3000);
     }
     var userPaused = false;
     var hero = document.querySelector(".hero");
