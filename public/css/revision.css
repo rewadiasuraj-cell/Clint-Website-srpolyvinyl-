@@ -4300,3 +4300,36 @@ html.js-reveal-ready .reveal-group:not(.is-revealed) {
     transition: none !important;
   }
 }
+
+
+/* =============================================================
+   INTRO SECTION (PVC RAW MATERIALS) MOBILE VISUAL ALIGNMENT
+   - Zoom graphic slightly (~8-10%) for clarity on mobile viewports
+   - Subtle left-shift (-12px to -14px) to perfectly center jar & elements
+   - Seamless radial gradient mask ensuring 0 visible edge cutoffs
+   ============================================================= */
+@media (max-width: 768px) {
+  .i2-vis {
+    max-width: 520px;
+    margin: 12px auto 0;
+  }
+  .i2-vis img {
+    transform: scale(1.08) translateX(-12px);
+    transform-origin: center center;
+    -webkit-mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 48%, transparent 94%);
+    mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 48%, transparent 94%);
+  }
+}
+
+@media (max-width: 480px) {
+  .i2-vis {
+    max-width: 100%;
+    margin: 10px auto 0;
+  }
+  .i2-vis img {
+    transform: scale(1.1) translateX(-14px);
+    transform-origin: center center;
+    -webkit-mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 48%, transparent 94%);
+    mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 48%, transparent 94%);
+  }
+}
