@@ -449,7 +449,7 @@ p { margin: 0 0 1em; }
   display: flex;
   align-items: center;
   min-height: calc(440px * var(--k));
-  background: #4d0c10;
+  background: #140507;
   color: #fff;
 }
 .band-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
@@ -484,10 +484,7 @@ p { margin: 0 0 1em; }
 }
 .band h2 strong {
   font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: #e2402f;
-  text-decoration-thickness: 2px;
-  text-underline-offset: .16em;
+  text-decoration: none;
 }
 .band p { text-align: center; margin: 26px auto 0; max-width: 660px; color: rgba(255, 255, 255, .8); font-size: calc((18px) * var(--k)); line-height: 1.6; }
 @media (max-width: 1100px) and (min-width: 901px) {
@@ -496,18 +493,14 @@ p { margin: 0 0 1em; }
   .band p { max-width: 520px; }
 }
 @media (max-width: 900px) {
-  /* tablets: copy first, product photo underneath */
-  .band { flex-direction: column; align-items: stretch; min-height: 0; }
-  .band-bg { order: 2; position: relative; }
-  .band .band-copy { padding: 48px 24px 24px; } /* beats the generic phone .container padding */
-  .band h2 { font-size: min(6vw, 46px); }
-  .band p { font-size: calc(13px + .5vw); margin-top: 18px; }
-  .band-bg video { position: static; display: block; height: max(170px, 32vw); -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 30%); mask-image: linear-gradient(180deg, transparent 0, #000 30%); }
+  .band { min-height: 380px; padding: 60px 0; }
+  .band .band-copy { padding: 40px 20px; }
+  .band h2 { font-size: clamp(26px, 6vw, 40px); white-space: normal; }
+  .band p { font-size: 15px; margin-top: 16px; }
 }
 @media (max-width: 760px) {
-  /* phones: plain dark red behind the copy, no photo */
-  .band-bg { display: none; }
-  .band .band-copy { padding: 52px 24px 56px; }
+  .band { min-height: 340px; padding: 48px 0; }
+  .band .band-copy { padding: 32px 18px; }
 }
 
 /* ---------- Staircase stats ---------- */

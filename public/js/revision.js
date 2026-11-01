@@ -133,8 +133,8 @@
         var rect = layer.parentElement.getBoundingClientRect();
         if (rect.bottom > 0 && rect.top < vh) {
           // Smooth normalized vertical travel
-          var speed = parseFloat(layer.dataset.parallaxSpeed) || 0.14;
-          var offset = Math.max(-80, Math.min(80, (rect.top - vh / 2) * -speed));
+          var speed = parseFloat(layer.dataset.parallaxSpeed) || 0.12;
+          var offset = Math.max(-35, Math.min(35, (rect.top - vh / 2) * -speed));
           layer.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
         }
       });
@@ -153,15 +153,15 @@
      4. Video Banner Controls
      ------------------------------------------------------------- */
   document.querySelectorAll('video[data-src-mp4]').forEach(function (video) {
-    // Avoid double creation if already present
-    if (video.parentElement.querySelector('.rev-video-control')) return;
+    var host = video.closest('.band') || video.closest('section') || video.parentElement;
+    if (host.querySelector('.rev-video-control')) return;
 
     var button = document.createElement('button');
     button.className = 'rev-video-control';
     button.type = 'button';
     button.textContent = reduced ? 'Play Video' : 'Pause Video';
     button.setAttribute('aria-label', 'Toggle background video playback');
-    video.parentElement.appendChild(button);
+    host.appendChild(button);
 
     button.addEventListener('click', function () {
       if (video.paused) {
