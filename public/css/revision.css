@@ -2003,13 +2003,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 
 /* Sticky Header on Scroll */
 .site-header.is-sticky {
-  background: rgba(45, 12, 15, 0.96) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  border-bottom: 1px solid rgba(247, 211, 207, 0.2) !important;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.28) !important;
-  padding-top: 8px !important;
-  padding-bottom: 8px !important;
+  background: #9F2028 !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: 0 2px 0 #791419, 0 8px 24px rgba(40, 10, 12, 0.45) !important;
+  padding: 0 !important;
 }
 
 /* Logo Color on Scroll: ALWAYS PRESERVE AUTHENTIC SR BRAND RED (Never invert to white on white background!) */
@@ -2018,7 +2016,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .header-logo-container .brand img {
   filter: none !important;
   opacity: 1 !important;
-  transform: scale(0.98);
+  transform: none !important;
 }
 
 .site-header.is-sticky .main-links > li > a {
@@ -2504,7 +2502,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   --sr-gray-text: #666666;
   --sr-line: rgba(255, 255, 255, 0.12);
   --header-height: 86px;
-  --header-height-sticky: 74px;
+  --header-height-sticky: 86px;
 }
 
 /* -------------------------------------------------------------
@@ -2531,11 +2529,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 }
 
 .site-header.tricon-header.is-sticky {
-  height: var(--header-height-sticky);
+  height: var(--header-height);
   background: #9F2028 !important;
   background-color: #9F2028 !important;
-  border-bottom: 2px solid #791419 !important;
-  box-shadow: 0 8px 24px rgba(40, 10, 12, 0.45) !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: 0 2px 0 #791419, 0 8px 24px rgba(40, 10, 12, 0.45) !important;
+  padding: 0 !important;
 }
 
 /* =============================================================
@@ -2584,9 +2584,11 @@ body.page-home .site-header.tricon-header.has-open-menu {
   background: #9F2028 !important;
   background-color: #9F2028 !important;
   background-image: none !important;
-  height: var(--header-height-sticky) !important;
-  border-bottom: 2px solid #791419 !important;
-  box-shadow: 0 8px 26px rgba(40, 10, 12, 0.45) !important;
+  height: var(--header-height) !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: 0 2px 0 #791419, 0 8px 26px rgba(40, 10, 12, 0.45) !important;
+  padding: 0 !important;
 }
 
 body.page-home .site-header.tricon-header.is-past-hero .header-logo-container,
@@ -2604,8 +2606,9 @@ body:not(.page-home) .site-header {
   width: 100% !important;
   background: #9F2028 !important;
   background-color: #9F2028 !important;
-  border-bottom: 2px solid #791419 !important;
-  box-shadow: 0 8px 26px rgba(40, 10, 12, 0.45) !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: 0 2px 0 #791419, 0 8px 26px rgba(40, 10, 12, 0.45) !important;
   z-index: 1000 !important;
 }
 
@@ -2640,24 +2643,21 @@ body:not(.page-home) .site-header {
   text-decoration: none;
 }
 
-.header-logo-container .brand img {
-  height: 48px;
-  width: auto;
-  max-width: 220px;
+.header-logo-container .brand img,
+.site-header.tricon-header.is-sticky .header-logo-container .brand img,
+.site-header.tricon-header.is-past-hero .header-logo-container .brand img,
+.site-header.is-sticky .header-logo-container .brand img,
+.site-header.is-sticky .brand img {
+  height: 48px !important;
+  width: auto !important;
+  max-width: 220px !important;
   object-fit: contain;
   filter: none !important; /* Authentic SR Polyvinyl original red logo */
   -webkit-filter: none !important;
   opacity: 1 !important;
   visibility: visible !important;
-  transition: height 0.35s ease;
-}
-
-.site-header.tricon-header.is-sticky .header-logo-container .brand img,
-.site-header.is-sticky .brand img {
-  height: 42px;
-  filter: none !important;
-  -webkit-filter: none !important;
-  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 /* Navigation Links */
@@ -3494,10 +3494,14 @@ section.cta-banner h2 {
 @media (max-width: 900px) {
   :root {
     --header-height: 72px;
+    --header-height-sticky: 72px;
   }
 
-  .site-header.tricon-header {
-    height: 72px;
+  .site-header.tricon-header,
+  .site-header.tricon-header.is-sticky,
+  .site-header.tricon-header.is-past-hero {
+    height: 72px !important;
+    padding: 0 !important;
   }
 
   .header-logo-container {
@@ -3506,8 +3510,13 @@ section.cta-banner h2 {
     -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
   }
 
-  .header-logo-container .brand img {
-    height: 38px;
+  .header-logo-container .brand img,
+  .site-header.tricon-header.is-sticky .header-logo-container .brand img,
+  .site-header.tricon-header.is-past-hero .header-logo-container .brand img,
+  .site-header.is-sticky .brand img {
+    height: 38px !important;
+    width: auto !important;
+    transform: none !important;
   }
 
   .hero.tricon-hero {
@@ -3750,15 +3759,14 @@ body.mobile-nav-open .rev-video-control {
   /* Header adjustments on mobile */
   :root {
     --header-height: 70px;
-    --header-height-sticky: 64px;
+    --header-height-sticky: 70px;
   }
 
-  .site-header.tricon-header {
+  .site-header.tricon-header,
+  .site-header.tricon-header.is-sticky,
+  .site-header.tricon-header.is-past-hero {
     height: 70px !important;
-  }
-
-  .site-header.tricon-header.is-sticky {
-    height: 64px !important;
+    padding: 0 !important;
   }
 
   .header-main-bar {
@@ -3772,9 +3780,13 @@ body.mobile-nav-open .rev-video-control {
     -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%) !important;
   }
 
-  .header-logo-container .brand img {
+  .header-logo-container .brand img,
+  .site-header.tricon-header.is-sticky .header-logo-container .brand img,
+  .site-header.tricon-header.is-past-hero .header-logo-container .brand img,
+  .site-header.is-sticky .brand img {
     height: 38px !important;
     width: auto !important;
+    transform: none !important;
   }
 
   /* Hamburger Menu Toggle Button */
