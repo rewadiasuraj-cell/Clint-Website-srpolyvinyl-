@@ -2359,3 +2359,547 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
     text-align: center !important;
   }
 }
+
+
+
+/* =============================================================
+   TRICON INDUSTRIAL DESIGN SYSTEM & UPGRADE
+   - Palette: #17243B (Navy), #111827 (Charcoal), #A52A2A (SR Red), #FFFFFF, #F6F5F3
+   - Diagonal Logo Container (TRICON Geometric Signature)
+   - Cinematic Fullscreen Industrial Hero Banner & Slider
+   - Precision Editorial Typography Scale
+   ============================================================= */
+
+:root {
+  --tricon-navy: #17243B;
+  --tricon-charcoal: #111827;
+  --sr-red: #A52A2A;
+  --sr-red-hover: #8B2222;
+  --sr-white: #FFFFFF;
+  --sr-soft-bg: #F6F5F3;
+  --sr-gray-text: #666666;
+  --sr-line: rgba(255, 255, 255, 0.12);
+  --header-height: 86px;
+  --header-height-sticky: 74px;
+}
+
+/* -------------------------------------------------------------
+   1. TRICON-Inspired Industrial Header & Diagonal Logo Container
+   ------------------------------------------------------------- */
+.site-header.tricon-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background: var(--tricon-navy);
+  color: var(--sr-white);
+  z-index: 1000;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(17, 24, 39, 0.35);
+  transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0 !important;
+}
+
+.site-header.tricon-header.is-sticky {
+  height: var(--header-height-sticky);
+  background: #111B2D;
+  border-bottom: 2px solid var(--sr-red);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.header-main-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding-right: 48px;
+  position: relative;
+}
+
+/* White geometric container with diagonal-cut right edge */
+.header-logo-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: var(--sr-white);
+  padding: 0 56px 0 40px;
+  /* Diagonal trapezoid right cut */
+  clip-path: polygon(0 0, 100% 0, calc(100% - 36px) 100%, 0 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 36px) 100%, 0 100%);
+  position: relative;
+  z-index: 2;
+  transition: padding 0.35s ease;
+}
+
+.header-logo-container .brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.header-logo-container .brand img {
+  height: 48px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  filter: none !important; /* Authentic SR Polyvinyl original logo colors */
+  transition: height 0.35s ease;
+}
+
+.site-header.tricon-header.is-sticky .header-logo-container .brand img {
+  height: 42px;
+}
+
+/* Navigation Links */
+.tricon-header .nav-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.tricon-header .main-links {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tricon-header .main-links > li > a,
+.tricon-header .nav-product-link {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FFFFFF !important;
+  text-decoration: none;
+  padding: 10px 0;
+  position: relative;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tricon-header .main-links > li > a:hover,
+.tricon-header .nav-product-link:hover,
+.tricon-header .products-menu.is-open .nav-product-link {
+  color: var(--sr-red) !important;
+}
+
+/* Active Indicator */
+.tricon-header .main-links > li > a.active::after,
+.tricon-header .main-links > li > a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--sr-red);
+  transition: width 0.25s ease;
+}
+
+.tricon-header .hamburger span {
+  background: #FFFFFF !important;
+}
+
+/* -------------------------------------------------------------
+   2. TRICON Fullscreen Industrial Hero Banner & Slider
+   ------------------------------------------------------------- */
+.hero.tricon-hero {
+  position: relative;
+  width: 100%;
+  height: 82vh;
+  min-height: 640px;
+  max-height: 840px;
+  background: var(--tricon-navy);
+  color: var(--sr-white);
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.tricon-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.tricon-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+/* Full-width industrial photography background */
+.tricon-slide-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.tricon-slide-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.04);
+  transition: transform 6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tricon-slide.active .tricon-slide-bg img {
+  transform: scale(1);
+}
+
+/* Dark Navy Translucent Gradient Overlay (from left) */
+.tricon-slide-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(23, 36, 59, 0.96) 0%,
+    rgba(23, 36, 59, 0.86) 42%,
+    rgba(23, 36, 59, 0.45) 75%,
+    rgba(23, 36, 59, 0.2) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Understated large-scale translucent geometric watermark */
+.tricon-watermark {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 500px;
+  height: 500px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tricon-watermark svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Hero Content Container (Left-aligned & vertically centered) */
+.tricon-hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.tricon-hero-copy {
+  max-width: 680px;
+}
+
+/* Small uppercase eyebrow with red horizontal accent line */
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.hero-eyebrow-line {
+  display: inline-block;
+  width: 38px;
+  height: 3px;
+  background: var(--sr-red);
+}
+
+.hero-eyebrow-text {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f7d3cf;
+}
+
+/* Headline Scale: 64-72px desktop */
+.tricon-hero-copy h1,
+.tricon-hero-copy h2 {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(38px, 4.4vw, 68px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  margin: 0 0 16px;
+}
+
+.tricon-hero-copy h1 strong,
+.tricon-hero-copy h2 strong {
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.hero-tagline {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #f7a89b;
+  margin-bottom: 14px;
+}
+
+/* Description (Max 2 lines) */
+.tricon-hero-copy p {
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 580px;
+  margin: 0 0 28px;
+}
+
+/* Solid Red Rectangular Industrial CTA Button */
+.hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--sr-red);
+  color: #FFFFFF !important;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  padding: 15px 36px;
+  border-radius: 2px; /* Sharp industrial rectangular cut */
+  border: none;
+  box-shadow: 0 4px 16px rgba(165, 42, 42, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-cta-btn:hover {
+  background: var(--sr-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(165, 42, 42, 0.55);
+}
+
+.hero-cta-btn i {
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.hero-cta-btn:hover i {
+  transform: translateX(4px);
+}
+
+/* -------------------------------------------------------------
+   3. TRICON Slider Navigation & Controls
+   ------------------------------------------------------------- */
+.tricon-slider-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background: linear-gradient(180deg, transparent 0%, rgba(17, 24, 39, 0.85) 100%);
+  padding: 24px 0 28px;
+}
+
+.tricon-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.tricon-pagination {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tricon-counter {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #FFFFFF;
+}
+
+.tricon-counter #tricon-current {
+  color: var(--sr-red);
+  font-size: 16px;
+}
+
+.tricon-bars {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tricon-bar {
+  width: 44px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.28);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 1px;
+}
+
+.tricon-bar:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.tricon-bar.active {
+  background: var(--sr-red);
+  width: 64px;
+}
+
+.tricon-arrows {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tricon-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #FFFFFF;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.tricon-arrow:hover {
+  background: var(--sr-red);
+  border-color: var(--sr-red);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.tricon-pause {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #FFFFFF;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tricon-pause:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* -------------------------------------------------------------
+   4. Responsive Breakpoints
+   ------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .header-main-bar {
+    padding-right: 24px;
+  }
+  .header-logo-container {
+    padding: 0 40px 0 24px;
+  }
+  .tricon-header .main-links {
+    gap: 20px;
+  }
+  .tricon-hero-copy h1,
+  .tricon-hero-copy h2 {
+    font-size: 46px;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --header-height: 72px;
+  }
+
+  .site-header.tricon-header {
+    height: 72px;
+  }
+
+  .header-logo-container {
+    padding: 0 32px 0 16px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+  }
+
+  .header-logo-container .brand img {
+    height: 38px;
+  }
+
+  .hero.tricon-hero {
+    height: auto;
+    min-height: 560px;
+    padding: 100px 0 100px;
+  }
+
+  .tricon-hero-copy h1,
+  .tricon-hero-copy h2 {
+    font-size: 34px;
+    line-height: 1.15;
+  }
+
+  .tricon-hero-copy p {
+    font-size: 15px;
+  }
+
+  .hero-cta-btn {
+    padding: 13px 28px;
+    font-size: 12px;
+  }
+
+  .tricon-watermark {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .tricon-nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .tricon-bar {
+    width: 28px;
+  }
+  .tricon-bar.active {
+    width: 44px;
+  }
+}

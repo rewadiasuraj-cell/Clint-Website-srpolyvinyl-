@@ -346,4 +346,133 @@
       });
     }
   }
+
+
+  /* -------------------------------------------------------------
+     TRICON Industrial Hero Slider (4 Slides, Auto-Play, Keyboard)
+     ------------------------------------------------------------- */
+  var triconHero = document.querySelector('.hero.tricon-hero');
+  if (triconHero) {
+    var slides = Array.from(triconHero.querySelectorAll('.tricon-slide'));
+    var bars = Array.from(triconHero.querySelectorAll('.tricon-bar'));
+    var counter = document.getElementById('tricon-current');
+    var prevBtn = triconHero.querySelector('.tricon-arrow.prev');
+    var nextBtn = triconHero.querySelector('.tricon-arrow.next');
+    var pauseBtn = triconHero.querySelector('.tricon-pause');
+
+    var currentIdx = 0;
+    var totalSlides = slides.length || 4;
+    var slideTimer = null;
+    var isPaused = false;
+    var duration = 6000; // 6 seconds per slide
+
+    function showSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentIdx = index;
+
+      slides.forEach(function (slide, i) {
+        var active = (i === currentIdx);
+        slide.classList.toggle('active', active);
+        slide.setAttribute('aria-hidden', String(!active));
+      });
+
+      bars.forEach(function (bar, i) {
+        var active = (i === currentIdx);
+        bar.classList.toggle('active', active);
+        bar.setAttribute('aria-selected', String(active));
+      });
+
+      if (counter) {
+        counter.textContent = String(currentIdx + 1).padStart(2, '0');
+      }
+    }
+
+    function nextSlide() {
+      showSlide(currentIdx + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIdx - 1);
+    }
+
+    function startTimer() {
+      stopTimer();
+      if (!isPaused && !reduced) {
+        slideTimer = setInterval(nextSlide, duration);
+      }
+    }
+
+    function stopTimer() {
+      if (slideTimer) {
+        clearInterval(slideTimer);
+        slideTimer = null;
+      }
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        nextSlide();
+        startTimer();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        prevSlide();
+        startTimer();
+      });
+    }
+
+    bars.forEach(function (bar) {
+      bar.addEventListener('click', function () {
+        var idx = parseInt(bar.dataset.slide, 10);
+        if (!isNaN(idx)) {
+          showSlide(idx);
+          startTimer();
+        }
+      });
+    });
+
+    if (pauseBtn) {
+      pauseBtn.addEventListener('click', function () {
+        isPaused = !isPaused;
+        pauseBtn.setAttribute('aria-pressed', String(isPaused));
+        var icon = pauseBtn.querySelector('i');
+        var text = pauseBtn.querySelector('span');
+
+        if (isPaused) {
+          stopTimer();
+          if (icon) icon.className = 'fa-solid fa-play';
+          if (text) text.textContent = 'PLAY';
+        } else {
+          startTimer();
+          if (icon) icon.className = 'fa-solid fa-pause';
+          if (text) text.textContent = 'PAUSE';
+        }
+      });
+    }
+
+    // Keyboard navigation
+    triconHero.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') {
+        nextSlide();
+        startTimer();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+        startTimer();
+      }
+    });
+
+    // Pause on hover
+    triconHero.addEventListener('mouseenter', stopTimer);
+    triconHero.addEventListener('mouseleave', function () {
+      if (!isPaused) startTimer();
+    });
+
+    // Initial start
+    showSlide(0);
+    startTimer();
+  }
+
 })();
