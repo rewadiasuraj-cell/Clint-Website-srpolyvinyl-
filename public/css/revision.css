@@ -2075,8 +2075,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .zenith-parallax-bg {
   position: absolute;
   top: -25%;
-  left: 0;
-  width: 100%;
+  left: -5%;
+  width: 110%;
   height: 150%;
   z-index: 1;
   pointer-events: none;
@@ -2087,16 +2087,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.26;
-  filter: contrast(1.15) brightness(0.65);
+  opacity: 0.65;
+  filter: blur(4px) brightness(0.75) contrast(1.15);
+  -webkit-filter: blur(4px) brightness(0.75) contrast(1.15);
+  transform: scale(1.06);
   will-change: transform;
-  transition: transform .08s ease-out;
 }
 
 .zenith-parallax-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(143, 27, 31, 0.22) 0%, rgba(20, 5, 7, 0.88) 82%);
+  background: radial-gradient(circle at center, rgba(143, 27, 31, 0.28) 0%, rgba(20, 5, 7, 0.68) 80%);
   z-index: 2;
   pointer-events: none;
 }
