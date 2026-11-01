@@ -1255,7 +1255,7 @@ html:not(.no-js) .pd-div:not(.in-view) { transform: scaleX(0); }
 .no-js [data-anim], .reduced [data-anim] { opacity: 1; }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 1150px) {
+@media (max-width: 991px) {
   .pd-nav { top: 60px; }
   .pd-pills { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 16px; scroll-padding: 0 16px; }
   .pd-pills::-webkit-scrollbar { display: none; }

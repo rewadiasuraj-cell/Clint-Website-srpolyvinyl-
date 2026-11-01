@@ -2551,6 +2551,16 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   padding: 0;
 }
 
+/* Disable all legacy/duplicate pseudo-element underlines */
+.main-links a::after,
+.main-links > li > a::after,
+.tricon-header .main-links > li > a::after,
+.nav-product-link::after,
+.tricon-header .nav-product-link::after,
+.products-menu > a::after {
+  display: none !important;
+}
+
 .tricon-header .main-links > li > a,
 .tricon-header .nav-product-link {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
@@ -2559,14 +2569,74 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #FFFFFF !important;
-  text-decoration: none;
+  text-decoration: none !important;
   padding: 10px 0;
   position: relative;
-  transition: color 0.2s ease, opacity 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   opacity: 1 !important;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Nav text label wrapper: Strictly bounded to text label (excluding icons/chevrons) */
+.nav-label {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Precision Underline: Centered horizontally beneath label, 70% width, 2px height, 10-12px below text */
+.nav-label::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -11px; /* Consistent 10-12px below text baseline */
+  width: 70%;    /* 65-75% of text width */
+  height: 2px;
+  background: #FFFFFF;
+  border-radius: 1px;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Identical hover, focus, and active underline state with transform: scaleX(1) from center */
+.main-links > li > a:hover .nav-label::after,
+.main-links > li > a:focus .nav-label::after,
+.main-links > li > a:focus-visible .nav-label::after,
+.main-links > li > a.active .nav-label::after,
+.nav-product-link:hover .nav-label::after,
+.nav-product-link:focus .nav-label::after,
+.nav-product-link:focus-visible .nav-label::after,
+.products-menu:hover .nav-product-link .nav-label::after,
+.products-menu.is-open .nav-product-link .nav-label::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
+}
+
+/* Fallback for any link without .nav-label */
+.main-links > li > a:not(:has(.nav-label))::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 70%;
+  height: 2px;
+  background: #FFFFFF;
+  border-radius: 1px;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease;
+  opacity: 0;
+  display: block !important;
+}
+.main-links > li > a:not(:has(.nav-label)):hover::after,
+.main-links > li > a:not(:has(.nav-label)).active::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
 }
 
 /* Hover, Focus, Active and Open States: Text stays crisp WHITE at all times */
@@ -2586,16 +2656,19 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
-/* Chevron Icon: Always visible white, rotates on open */
+/* Chevron Icon: Vertically centered relative to text label, does not shift underline */
 .tricon-header .nav-chevron,
 .tricon-header .nav-product-link i,
 .tricon-header .nav-product-link .nav-chevron {
   color: #FFFFFF !important;
   font-size: 10px;
   opacity: 0.9 !important;
-  transition: transform 0.25s ease, opacity 0.2s ease;
-  display: inline-block;
-  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: transform 200ms ease, opacity 200ms ease;
+  margin-top: 1px;
 }
 
 .tricon-header .products-menu:hover .nav-chevron,
@@ -2606,33 +2679,10 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   color: #FFFFFF !important;
 }
 
-/* Restrained Brand-Consistent Hover & Active Indicator: Clean white bottom underline */
-.tricon-header .main-links > li > a::after,
-.tricon-header .nav-product-link::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: #FFFFFF;
-  transition: width 0.25s ease;
-  border-radius: 1px;
-}
-
-.tricon-header .main-links > li > a:hover::after,
-.tricon-header .main-links > li > a:focus::after,
-.tricon-header .main-links > li > a.active::after,
-.tricon-header .nav-product-link:hover::after,
-.tricon-header .nav-product-link:focus::after,
-.tricon-header .products-menu:hover .nav-product-link::after,
-.tricon-header .products-menu.is-open .nav-product-link::after {
-  width: 100%;
-}
-
-/* Disable duplicate pseudo arrows */
-.products-menu > a::after {
-  display: none !important;
+@media (max-width: 900px) {
+  .nav-label::after {
+    display: none !important;
+  }
 }
 
 .tricon-header .hamburger span {
@@ -3110,4 +3160,39 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
 .ind2-card.is-revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Desktop Navigation at 1024px breakpoint (iPad Landscape & Laptops) */
+@media (min-width: 992px) {
+  .site-header.tricon-header .hamburger,
+  .site-header .hamburger,
+  .hamburger {
+    display: none !important;
+  }
+  .site-header.tricon-header .nav-wrap,
+  .site-header .nav-wrap,
+  .nav-wrap {
+    position: static !important;
+    inset: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    background: transparent !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    transform: none !important;
+    overflow-y: visible !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+  }
+  .site-header.tricon-header .main-links,
+  .site-header .main-links,
+  .main-links {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 18px !important;
+  }
 }
