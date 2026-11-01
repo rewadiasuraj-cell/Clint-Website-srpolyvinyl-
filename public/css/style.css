@@ -16,7 +16,7 @@
   --white: #ffffff;
   --header-h: 84px;
   --k: 1;                     /* desktop scale: 1 up to 1440px, 1.10 at 1920px */
-  --font: "Montserrat", "Segoe UI", Arial, sans-serif;
+  --font: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }

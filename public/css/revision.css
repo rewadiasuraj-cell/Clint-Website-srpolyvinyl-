@@ -2919,63 +2919,136 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
   color: #f7d3cf;
 }
 
-/* Headline Scale: Thin, modern, elegant typography */
+/* =============================================================
+   ANTIGRAVITY EXACT REFERENCE TYPOGRAPHY SYSTEM
+   Primary Font: Manrope (200 ExtraLight, 300 Light, 400 Regular, 
+   600 SemiBold, 700 Bold). Fallback: Helvetica Neue, Inter, sans-serif.
+   ============================================================= */
+
+:root {
+  --font-editorial: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Inter, sans-serif;
+  --coral-accent: #F0A39A;
+  --brand-burgundy: #9F2028;
+}
+
+/* Global Body Typography (400 Regular, 15-17px, line-height 1.55-1.65) */
+body,
+p,
+.section-desc,
+.lead,
+.wh-val p,
+.client p,
+.sub-col p {
+  font-family: var(--font-editorial) !important;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* -------------------------------------------------------------
+   1. Homepage Hero Slides Typography (All 4 Slides)
+   - Ultra-light, elegant heading strokes: clamp(40px, 4.2vw, 64px)
+   - Font weight: 200 (ExtraLight)
+   - Letter spacing: -0.04em
+   - Line height: 1.12
+   - Emphasized text (strong / b): weight 700, #F0A39A coral
+   ------------------------------------------------------------- */
 .tricon-hero-copy h1,
 .tricon-hero-copy h2 {
-  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-  font-size: clamp(44px, 4vw, 64px) !important;
-  font-weight: 300 !important;
-  line-height: 1.08 !important;
-  letter-spacing: -0.035em !important;
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(40px, 4.2vw, 64px) !important;
+  font-weight: 200 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.04em !important;
   color: #FFFFFF !important;
   margin: 0 0 16px !important;
   text-transform: none !important;
+  text-wrap: balance !important;
 }
 
 .tricon-hero-copy h1 strong,
-.tricon-hero-copy h2 strong {
+.tricon-hero-copy h2 strong,
+.tricon-hero-copy h1 b,
+.tricon-hero-copy h2 b {
   font-family: inherit !important;
   font-weight: 700 !important;
-  color: #F0A39A !important; /* Coral Accent */
+  color: #F0A39A !important; /* Selective Bold Coral Accent */
   display: inline !important;
+  vertical-align: baseline !important;
+}
+
+/* Hero Eyebrow / Small Labels (11-12px, weight 600-700, uppercase, letter-spacing 0.12-0.16em) */
+.hero-eyebrow-text,
+.hero-tagline,
+.eyebrow,
+.cs-eyebrow,
+.i2-eyebrow,
+.ct-eyebrow,
+.pd-eyebrow {
+  font-family: var(--font-editorial) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.14em !important;
+}
+
+.hero-eyebrow-text {
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  color: #f7d3cf !important;
 }
 
 .hero-tagline {
-  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-size: 14.5px !important;
+  font-size: 13.5px !important;
   font-weight: 600 !important;
-  letter-spacing: 0.04em !important;
-  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
   color: #F0A39A !important;
   margin-bottom: 14px !important;
 }
 
-/* Description (Supporting text: 16-17px, weight 400) */
 .tricon-hero-copy p {
-  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-size: 16.5px !important;
+  font-family: var(--font-editorial) !important;
+  font-size: 16px !important;
   font-weight: 400 !important;
-  line-height: 1.55 !important;
+  line-height: 1.6 !important;
   color: rgba(255, 255, 255, 0.9) !important;
   max-width: 620px !important;
   margin: 0 0 28px !important;
 }
 
-/* Solid Red Rectangular Industrial CTA Button */
+/* -------------------------------------------------------------
+   2. Buttons & Navigation Typography (Manrope SemiBold 600)
+   - Navigation: 12-14px
+   - Buttons: 13-14px
+   ------------------------------------------------------------- */
+.main-links > li > a,
+.tricon-header .main-links > li > a,
+.nav-product-link {
+  font-family: var(--font-editorial) !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.hero-cta-btn,
+.btn-primary,
+.i2-btn,
+.dist-cta,
+.cta-banner .btn,
+.contact-btn {
+  font-family: var(--font-editorial) !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+
 .hero-cta-btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   background: #B3262D !important;
   color: #FFFFFF !important;
-  font-family: "Inter", sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none !important;
   padding: 15px 36px;
-  border-radius: 2px; /* Sharp industrial rectangular cut */
+  border-radius: 2px;
   border: none;
   box-shadow: 0 4px 16px rgba(165, 42, 42, 0.35);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2994,6 +3067,251 @@ body.page-home .site-header.tricon-header.has-open-menu .header-logo-container {
 
 .hero-cta-btn:hover i {
   transform: translateX(4px);
+}
+
+/* -------------------------------------------------------------
+   3. Homepage & Inner Page Section Headings
+   - Ultra-light heading base (200-300)
+   - Negative letter-spacing (-0.035em to -0.04em)
+   - Bold 700 selective contrast highlights
+   ------------------------------------------------------------- */
+/* Inner Page Hero Banners: About, Products, Industries, Clientele, Contact */
+.page-banner .ph-h,
+.ph-h {
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(40px, 4.4vw, 64px) !important;
+  font-weight: 200 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.04em !important;
+  color: #FFFFFF !important;
+  text-wrap: balance !important;
+}
+
+.page-banner .ph-h b,
+.page-banner .ph-h strong,
+.ph-h b,
+.ph-h strong {
+  font-weight: 700 !important;
+  color: #F0A39A !important; /* Coral Accent on Dark Banners */
+  display: inline !important;
+}
+
+.page-banner .ph-p,
+.ph-p {
+  font-family: var(--font-editorial) !important;
+  font-size: 16.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* About Us Page Lead Headings */
+.about-hero h1,
+.about-intro h1 {
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(40px, 4.2vw, 64px) !important;
+  font-weight: 200 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.04em !important;
+  color: #1a1a1a !important;
+}
+
+.about-hero h1 strong,
+.about-intro h1 strong {
+  font-weight: 700 !important;
+  color: #9F2028 !important;
+}
+
+/* Section Headings: Products Headline */
+.i2-h {
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(32px, 3.8vw, 60px) !important;
+  font-weight: 200 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.04em !important;
+  color: #1a1a1a !important;
+  white-space: normal !important;
+}
+
+.i2-h em,
+.i2-h strong {
+  font-weight: 700 !important;
+  color: #9F2028 !important;
+  font-style: normal !important;
+}
+
+.pr-head h2 {
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(34px, 4vw, 56px) !important;
+  font-weight: 200 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.035em !important;
+  color: #1a1a1a !important;
+}
+
+.pr-head h2 strong {
+  font-weight: 700 !important;
+  color: #9F2028 !important;
+}
+
+/* Section Headings: Zenith Technical Infrastructure */
+.zenith-section-header h2 {
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(34px, 3.8vw, 52px) !important;
+  font-weight: 200 !important;
+  line-height: 1.14 !important;
+  letter-spacing: -0.035em !important;
+  color: #FFFFFF !important;
+}
+
+.zenith-section-header h2 strong {
+  font-weight: 700 !important;
+  color: #F0A39A !important; /* Coral Accent on Dark */
+}
+
+/* Section Headings: Manufacturer Trust / Principals */
+.dist-head h2 {
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(32px, 3.6vw, 50px) !important;
+  font-weight: 200 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.035em !important;
+  color: #1a1a1a !important;
+}
+
+.dist-head h2 strong {
+  font-weight: 700 !important;
+  color: #9F2028 !important;
+}
+
+/* Section Headings: Industries We Serve */
+.cs-head h2 {
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(34px, 3.8vw, 54px) !important;
+  font-weight: 200 !important;
+  line-height: 1.14 !important;
+  letter-spacing: -0.035em !important;
+  color: #1a1a1a !important;
+}
+
+.cs-head h2 strong {
+  font-weight: 700 !important;
+  color: #9F2028 !important;
+}
+
+.cs-head h2 span {
+  font-weight: 200 !important;
+  color: #1a1a1a !important;
+}
+
+/* Section Headings: Customer-Centric / Values */
+.wh-h h2,
+.why-home h2 {
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(32px, 3.6vw, 50px) !important;
+  font-weight: 200 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.035em !important;
+  color: #1a1a1a !important;
+}
+
+.wh-h h2 strong,
+.why-home h2 strong {
+  font-weight: 700 !important;
+  color: #9F2028 !important;
+}
+
+.why-home h2 span {
+  font-weight: 200 !important;
+}
+
+/* Section Headings: Industry Leaders / Clientele */
+.clientele-home h2 {
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(32px, 3.5vw, 50px) !important;
+  font-weight: 200 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.035em !important;
+  color: #1a1a1a !important;
+}
+
+.clientele-home h2 span {
+  font-weight: 700 !important;
+  color: #9F2028 !important;
+}
+
+/* Bottom CTA Callout Banner */
+.cta-banner h2,
+section.cta-banner h2 {
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(32px, 3.6vw, 52px) !important;
+  font-weight: 200 !important;
+  line-height: 1.14 !important;
+  letter-spacing: -0.035em !important;
+  color: #FFFFFF !important;
+}
+
+.cta-banner h2 strong {
+  font-weight: 700 !important;
+  color: #F0A39A !important; /* Coral Accent on Dark */
+}
+
+/* Feature Cards Headings */
+.zenith-feature-card h3,
+.feature-card h3 {
+  font-family: var(--font-editorial) !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.28 !important;
+}
+
+/* Product Catalogue Category Headings */
+.pd-title h2,
+.catalog-category h2 {
+  font-family: var(--font-editorial) !important;
+  font-size: clamp(28px, 3.2vw, 42px) !important;
+  font-weight: 200 !important;
+  letter-spacing: -0.035em !important;
+  line-height: 1.18 !important;
+  color: #1a1a1a !important;
+}
+
+.pd-title h2 strong,
+.catalog-category h2 strong {
+  font-weight: 700 !important;
+  color: #9F2028 !important;
+}
+
+/* -------------------------------------------------------------
+   4. Responsive Heading Breakpoints (Strict Section 9 Compliance)
+   Desktop: 48-64px | Tablet: 38-46px | Mobile: 30-36px
+   ------------------------------------------------------------- */
+@media (min-width: 1025px) {
+  .tricon-hero-copy h1,
+  .tricon-hero-copy h2 {
+    font-size: clamp(48px, 4.2vw, 64px) !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tricon-hero-copy h1,
+  .tricon-hero-copy h2 {
+    font-size: clamp(38px, 4.5vw, 46px) !important;
+    line-height: 1.12 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .tricon-hero-copy h1,
+  .tricon-hero-copy h2 {
+    font-size: clamp(30px, 8vw, 36px) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.03em !important;
+  }
+  .tricon-hero-copy p {
+    font-size: 15px !important;
+  }
 }
 
 /* -------------------------------------------------------------
